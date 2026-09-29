@@ -390,11 +390,215 @@
 
   </div>
 
-</main>
+</main><!-- CLICKABLE PRODUCT POPUP -->
+
+<div id="productPopup" class="popup">
+
+  <div class="popup-box">
+
+    <button class="close-btn" onclick="closeProduct()">×</button>
+
+    <img id="productPicture" src="" alt="Squishy">
+
+    <h2 id="productName"></h2>
+
+    <h3 id="productPrice"></h3>
+
+    <p id="productColors"></p>
+
+    <a id="productOrder" class="order-btn" href="">
+
+      Order 💌
+
+    </a>
+
+  </div>
+
+</div>
+
+<style>
+
+.popup {
+
+  display:none;
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.5);
+
+  align-items:center;
+
+  justify-content:center;
+
+  z-index:9999;
+
+  padding:20px;
+
+}
+
+.popup-box {
+
+  background:white;
+
+  border-radius:25px;
+
+  padding:25px;
+
+  width:90%;
+
+  max-width:400px;
+
+  text-align:center;
+
+  position:relative;
+
+}
+
+.popup-box img {
+
+  width:100%;
+
+  max-height:300px;
+
+  object-fit:contain;
+
+  border-radius:20px;
+
+}
+
+.close-btn {
+
+  position:absolute;
+
+  right:12px;
+
+  top:8px;
+
+  border:0;
+
+  background:none;
+
+  font-size:32px;
+
+  cursor:pointer;
+
+}
+
+</style>
+
+<script>
+
+const products = {
+
+  "Potato": {
+
+    picture: "images/potato.jpg",
+
+    price: "$6",
+
+    colors: "Color: Yellow"
+
+  },
+
+  "Slushy Apple": {
+
+    picture: "images/apple.jpg",
+
+    price: "$6",
+
+    colors: "Colors: Red or Green"
+
+  },
+
+  "Slow Rise Butter": {
+
+    picture: "images/butter.jpg",
+
+    price: "$6",
+
+    colors: "Color: Yellow"
+
+  },
+
+  "Duck": {
+
+    picture: "images/duck.jpg",
+
+    price: "$6",
+
+    colors: "4 colors available"
+
+  },
+
+  "Bear": {
+
+    picture: "images/bear.jpg",
+
+    price: "$3",
+
+    colors: "4 colors available"
+
+  }
+
+};
+
+function openProduct(name) {
+
+  const p = products[name];
+
+  document.getElementById("productPicture").src = p.picture;
+
+  document.getElementById("productName").textContent = name;
+
+  document.getElementById("productPrice").textContent = p.price;
+
+  document.getElementById("productColors").textContent = p.colors;
+
+  document.getElementById("productOrder").href =
+
+    "mailto:squishy.mart2026@gmail.com?subject=" +
+
+    encodeURIComponent(name + " Order");
+
+  document.getElementById("productPopup").style.display = "flex";
+
+}
+
+function closeProduct() {
+
+  document.getElementById("productPopup").style.display = "none";
+
+}
+
+</script>
 
 <footer>Made with 💗 for squishy lovers</footer>
 
-</body>
+</body><script>
+
+document.querySelectorAll(".product").forEach(card => {
+
+  const name = card.querySelector("h3");
+
+  if (name && products[name.textContent.trim()]) {
+
+    card.style.cursor = "pointer";
+
+    card.addEventListener("click", function(e) {
+
+      if (e.target.closest(".order-btn")) return;
+
+      openProduct(name.textContent.trim());
+
+    });
+
+  }
+
+});
+
+</script>
 
 </html></article>
   </div>
