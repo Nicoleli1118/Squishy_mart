@@ -615,5 +615,25 @@ document.querySelectorAll(".product").forEach(card => {
 </div>
 
 
-</body>
+<script>
+
+document.querySelectorAll(".product").forEach(card => {
+
+  card.addEventListener("click", function(event) {
+
+    if (event.target.closest(".order-btn")) return;
+
+    const title = card.querySelector("h3");
+
+    if (title) {
+
+      openProduct(title.textContent.trim());
+
+    }
+
+  });
+
+});
+
+</script>/body>
 </html>
