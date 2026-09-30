@@ -30,8 +30,6 @@ body {
 
 }
 
-/* ================= HEADER ================= */
-
 header {
 
   background: #ff91c2;
@@ -63,8 +61,6 @@ header {
   font-weight: bold;
 
 }
-
-/* CART BUTTON */
 
 .cart-button {
 
@@ -115,8 +111,6 @@ header {
   font-size: 12px;
 
 }
-
-/* ================= HERO ================= */
 
 .hero {
 
@@ -172,8 +166,6 @@ header {
 
 }
 
-/* ================= SHOP ================= */
-
 .shop {
 
   max-width: 1100px;
@@ -198,15 +190,11 @@ header {
 
   display: grid;
 
-  grid-template-columns:
-
-    repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
 
   gap: 16px;
 
 }
-
-/* ================= PRODUCT CARD ================= */
 
 .product {
 
@@ -220,17 +208,7 @@ header {
 
   text-align: center;
 
-  box-shadow:
-
-    0 6px 18px #d98aaa20;
-
-  transition: transform .15s;
-
-}
-
-.product:hover {
-
-  transform: translateY(-4px);
+  box-shadow: 0 6px 18px #d98aaa20;
 
 }
 
@@ -290,8 +268,6 @@ header {
 
 }
 
-/* ADD BUTTON */
-
 .add-cart {
 
   width: 100%;
@@ -314,13 +290,15 @@ header {
 
 }
 
-.add-cart:active {
+.add-cart:active,
+
+.modal-add:active {
 
   transform: scale(.97);
 
 }
 
-/* ================= PRODUCT MODAL ================= */
+/* PRODUCT POPUP */
 
 .modal {
 
@@ -448,13 +426,13 @@ header {
 
 }
 
-/* COLOURS */
-
 .colors-title {
 
   font-weight: bold;
 
   margin-top: 15px;
+
+  margin-bottom: 8px;
 
 }
 
@@ -478,7 +456,7 @@ header {
 
   border-radius: 999px;
 
-  padding: 9px 14px;
+  padding: 10px 15px;
 
   cursor: pointer;
 
@@ -490,9 +468,21 @@ header {
 
   color: white;
 
+  border-color: #ff91c2;
+
 }
 
-/* MODAL ADD */
+.choose-message {
+
+  color: #e34f94;
+
+  font-weight: bold;
+
+  margin-top: 10px;
+
+  display: none;
+
+}
 
 .modal-add {
 
@@ -518,7 +508,7 @@ header {
 
 }
 
-/* ================= CART ================= */
+/* CART */
 
 .cart-overlay {
 
@@ -599,8 +589,6 @@ header {
   cursor: pointer;
 
 }
-
-/* CART ITEMS */
 
 .cart-item {
 
@@ -724,8 +712,6 @@ header {
 
 }
 
-/* TOTAL */
-
 .cart-total {
 
   display: flex;
@@ -755,8 +741,6 @@ header {
   margin-top: 18px;
 
   padding: 15px;
-
-  border: none;
 
   border-radius: 999px;
 
@@ -806,8 +790,6 @@ header {
 
 }
 
-/* ================= FOOTER ================= */
-
 footer {
 
   background: #ffd8e9;
@@ -819,8 +801,6 @@ footer {
   color: #7d5969;
 
 }
-
-/* ================= PHONE ================= */
 
 @media (max-width: 500px) {
 
@@ -890,8 +870,6 @@ footer {
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
 <header>
 
   <div class="logo">
@@ -900,61 +878,25 @@ footer {
 
   </div>
 
-  <button
-
-    class="cart-button"
-
-    id="cartButton"
-
-  >
+  <button class="cart-button" id="cartButton">
 
     🛒 Cart
 
-    <span
-
-      class="cart-count"
-
-      id="cartCount"
-
-    >
-
-      0
-
-    </span>
+    <span class="cart-count" id="cartCount">0</span>
 
   </button>
 
 </header>
 
-<!-- ================= HERO ================= -->
-
 <section class="hero">
 
-  <div class="hero-bow">
+  <div class="hero-bow">🎀</div>
 
-    🎀
+  <h1>Squishy Mart</h1>
 
-  </div>
+  <p>Soft, cute & satisfying squishies 💕</p>
 
-  <h1>
-
-    Squishy Mart
-
-  </h1>
-
-  <p>
-
-    Soft, cute & satisfying squishies 💕
-
-  </p>
-
-  <a
-
-    href="#shop"
-
-    class="shop-button"
-
-  >
+  <a href="#shop" class="shop-button">
 
     Shop now ✨
 
@@ -962,15 +904,7 @@ footer {
 
 </section>
 
-<!-- ================= SHOP ================= -->
-
-<main
-
-  class="shop"
-
-  id="shop"
-
->
+<main class="shop" id="shop">
 
   <h2 class="shop-title">
 
@@ -978,83 +912,39 @@ footer {
 
   </h2>
 
-  <div
-
-    id="products"
-
-    class="grid"
-
-  ></div>
+  <div id="products" class="grid"></div>
 
 </main>
 
-<!-- ================= PRODUCT MODAL ================= -->
+<!-- PRODUCT POPUP -->
 
-<div
-
-  class="modal"
-
-  id="productModal"
-
->
+<div class="modal" id="productModal">
 
   <div class="modal-box">
 
-    <button
-
-      class="close-modal"
-
-      id="closeModal"
-
-    >
+    <button class="close-modal" id="closeModal">
 
       ×
 
     </button>
 
-    <div
+    <div class="modal-picture" id="modalPicture"></div>
 
-      class="modal-picture"
+    <h2 id="modalName"></h2>
 
-      id="modalPicture"
+    <div class="modal-price" id="modalPrice"></div>
 
-    ></div>
+    <p class="modal-description" id="modalDescription"></p>
 
-    <h2
+    <div id="colorArea"></div>
 
-      id="modalName"
+    <div class="choose-message" id="chooseMessage">
 
-    ></h2>
+      💕 Please choose a colour first!
 
-    <div
+    </div>
 
-      class="modal-price"
-
-      id="modalPrice"
-
-    ></div>
-
-    <p
-
-      class="modal-description"
-
-      id="modalDescription"
-
-    ></p>
-
-    <div
-
-      id="colorArea"
-
-    ></div>
-
-    <button
-
-      class="modal-add"
-
-      id="modalAdd"
-
-    >
+    <button class="modal-add" id="modalAdd">
 
       🛒 Add to Cart
 
@@ -1064,33 +954,17 @@ footer {
 
 </div>
 
-<!-- ================= CART ================= -->
+<!-- CART -->
 
-<div
-
-  class="cart-overlay"
-
-  id="cartOverlay"
-
->
+<div class="cart-overlay" id="cartOverlay">
 
   <div class="cart-panel">
 
     <div class="cart-header">
 
-      <h2>
+      <h2>🛒 Your Cart</h2>
 
-        🛒 Your Cart
-
-      </h2>
-
-      <button
-
-        class="close-cart"
-
-        id="closeCart"
-
-      >
+      <button class="close-cart" id="closeCart">
 
         ×
 
@@ -1098,57 +972,25 @@ footer {
 
     </div>
 
-    <div
+    <div id="cartItems"></div>
 
-      id="cartItems"
-
-    ></div>
-
-    <div
-
-      id="cartBottom"
-
-      style="display:none;"
-
-    >
+    <div id="cartBottom" style="display:none;">
 
       <div class="cart-total">
 
-        <span>
+        <span>Total</span>
 
-          Total
-
-        </span>
-
-        <span id="cartTotal">
-
-          $0
-
-        </span>
+        <span id="cartTotal">$0</span>
 
       </div>
 
-      <a
-
-        id="orderCart"
-
-        class="order-cart"
-
-        href="#"
-
-      >
+      <a id="orderCart" class="order-cart" href="#">
 
         💌 Order Cart by Email
 
       </a>
 
-      <button
-
-        class="clear-cart"
-
-        id="clearCart"
-
-      >
+      <button class="clear-cart" id="clearCart">
 
         🗑️ Clear Cart
 
@@ -1160,8 +1002,6 @@ footer {
 
 </div>
 
-<!-- ================= FOOTER ================= -->
-
 <footer>
 
   Made with 💗 for squishy lovers
@@ -1170,7 +1010,7 @@ footer {
 
 <script>
 
-/* ================= PRODUCTS ================= */
+/* PRODUCTS */
 
 const products = [
 
@@ -1184,7 +1024,7 @@ const products = [
 
     image: "IMG_1103.jpeg",
 
-    description: "A soft and satisfying slow-rise butter squishy."
+    description: "A soft slow-rise butter squishy."
 
   },
 
@@ -1256,7 +1096,7 @@ const products = [
 
     image: "IMG_1093.jpeg",
 
-    description: "A cute soft peach squishy."
+    description: "A cute peach squishy."
 
   },
 
@@ -1270,7 +1110,7 @@ const products = [
 
     image: "IMG_1095.jpeg",
 
-    description: "A crunchy-looking toast squishy."
+    description: "A crunchy toast squishy."
 
   },
 
@@ -1284,7 +1124,7 @@ const products = [
 
     image: null,
 
-    description: "A soft and fluffy cloud squishy."
+    description: "A soft cloud squishy."
 
   },
 
@@ -1330,17 +1170,7 @@ const products = [
 
     description: "A cute duck squishy.",
 
-    colors: [
-
-      "Pink",
-
-      "Blue",
-
-      "Orange",
-
-      "Purple"
-
-    ]
+    colors: ["Pink", "Blue", "Orange", "Purple"]
 
   },
 
@@ -1354,7 +1184,7 @@ const products = [
 
     image: "IMG_1102.jpeg",
 
-    description: "A cute crunchy soap squishy."
+    description: "A crunchy soap squishy."
 
   },
 
@@ -1368,7 +1198,7 @@ const products = [
 
     image: null,
 
-    description: "A soft and satisfying Needoh-style squishy."
+    description: "A soft Needoh-style squishy."
 
   },
 
@@ -1396,7 +1226,7 @@ const products = [
 
     image: null,
 
-    description: "A sweet cake-shaped squishy."
+    description: "A sweet cake squishy."
 
   },
 
@@ -1424,25 +1254,15 @@ const products = [
 
     image: "IMG_1092.jpeg",
 
-    description: "A cute glittery bear squishy.",
+    description: "A cute bear squishy.",
 
-    colors: [
-
-      "Pink",
-
-      "Blue",
-
-      "Orange",
-
-      "Purple"
-
-    ]
+    colors: ["Pink", "Blue", "Orange", "Purple"]
 
   }
 
 ];
 
-/* ================= VARIABLES ================= */
+/* VARIABLES */
 
 let cart = [];
 
@@ -1450,7 +1270,7 @@ let selectedProduct = 0;
 
 let selectedColor = "";
 
-/* ================= ELEMENTS ================= */
+/* ELEMENTS */
 
 const productsBox =
 
@@ -1479,6 +1299,10 @@ const modalDescription =
 const colorArea =
 
   document.getElementById("colorArea");
+
+const chooseMessage =
+
+  document.getElementById("chooseMessage");
 
 const modalAdd =
 
@@ -1524,7 +1348,7 @@ const clearCart =
 
   document.getElementById("clearCart");
 
-/* ================= SHOW PRODUCTS ================= */
+/* SHOW PRODUCTS */
 
 function renderProducts() {
 
@@ -1592,37 +1416,37 @@ function renderProducts() {
 
       "</button>";
 
-    const pictureBox =
+    card.querySelector(".toy")
 
-      card.querySelector(".toy");
-
-    const addButton =
-
-      card.querySelector(".add-cart");
-
-    pictureBox.addEventListener(
-
-      "click",
-
-      function() {
+      .addEventListener("click", function() {
 
         openProduct(index);
 
-      }
+      });
 
-    );
+    card.querySelector(".add-cart")
 
-    addButton.addEventListener(
+      .addEventListener("click", function() {
 
-      "click",
+        /*
 
-      function() {
+          IMPORTANT:
 
-        addToCart(index);
+          Products with colours MUST open the colour picker.
 
-      }
+        */
 
-    );
+        if (product.colors) {
+
+          openProduct(index);
+
+        } else {
+
+          addToCart(index, "");
+
+        }
+
+      });
 
     productsBox.appendChild(card);
 
@@ -1630,7 +1454,7 @@ function renderProducts() {
 
 }
 
-/* ================= OPEN PRODUCT ================= */
+/* OPEN PRODUCT */
 
 function openProduct(index) {
 
@@ -1682,6 +1506,12 @@ function openProduct(index) {
 
   colorArea.innerHTML = "";
 
+  chooseMessage.style.display =
+
+    "none";
+
+  /* COLOUR PICKER */
+
   if (product.colors) {
 
     const title =
@@ -1694,7 +1524,7 @@ function openProduct(index) {
 
     title.textContent =
 
-      "Choose a colour:";
+      "🎨 Choose a colour:";
 
     const colors =
 
@@ -1704,69 +1534,63 @@ function openProduct(index) {
 
       "colors";
 
-    product.colors.forEach(
+    product.colors.forEach(function(color) {
 
-      function(color) {
+      const button =
 
-        const button =
+        document.createElement("button");
 
-          document.createElement("button");
+      button.type = "button";
 
-        button.className =
+      button.className =
 
-          "color-button";
+        "color-button";
 
-        button.textContent =
+      button.textContent =
 
-          color;
+        color;
 
-        button.addEventListener(
+      button.addEventListener(
 
-          "click",
+        "click",
 
-          function() {
+        function() {
 
-            selectedColor =
+          selectedColor =
 
-              color;
+            color;
 
-            colors
+          chooseMessage.style.display =
 
-              .querySelectorAll(
+            "none";
 
-                ".color-button"
+          colors
 
-              )
+            .querySelectorAll(".color-button")
 
-              .forEach(
+            .forEach(function(btn) {
 
-                function(item) {
+              btn.classList.remove(
 
-                  item.classList.remove(
-
-                    "selected"
-
-                  );
-
-                }
+                "selected"
 
               );
 
-            button.classList.add(
+            });
 
-              "selected"
+          button.classList.add(
 
-            );
+            "selected"
 
-          }
+          );
 
-        );
+        }
 
-        colors.appendChild(button);
+      );
 
-      }
+      colors.appendChild(button);
 
-    );
+    });
 
     colorArea.appendChild(title);
 
@@ -1782,7 +1606,419 @@ function openProduct(index) {
 
 }
 
-/* ================= CLOSE PRODUCT ================= */
+/* ADD FROM POPUP */
+
+modalAdd.addEventListener(
+
+  "click",
+
+  function() {
+
+    const product =
+
+      products[selectedProduct];
+
+    /* MAKE SURE COLOUR IS CHOSEN */
+
+    if (
+
+      product.colors &&
+
+      !selectedColor
+
+    ) {
+
+      chooseMessage.style.display =
+
+        "block";
+
+      return;
+
+    }
+
+    addToCart(
+
+      selectedProduct,
+
+      selectedColor
+
+    );
+
+    productModal.classList.remove(
+
+      "open"
+
+    );
+
+  }
+
+);
+
+/* ADD TO CART */
+
+function addToCart(index, color) {
+
+  const existing =
+
+    cart.find(function(item) {
+
+      return (
+
+        item.index === index &&
+
+        item.color === color
+
+      );
+
+    });
+
+  if (existing) {
+
+    existing.quantity++;
+
+  } else {
+
+    cart.push({
+
+      index: index,
+
+      color: color,
+
+      quantity: 1
+
+    });
+
+  }
+
+  updateCart();
+
+}
+
+/* UPDATE CART */
+
+function updateCart() {
+
+  let count = 0;
+
+  let total = 0;
+
+  cart.forEach(function(item) {
+
+    const product =
+
+      products[item.index];
+
+    count +=
+
+      item.quantity;
+
+    total +=
+
+      product.price *
+
+      item.quantity;
+
+  });
+
+  cartCount.textContent =
+
+    count;
+
+  cartItems.innerHTML = "";
+
+  if (cart.length === 0) {
+
+    cartItems.innerHTML =
+
+      '<div class="empty">' +
+
+      "🛒 Your cart is empty!" +
+
+      "<br><br>" +
+
+      "Add some cute squishies 💕" +
+
+      "</div>";
+
+    cartBottom.style.display =
+
+      "none";
+
+    return;
+
+  }
+
+  cartBottom.style.display =
+
+    "block";
+
+  cart.forEach(function(item, cartIndex) {
+
+    const product =
+
+      products[item.index];
+
+    const row =
+
+      document.createElement("div");
+
+    row.className =
+
+      "cart-item";
+
+    let picture;
+
+    if (product.image) {
+
+      picture =
+
+        '<img src="' +
+
+        product.image +
+
+        '" alt="' +
+
+        product.name +
+
+        '">';
+
+    } else {
+
+      picture =
+
+        "<span>" +
+
+        product.emoji +
+
+        "</span>";
+
+    }
+
+    let colorText = "";
+
+    if (item.color) {
+
+      colorText =
+
+        "<p>Colour: " +
+
+        item.color +
+
+        "</p>";
+
+    }
+
+    row.innerHTML =
+
+      '<div class="cart-image">' +
+
+      picture +
+
+      "</div>" +
+
+      '<div class="cart-info">' +
+
+      "<h3>" +
+
+      product.name +
+
+      "</h3>" +
+
+      "<p>$" +
+
+      product.price +
+
+      " each</p>" +
+
+      colorText +
+
+      '<div class="quantity">' +
+
+      '<button class="minus">−</button>' +
+
+      "<strong>" +
+
+      item.quantity +
+
+      "</strong>" +
+
+      '<button class="plus">+</button>' +
+
+      "</div>" +
+
+      '<button class="remove">' +
+
+      "Remove" +
+
+      "</button>" +
+
+      "</div>";
+
+    row.querySelector(".minus")
+
+      .addEventListener("click", function() {
+
+        changeQuantity(
+
+          cartIndex,
+
+          -1
+
+        );
+
+      });
+
+    row.querySelector(".plus")
+
+      .addEventListener("click", function() {
+
+        changeQuantity(
+
+          cartIndex,
+
+          1
+
+        );
+
+      });
+
+    row.querySelector(".remove")
+
+      .addEventListener("click", function() {
+
+        cart.splice(
+
+          cartIndex,
+
+          1
+
+        );
+
+        updateCart();
+
+      });
+
+    cartItems.appendChild(row);
+
+  });
+
+  cartTotal.textContent =
+
+    "$" + total;
+
+  updateOrderEmail();
+
+}
+
+/* CHANGE QUANTITY */
+
+function changeQuantity(
+
+  cartIndex,
+
+  amount
+
+) {
+
+  cart[cartIndex].quantity +=
+
+    amount;
+
+  if (
+
+    cart[cartIndex].quantity <= 0
+
+  ) {
+
+    cart.splice(
+
+      cartIndex,
+
+      1
+
+    );
+
+  }
+
+  updateCart();
+
+}
+
+/* EMAIL ORDER */
+
+function updateOrderEmail() {
+
+  let body =
+
+    "Hi! I would like to order:%0A%0A";
+
+  let total = 0;
+
+  cart.forEach(function(item) {
+
+    const product =
+
+      products[item.index];
+
+    const subtotal =
+
+      product.price *
+
+      item.quantity;
+
+    total +=
+
+      subtotal;
+
+    body +=
+
+      item.quantity +
+
+      " x " +
+
+      product.name;
+
+    if (item.color) {
+
+      body +=
+
+        " (" +
+
+        item.color +
+
+        ")";
+
+    }
+
+    body +=
+
+      " - $" +
+
+      subtotal +
+
+      "%0A";
+
+  });
+
+  body +=
+
+    "%0ATotal: $" +
+
+    total;
+
+  orderCart.href =
+
+    "mailto:squishy.mart2026@gmail.com" +
+
+    "?subject=Squishy%20Mart%20Order" +
+
+    "&body=" +
+
+    body;
+
+}
+
+/* CLOSE PRODUCT */
 
 closeModal.addEventListener(
 
@@ -1824,443 +2060,7 @@ productModal.addEventListener(
 
 );
 
-/* ================= ADD TO CART ================= */
-
-function addToCart(index) {
-
-  const product =
-
-    products[index];
-
-  let existing =
-
-    cart.find(
-
-      function(item) {
-
-        return (
-
-          item.index === index &&
-
-          item.color === selectedColor
-
-        );
-
-      }
-
-    );
-
-  if (existing) {
-
-    existing.quantity++;
-
-  } else {
-
-    cart.push({
-
-      index: index,
-
-      color: selectedColor,
-
-      quantity: 1
-
-    });
-
-  }
-
-  updateCart();
-
-  productModal.classList.remove(
-
-    "open"
-
-  );
-
-}
-
-/* ================= CART ================= */
-
-function updateCart() {
-
-  let count = 0;
-
-  let total = 0;
-
-  cart.forEach(
-
-    function(item) {
-
-      const product =
-
-        products[item.index];
-
-      count +=
-
-        item.quantity;
-
-      total +=
-
-        product.price *
-
-        item.quantity;
-
-    }
-
-  );
-
-  cartCount.textContent =
-
-    count;
-
-  cartItems.innerHTML = "";
-
-  if (cart.length === 0) {
-
-    cartItems.innerHTML =
-
-      '<div class="empty">' +
-
-      "🛒 Your cart is empty!" +
-
-      "<br><br>" +
-
-      "Add some cute squishies 💕" +
-
-      "</div>";
-
-    cartBottom.style.display =
-
-      "none";
-
-    return;
-
-  }
-
-  cartBottom.style.display =
-
-    "block";
-
-  cart.forEach(
-
-    function(item, cartIndex) {
-
-      const product =
-
-        products[item.index];
-
-      const row =
-
-        document.createElement(
-
-          "div"
-
-        );
-
-      row.className =
-
-        "cart-item";
-
-      let picture;
-
-      if (product.image) {
-
-        picture =
-
-          '<img src="' +
-
-          product.image +
-
-          '" alt="' +
-
-          product.name +
-
-          '">';
-
-      } else {
-
-        picture =
-
-          "<span>" +
-
-          product.emoji +
-
-          "</span>";
-
-      }
-
-      let colourText = "";
-
-      if (item.color) {
-
-        colourText =
-
-          "<p>Colour: " +
-
-          item.color +
-
-          "</p>";
-
-      }
-
-      row.innerHTML =
-
-        '<div class="cart-image">' +
-
-        picture +
-
-        "</div>" +
-
-        '<div class="cart-info">' +
-
-        "<h3>" +
-
-        product.name +
-
-        "</h3>" +
-
-        "<p>$" +
-
-        product.price +
-
-        " each</p>" +
-
-        colourText +
-
-        '<div class="quantity">' +
-
-        '<button class="minus">−</button>' +
-
-        "<strong>" +
-
-        item.quantity +
-
-        "</strong>" +
-
-        '<button class="plus">+</button>' +
-
-        "</div>" +
-
-        '<button class="remove">' +
-
-        "Remove" +
-
-        "</button>" +
-
-        "</div>";
-
-      row
-
-        .querySelector(".minus")
-
-        .addEventListener(
-
-          "click",
-
-          function() {
-
-            changeQuantity(
-
-              cartIndex,
-
-              -1
-
-            );
-
-          }
-
-        );
-
-      row
-
-        .querySelector(".plus")
-
-        .addEventListener(
-
-          "click",
-
-          function() {
-
-            changeQuantity(
-
-              cartIndex,
-
-              1
-
-            );
-
-          }
-
-        );
-
-      row
-
-        .querySelector(".remove")
-
-        .addEventListener(
-
-          "click",
-
-          function() {
-
-            cart.splice(
-
-              cartIndex,
-
-              1
-
-            );
-
-            updateCart();
-
-          }
-
-        );
-
-      cartItems.appendChild(row);
-
-    }
-
-  );
-
-  cartTotal.textContent =
-
-    "$" + total;
-
-  updateOrderLink();
-
-}
-
-/* ================= QUANTITY ================= */
-
-function changeQuantity(
-
-  cartIndex,
-
-  amount
-
-) {
-
-  cart[cartIndex].quantity +=
-
-    amount;
-
-  if (
-
-    cart[cartIndex].quantity <= 0
-
-  ) {
-
-    cart.splice(
-
-      cartIndex,
-
-      1
-
-    );
-
-  }
-
-  updateCart();
-
-}
-
-/* ================= EMAIL ORDER ================= */
-
-function updateOrderLink() {
-
-  let body =
-
-    "Hi! I would like to order:%0A%0A";
-
-  let total = 0;
-
-  cart.forEach(
-
-    function(item) {
-
-      const product =
-
-        products[item.index];
-
-      const subtotal =
-
-        product.price *
-
-        item.quantity;
-
-      total +=
-
-        subtotal;
-
-      body +=
-
-        item.quantity +
-
-        " x " +
-
-        product.name;
-
-      if (item.color) {
-
-        body +=
-
-          " (" +
-
-          item.color +
-
-          ")";
-
-      }
-
-      body +=
-
-        " - $" +
-
-        subtotal +
-
-        "%0A";
-
-    }
-
-  );
-
-  body +=
-
-    "%0ATotal: $" +
-
-    total;
-
-  orderCart.href =
-
-    "mailto:squishy.mart2026@gmail.com" +
-
-    "?subject=Squishy%20Mart%20Order" +
-
-    "&body=" +
-
-    body;
-
-}
-
-/* ================= MODAL ADD BUTTON ================= */
-
-modalAdd.addEventListener(
-
-  "click",
-
-  function() {
-
-    addToCart(
-
-      selectedProduct
-
-    );
-
-  }
-
-);
-
-/* ================= OPEN CART ================= */
+/* OPEN CART */
 
 cartButton.addEventListener(
 
@@ -2280,7 +2080,7 @@ cartButton.addEventListener(
 
 );
 
-/* ================= CLOSE CART ================= */
+/* CLOSE CART */
 
 closeCart.addEventListener(
 
@@ -2324,7 +2124,7 @@ cartOverlay.addEventListener(
 
 );
 
-/* ================= CLEAR CART ================= */
+/* CLEAR CART */
 
 clearCart.addEventListener(
 
@@ -2340,7 +2140,7 @@ clearCart.addEventListener(
 
 );
 
-/* ================= START ================= */
+/* START WEBSITE */
 
 renderProducts();
 
