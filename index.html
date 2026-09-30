@@ -1,114 +1,1023 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Squishy Mart 💗</title>
-<link rel="stylesheet" href="style.css">
+
+<title>🎀 Squishy Mart</title>
+
 <style>
-.product{cursor:pointer;transition:transform .15s,box-shadow .15s}
-.product:hover{transform:translateY(-3px);box-shadow:0 12px 30px #e97eaa22}
-.product .toy{height:190px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.product .toy img{width:100%;height:100%;object-fit:contain;border-radius:16px}
-.modal{display:none;position:fixed;inset:0;background:#0006;z-index:50;align-items:center;justify-content:center;padding:18px}
-.modal.open{display:flex}
-.modal-box{width:min(520px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:28px;padding:24px;text-align:center;position:relative;box-shadow:0 20px 70px #0003}
-.modal-box img{width:100%;max-height:360px;object-fit:contain;border-radius:20px;background:#fff0f7}
-.modal-close{position:absolute;right:14px;top:10px;border:0;background:#fff;border-radius:50%;font-size:28px;width:42px;height:42px;cursor:pointer}
-.color-choice{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0}
-.color-choice button{border:1px solid #f0bfd3;background:#fff7fb;border-radius:999px;padding:8px 14px;cursor:pointer}
-.color-choice button.selected{background:#f27bb1;color:white}
-.order-big{display:inline-block;margin-top:12px;border:0;border-radius:999px;padding:13px 22px;background:#f27bb1;color:white;font-weight:700;text-decoration:none}
-.tap-note{text-align:center;color:#866c78;margin-top:-12px;margin-bottom:28px}
-@media(max-width:520px){.product .toy{height:170px}.modal-box{padding:18px}}
+
+* {
+
+  box-sizing: border-box;
+
+}
+
+body {
+
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+
+  background: linear-gradient(180deg, #ffeaf5, #fff7fb);
+
+  color: #5b3b4a;
+
+}
+
+header {
+
+  background: #ff9fc9;
+
+  padding: 22px 16px;
+
+  text-align: center;
+
+  color: white;
+
+}
+
+header h1 {
+
+  margin: 0;
+
+  font-size: 28px;
+
+}
+
+header p {
+
+  margin: 6px 0 0;
+
+}
+
+.hero {
+
+  text-align: center;
+
+  padding: 30px 16px 20px;
+
+}
+
+.hero h2 {
+
+  font-size: 30px;
+
+  margin: 8px 0;
+
+  color: #e85b9c;
+
+}
+
+.shop {
+
+  max-width: 1100px;
+
+  margin: auto;
+
+  padding: 10px 16px 50px;
+
+}
+
+.shop > h2 {
+
+  text-align: center;
+
+  color: #e85b9c;
+
+}
+
+.grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+
+  gap: 16px;
+
+}
+
+.product {
+
+  background: white;
+
+  border: 3px solid #ffd0e3;
+
+  border-radius: 22px;
+
+  padding: 12px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 15px #d98aaa22;
+
+}
+
+.product:hover {
+
+  transform: translateY(-4px);
+
+}
+
+.toy {
+
+  height: 155px;
+
+  border-radius: 17px;
+
+  background: #fff0f7;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+}
+
+.toy img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+}
+
+.toy span {
+
+  font-size: 70px;
+
+}
+
+.product h3 {
+
+  margin: 10px 4px 5px;
+
+  font-size: 18px;
+
+}
+
+.product p {
+
+  margin: 0 4px 8px;
+
+  font-size: 13px;
+
+  color: #8a6877;
+
+}
+
+.price {
+
+  font-weight: bold;
+
+  color: #e64f94;
+
+  font-size: 18px;
+
+}
+
+footer {
+
+  text-align: center;
+
+  padding: 24px;
+
+  background: #ffd8e9;
+
+}
+
+.modal {
+
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  background: #4b263755;
+
+  z-index: 50;
+
+  padding: 18px;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+.modal.open {
+
+  display: flex;
+
+}
+
+.modal-box {
+
+  width: min(520px, 100%);
+
+  max-height: 92vh;
+
+  overflow: auto;
+
+  background: white;
+
+  border-radius: 28px;
+
+  padding: 20px;
+
+  position: relative;
+
+}
+
+.close {
+
+  position: absolute;
+
+  right: 12px;
+
+  top: 10px;
+
+  width: 42px;
+
+  height: 42px;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background: #ffe0ed;
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+}
+
+.modal-visual {
+
+  height: 270px;
+
+  border-radius: 20px;
+
+  background: #fff0f7;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+}
+
+.modal-visual img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+}
+
+.modal-visual span {
+
+  font-size: 110px;
+
+}
+
+.modal h2 {
+
+  margin: 15px 0 4px;
+
+  color: #e85b9c;
+
+}
+
+.modal-price {
+
+  font-size: 22px;
+
+  font-weight: bold;
+
+  color: #e64f94;
+
+}
+
+.colors {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin: 12px 0;
+
+}
+
+.color-btn {
+
+  border: 2px solid #ffc3dc;
+
+  background: white;
+
+  color: #6b4556;
+
+  border-radius: 999px;
+
+  padding: 10px 15px;
+
+  cursor: pointer;
+
+}
+
+.color-btn.selected {
+
+  background: #ff9fc9;
+
+  color: white;
+
+}
+
+.order {
+
+  display: block;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  background: #ff78b5;
+
+  color: white;
+
+  font-weight: bold;
+
+  padding: 14px;
+
+  border-radius: 999px;
+
+  margin-top: 16px;
+
+}
+
+@media (max-width: 500px) {
+
+  .grid {
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+
+  }
+
+  .toy {
+
+    height: 125px;
+
+  }
+
+  .toy span {
+
+    font-size: 55px;
+
+  }
+
+  .product h3 {
+
+    font-size: 15px;
+
+  }
+
+}
+
 </style>
+
 </head>
+
 <body>
-<header><div class="logo">🎀 Squishy Mart</div></header>
+
+<header>
+
+  <h1>🎀 Squishy Mart</h1>
+
+  <p>Soft, cute & satisfying squishies 💕</p>
+
+</header>
 
 <section class="hero">
-  <div>
-    <p class="eyebrow">SOFT • CUTE • SQUISHY</p>
-    <h1>Find your new<br><span>favourite squishy!</span></h1>
-    <p>Super soft, adorable squishies for your collection. 💗</p>
-    <a href="#shop" class="shop-btn">Shop now ✨</a>
-  </div>
-  <div class="hero-toy">🧸</div>
+
+  <h2>Shop now ✨</h2>
+
+  <p>Tap any squishy to see it bigger and choose a colour!</p>
+
 </section>
 
-<main id="shop">
-<h2>Our squishies 💕</h2>
-<p class="tap-note">Tap any squishy to see it bigger and choose a colour! ✨</p>
-<div class="products" id="products"></div>
+<main class="shop">
+
+  <h2>Our squishies 💕</h2>
+
+  <div id="products" class="grid"></div>
+
 </main>
 
-<footer>Made with 💗 for squishy lovers</footer>
+<div id="productModal" class="modal">
 
-<div class="modal" id="productModal" onclick="closeIfOutside(event)">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeProduct()">×</button>
-    <div id="modalVisual"></div>
+
+    <button class="close" id="closeBtn">×</button>
+
+    <div id="modalVisual" class="modal-visual"></div>
+
     <h2 id="modalName"></h2>
-    <h3 id="modalPrice"></h3>
+
+    <div id="modalPrice" class="modal-price"></div>
+
     <p id="modalDescription"></p>
-    <div id="modalColors" class="color-choice"></div>
-    <a id="modalOrder" class="order-big" href="#">Order by email 💌</a>
+
+    <div id="modalColors" class="colors"></div>
+
+    <a id="modalOrder" class="order" href="#">
+
+      💌 Order by email
+
+    </a>
+
   </div>
+
 </div>
 
+<footer>
+
+  Made with 💗 for squishy lovers
+
+</footer>
+
 <script>
+
 const products = [
- {name:"Slow Rise Butter",price:6,emoji:"🧈",image:"IMG_1103.jpeg",desc:"A soft slow-rise butter squishy."},
- {name:"Vaseline Butter",price:6,emoji:"🧈",image:"IMG_1096.jpeg",desc:"A cute buttery squishy with a smooth feel."},
- {name:"Crunchy Butter",price:6,emoji:"🧈",image:"IMG_1091.jpeg",desc:"Crunchy Butter in cute colours.",colors:["Blue","Pink"]},
- {name:"Cheese",price:6,emoji:"🧀",image:"IMG_1098.jpeg",desc:"A cheesy squishy for your collection."},
- {name:"Potato",price:6,emoji:"🥔",image:"IMG_1101.jpeg",desc:"Soft potato squishy."},
- {name:"Peach",price:6,emoji:"🍑",image:"IMG_1093.jpeg",desc:"Soft and cute peach squishy."},
- {name:"Crunchy Toast",price:6,emoji:"🍞",image:"IMG_1095.jpeg",desc:"A crunchy-looking toast squishy."},
- {name:"Needoh Cloud",price:8,emoji:"☁️",image:null",desc:"A super soft squeeze-style squishy."},
- {name:"Giant Strawberry",price:9,emoji:"🍓",image:"IMG_1094.jpeg",desc:"A giant strawberry squishy."},
- {name:"Slushy Apple",price:6,emoji:"🍏",image:"IMG_1100.jpeg",desc:"Choose your apple colour.",colors:["Red","Green"]},
- {name:"Duck",price:6,emoji:"🦆",image:"IMG_1090.jpeg",desc:"Cute duck squishy.",colors:["Pink","Blue","Orange","Purple"]},
- {name:"Crunchy Soap",price:6,emoji:"🧼",image:null,desc:"A cute crunchy soap squishy."},
- {name:"Needoh",price:8,emoji:"🌈",desc:"Soft and satisfying Needoh-style squishy."},
- {name:"Needoh Jellyfish",price:8,emoji:"🪼",desc:"Cute jellyfish squishy."},
- {name:"Needoh Cake",price:8,emoji:"🍰",desc:"Sweet cake-shaped Needoh squishy."},
- {name:"Needoh Ice Cream",price:8,emoji:"🍦",desc:"Cute ice cream Needoh squishy."},
- {name:"Bear",price:3,emoji:"🐻",image:"IMG_1092.jpeg",desc:"Glittery bear squishy.",colors:["Pink","Blue","Orange","Purple"]}
+
+  {
+
+    name: "Slow Rise Butter",
+
+    price: 6,
+
+    emoji: "🧈",
+
+    image: "IMG_1103.jpeg",
+
+    desc: "A soft slow-rise butter squishy."
+
+  },
+
+  {
+
+    name: "Vaseline Butter",
+
+    price: 6,
+
+    emoji: "🧈",
+
+    image: "IMG_1096.jpeg",
+
+    desc: "A cute buttery squishy."
+
+  },
+
+  {
+
+    name: "Crunchy Butter",
+
+    price: 6,
+
+    emoji: "🧈",
+
+    image: "IMG_1091.jpeg",
+
+    desc: "Crunchy Butter in cute colours.",
+
+    colors: ["Blue", "Pink"]
+
+  },
+
+  {
+
+    name: "Cheese",
+
+    price: 6,
+
+    emoji: "🧀",
+
+    image: "IMG_1098.jpeg",
+
+    desc: "A cheesy squishy for your collection."
+
+  },
+
+  {
+
+    name: "Potato",
+
+    price: 6,
+
+    emoji: "🥔",
+
+    image: "IMG_1101.jpeg",
+
+    desc: "Soft potato squishy."
+
+  },
+
+  {
+
+    name: "Peach",
+
+    price: 6,
+
+    emoji: "🍑",
+
+    image: "IMG_1093.jpeg",
+
+    desc: "Soft and cute peach squishy."
+
+  },
+
+  {
+
+    name: "Crunchy Toast",
+
+    price: 6,
+
+    emoji: "🍞",
+
+    image: "IMG_1095.jpeg",
+
+    desc: "A crunchy-looking toast squishy."
+
+  },
+
+  {
+
+    name: "Needoh Cloud",
+
+    price: 8,
+
+    emoji: "☁️",
+
+    image: null,
+
+    desc: "A super soft cloud squishy."
+
+  },
+
+  {
+
+    name: "Giant Strawberry",
+
+    price: 9,
+
+    emoji: "🍓",
+
+    image: "IMG_1094.jpeg",
+
+    desc: "A giant strawberry squishy."
+
+  },
+
+  {
+
+    name: "Slushy Apple",
+
+    price: 6,
+
+    emoji: "🍏",
+
+    image: "IMG_1100.jpeg",
+
+    desc: "Choose your apple colour.",
+
+    colors: ["Red", "Green"]
+
+  },
+
+  {
+
+    name: "Duck",
+
+    price: 6,
+
+    emoji: "🦆",
+
+    image: "IMG_1090.jpeg",
+
+    desc: "Cute duck squishy.",
+
+    colors: ["Pink", "Blue", "Orange", "Purple"]
+
+  },
+
+  {
+
+    name: "Crunchy Soap",
+
+    price: 6,
+
+    emoji: "🧼",
+
+    image: "IMG_1102.jpeg",
+
+    desc: "A cute crunchy soap squishy."
+
+  },
+
+  {
+
+    name: "Needoh",
+
+    price: 8,
+
+    emoji: "🌈",
+
+    image: null,
+
+    desc: "Soft and satisfying Needoh-style squishy."
+
+  },
+
+  {
+
+    name: "Needoh Jellyfish",
+
+    price: 8,
+
+    emoji: "🪼",
+
+    image: null,
+
+    desc: "Cute jellyfish squishy."
+
+  },
+
+  {
+
+    name: "Needoh Cake",
+
+    price: 8,
+
+    emoji: "🍰",
+
+    image: null,
+
+    desc: "Sweet cake-shaped Needoh squishy."
+
+  },
+
+  {
+
+    name: "Needoh Ice Cream",
+
+    price: 8,
+
+    emoji: "🍦",
+
+    image: null,
+
+    desc: "Cute ice cream Needoh squishy."
+
+  },
+
+  {
+
+    name: "Bear",
+
+    price: 3,
+
+    emoji: "🐻",
+
+    image: "IMG_1092.jpeg",
+
+    desc: "Glittery bear squishy.",
+
+    colors: ["Pink", "Blue", "Orange", "Purple"]
+
+  }
+
 ];
 
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
-function mailLink(p,color=""){
- const subject=encodeURIComponent("Squishy Order - "+p.name);
- const body=encodeURIComponent(`Hi! I would like to order the ${p.name} squishy for $${p.price}.${color?` Colour: ${color}.`:""}`);
- return `mailto:squishy.mart2026@gmail.com?subject=${subject}&body=${body}`;
+const grid = document.getElementById("products");
+
+const modal = document.getElementById("productModal");
+
+const modalVisual = document.getElementById("modalVisual");
+
+const modalName = document.getElementById("modalName");
+
+const modalPrice = document.getElementById("modalPrice");
+
+const modalDescription =
+
+  document.getElementById("modalDescription");
+
+const modalColors =
+
+  document.getElementById("modalColors");
+
+const modalOrder =
+
+  document.getElementById("modalOrder");
+
+let currentIndex = 0;
+
+let currentColor = "";
+
+function renderProducts() {
+
+  grid.innerHTML = "";
+
+  products.forEach(function(product, index) {
+
+    const card = document.createElement("article");
+
+    card.className = "product";
+
+    let picture;
+
+    if (product.image) {
+
+      picture =
+
+        '<img src="' +
+
+        product.image +
+
+        '" alt="' +
+
+        product.name +
+
+        '">';
+
+    } else {
+
+      picture =
+
+        "<span>" +
+
+        product.emoji +
+
+        "</span>";
+
+    }
+
+    card.innerHTML =
+
+      '<div class="toy">' +
+
+      picture +
+
+      "</div>" +
+
+      "<h3>" +
+
+      product.name +
+
+      "</h3>" +
+
+      "<p>" +
+
+      product.desc +
+
+      "</p>" +
+
+      '<div class="price">$' +
+
+      product.price +
+
+      "</div>";
+
+    card.addEventListener("click", function() {
+
+      openProduct(index);
+
+    });
+
+    grid.appendChild(card);
+
+  });
+
 }
-const grid=document.getElementById("products");
-products.forEach((p,i)=>{
- const card=document.createElement("article");
- card.className="product";
- card.innerHTML=`<div class="toy">${p.image?'<img src="'+p.image+'" alt="'+esc(p.name)+'">':'<span>'+p.emoji+'</span>'}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><strong>$${p.price}</strong>`;
- card.innerHTML=`<div class="toy">${p.image?'<img src="'+p.image+'" alt="'+esc(p.name)+'">':'<span>'+p.emoji+'</span>'}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><strong>$${p.price}</strong>`;
- <a class="order-btn" href="${mailLink(p)}" onclick="event.stopPropagation()">Order by email 💌</a>`;
- grid.appendChild(card);
-});
-let currentIndex=0,currentColor="";
-function openProduct(i){
- currentIndex=i; currentColor="";
- const p=products[i];
- document.getElementById("modalVisual").innerHTML=p.image?`<img src="${p.image}" alt="${esc(p.name)}">`:`<div style="font-size:150px;padding:30px;background:#fff0f7;border-radius:20px">${p.emoji}</div>`;
- document.getElementById("modalName").textContent=p.name;
- document.getElementById("modalPrice").textContent="$"+p.price;
- document.getElementById("modalDescription").textContent=p.desc;
- const colors=document.getElementById("modalColors"); colors.innerHTML="";
- (p.colors||[]).forEach(c=>{const b=document.createElement("button");b.textContent=c;b.onclick=e=>{e.stopPropagation();selectColor(c)};colors.appendChild(b)});
- updateOrder();document.getElementById("productModal").classList.add("open");
+
+function openProduct(index) {
+
+  currentIndex = index;
+
+  currentColor = "";
+
+  const product = products[index];
+
+  if (product.image) {
+
+    modalVisual.innerHTML =
+
+      '<img src="' +
+
+      product.image +
+
+      '" alt="' +
+
+      product.name +
+
+      '">';
+
+  } else {
+
+    modalVisual.innerHTML =
+
+      "<span>" +
+
+      product.emoji +
+
+      "</span>";
+
+  }
+
+  modalName.textContent = product.name;
+
+  modalPrice.textContent =
+
+    "$" + product.price;
+
+  modalDescription.textContent =
+
+    product.desc;
+
+  modalColors.innerHTML = "";
+
+  if (product.colors) {
+
+    product.colors.forEach(function(color) {
+
+      const button =
+
+        document.createElement("button");
+
+      button.className = "color-btn";
+
+      button.textContent = color;
+
+      button.addEventListener(
+
+        "click",
+
+        function() {
+
+          currentColor = color;
+
+          document
+
+            .querySelectorAll(".color-btn")
+
+            .forEach(function(btn) {
+
+              btn.classList.remove("selected");
+
+            });
+
+          button.classList.add("selected");
+
+          updateOrder();
+
+        }
+
+      );
+
+      modalColors.appendChild(button);
+
+    });
+
+  }
+
+  updateOrder();
+
+  modal.classList.add("open");
+
 }
-function selectColor(c){currentColor=c;[...document.querySelectorAll("#modalColors button")].forEach(b=>b.classList.toggle("selected",b.textContent===c));updateOrder()}
-function updateOrder(){document.getElementById("modalOrder").href=mailLink(products[currentIndex],currentColor)}
-function closeProduct(){document.getElementById("productModal").classList.remove("open")}
-function closeIfOutside(e){if(e.target.id==="productModal")closeProduct()}
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeProduct()});
+
+function updateOrder() {
+
+  const product =
+
+    products[currentIndex];
+
+  let colourText = "";
+
+  if (currentColor) {
+
+    colourText =
+
+      " Colour: " +
+
+      currentColor +
+
+      ".";
+
+  }
+
+  const subject =
+
+    encodeURIComponent(
+
+      "Squishy Order - " +
+
+      product.name
+
+    );
+
+  const body =
+
+    encodeURIComponent(
+
+      "Hi! I would like to order " +
+
+      product.name +
+
+      " for $" +
+
+      product.price +
+
+      "." +
+
+      colourText
+
+    );
+
+  modalOrder.href =
+
+    "mailto:squishy.mart2026@gmail.com" +
+
+    "?subject=" +
+
+    subject +
+
+    "&body=" +
+
+    body;
+
+}
+
+function closeProduct() {
+
+  modal.classList.remove("open");
+
+}
+
+document
+
+  .getElementById("closeBtn")
+
+  .addEventListener(
+
+    "click",
+
+    closeProduct
+
+  );
+
+modal.addEventListener(
+
+  "click",
+
+  function(event) {
+
+    if (event.target === modal) {
+
+      closeProduct();
+
+    }
+
+  }
+
+);
+
+renderProducts();
+
 </script>
+
 </body>
+
 </html>
