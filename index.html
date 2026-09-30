@@ -86,8 +86,8 @@ function mailLink(p,color=""){
 const grid=document.getElementById("products");
 products.forEach((p,i)=>{
  const card=document.createElement("article");
- card.className="
- </div>
+ card.className="product";
+ card.innerHTML=`<div class="toy">${p.image?'<img src="'+p.image+'" alt="'+esc(p.name)+'">':'<span>'+p.emoji+'</span>'}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><strong>$${p.price}</strong>`;
  card.innerHTML=`<div class="toy">${p.image?'<img src="'+p.image+'" alt="'+esc(p.name)+'">':'<span>'+p.emoji+'</span>'}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><strong>$${p.price}</strong>`;
  <a class="order-btn" href="${mailLink(p)}" onclick="event.stopPropagation()">Order by email 💌</a>`;
  grid.appendChild(card);
