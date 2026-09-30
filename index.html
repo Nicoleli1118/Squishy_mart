@@ -24,55 +24,155 @@ body {
 
   font-family: Arial, sans-serif;
 
-  background: linear-gradient(180deg, #ffeaf5, #fff7fb);
+  background: linear-gradient(180deg, #ffe8f3, #fff8fc);
 
-  color: #5b3b4a;
+  color: #5a3b49;
 
 }
+
+/* ================= HEADER ================= */
 
 header {
 
-  background: #ff9fc9;
-
-  padding: 22px 16px;
-
-  text-align: center;
+  background: #ff91c2;
 
   color: white;
 
+  padding: 16px 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 20;
+
+  box-shadow: 0 3px 12px #d56f9a33;
+
 }
 
-header h1 {
+.logo {
 
-  margin: 0;
+  font-size: 23px;
 
-  font-size: 28px;
+  font-weight: bold;
+
+}
+
+/* CART BUTTON */
+
+.cart-button {
+
+  border: none;
+
+  background: white;
+
+  color: #e34f94;
+
+  border-radius: 999px;
+
+  padding: 10px 15px;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  position: relative;
 
 }
 
-header p {
+.cart-count {
 
-  margin: 6px 0 0;
+  position: absolute;
+
+  top: -7px;
+
+  right: -7px;
+
+  width: 23px;
+
+  height: 23px;
+
+  background: #e64f94;
+
+  color: white;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 12px;
 
 }
+
+/* ================= HERO ================= */
 
 .hero {
 
   text-align: center;
 
-  padding: 30px 16px 20px;
+  padding: 35px 18px 25px;
 
 }
 
-.hero h2 {
+.hero-bow {
 
-  font-size: 30px;
+  font-size: 42px;
+
+}
+
+.hero h1 {
+
+  margin: 5px 0;
+
+  font-size: 34px;
+
+  color: #e45297;
+
+}
+
+.hero p {
 
   margin: 8px 0;
 
-  color: #e85b9c;
+  font-size: 16px;
+
+  color: #7d5969;
 
 }
+
+.shop-button {
+
+  display: inline-block;
+
+  margin-top: 12px;
+
+  padding: 13px 25px;
+
+  background: #ff72b2;
+
+  color: white;
+
+  text-decoration: none;
+
+  border-radius: 999px;
+
+  font-weight: bold;
+
+}
+
+/* ================= SHOP ================= */
 
 .shop {
 
@@ -84,11 +184,13 @@ header p {
 
 }
 
-.shop > h2 {
+.shop-title {
 
   text-align: center;
 
-  color: #e85b9c;
+  color: #e45297;
+
+  margin-bottom: 22px;
 
 }
 
@@ -96,17 +198,21 @@ header p {
 
   display: grid;
 
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns:
+
+    repeat(auto-fit, minmax(170px, 1fr));
 
   gap: 16px;
 
 }
 
+/* ================= PRODUCT CARD ================= */
+
 .product {
 
   background: white;
 
-  border: 3px solid #ffd0e3;
+  border: 3px solid #ffd0e4;
 
   border-radius: 22px;
 
@@ -114,9 +220,11 @@ header p {
 
   text-align: center;
 
-  cursor: pointer;
+  box-shadow:
 
-  box-shadow: 0 5px 15px #d98aaa22;
+    0 6px 18px #d98aaa20;
+
+  transition: transform .15s;
 
 }
 
@@ -142,6 +250,8 @@ header p {
 
   overflow: hidden;
 
+  cursor: pointer;
+
 }
 
 .toy img {
@@ -156,47 +266,61 @@ header p {
 
 .toy span {
 
-  font-size: 70px;
+  font-size: 68px;
 
 }
 
 .product h3 {
 
-  margin: 10px 4px 5px;
+  margin: 10px 3px 5px;
 
-  font-size: 18px;
-
-}
-
-.product p {
-
-  margin: 0 4px 8px;
-
-  font-size: 13px;
-
-  color: #8a6877;
+  font-size: 17px;
 
 }
 
-.price {
+.product-price {
+
+  color: #e34f94;
+
+  font-size: 19px;
 
   font-weight: bold;
 
-  color: #e64f94;
-
-  font-size: 18px;
+  margin-bottom: 9px;
 
 }
 
-footer {
+/* ADD BUTTON */
 
-  text-align: center;
+.add-cart {
 
-  padding: 24px;
+  width: 100%;
 
-  background: #ffd8e9;
+  border: none;
+
+  background: #ff72b2;
+
+  color: white;
+
+  padding: 11px;
+
+  border-radius: 999px;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  cursor: pointer;
 
 }
+
+.add-cart:active {
+
+  transform: scale(.97);
+
+}
+
+/* ================= PRODUCT MODAL ================= */
 
 .modal {
 
@@ -206,9 +330,9 @@ footer {
 
   inset: 0;
 
-  background: #4b263755;
+  background: #4b263766;
 
-  z-index: 50;
+  z-index: 80;
 
   padding: 18px;
 
@@ -230,7 +354,7 @@ footer {
 
   max-height: 92vh;
 
-  overflow: auto;
+  overflow-y: auto;
 
   background: white;
 
@@ -242,7 +366,7 @@ footer {
 
 }
 
-.close {
+.close-modal {
 
   position: absolute;
 
@@ -254,25 +378,25 @@ footer {
 
   height: 42px;
 
-  border: 0;
+  border: none;
 
   border-radius: 50%;
 
   background: #ffe0ed;
 
-  font-size: 24px;
+  font-size: 25px;
 
   cursor: pointer;
 
 }
 
-.modal-visual {
+.modal-picture {
 
-  height: 270px;
-
-  border-radius: 20px;
+  height: 280px;
 
   background: #fff0f7;
+
+  border-radius: 20px;
 
   display: flex;
 
@@ -284,7 +408,7 @@ footer {
 
 }
 
-.modal-visual img {
+.modal-picture img {
 
   width: 100%;
 
@@ -294,27 +418,43 @@ footer {
 
 }
 
-.modal-visual span {
+.modal-picture span {
 
   font-size: 110px;
 
 }
 
-.modal h2 {
+.modal-box h2 {
 
-  margin: 15px 0 4px;
+  color: #e45297;
 
-  color: #e85b9c;
+  margin: 15px 0 5px;
 
 }
 
 .modal-price {
 
-  font-size: 22px;
+  color: #e34f94;
+
+  font-size: 23px;
 
   font-weight: bold;
 
-  color: #e64f94;
+}
+
+.modal-description {
+
+  color: #7d5969;
+
+}
+
+/* COLOURS */
+
+.colors-title {
+
+  font-weight: bold;
+
+  margin-top: 15px;
 
 }
 
@@ -326,57 +466,375 @@ footer {
 
   gap: 8px;
 
-  margin: 12px 0;
-
 }
 
-.color-btn {
+.color-button {
 
   border: 2px solid #ffc3dc;
 
   background: white;
 
-  color: #6b4556;
+  color: #70495b;
 
   border-radius: 999px;
 
-  padding: 10px 15px;
+  padding: 9px 14px;
 
   cursor: pointer;
 
 }
 
-.color-btn.selected {
+.color-button.selected {
 
-  background: #ff9fc9;
+  background: #ff91c2;
 
   color: white;
 
 }
 
-.order {
+/* MODAL ADD */
 
-  display: block;
+.modal-add {
 
-  text-align: center;
+  width: 100%;
 
-  text-decoration: none;
+  border: none;
 
-  background: #ff78b5;
+  background: #ff72b2;
 
   color: white;
-
-  font-weight: bold;
 
   padding: 14px;
 
   border-radius: 999px;
 
-  margin-top: 16px;
+  font-size: 16px;
+
+  font-weight: bold;
+
+  margin-top: 17px;
+
+  cursor: pointer;
 
 }
 
+/* ================= CART ================= */
+
+.cart-overlay {
+
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  background: #4b263766;
+
+  z-index: 100;
+
+}
+
+.cart-overlay.open {
+
+  display: block;
+
+}
+
+.cart-panel {
+
+  position: absolute;
+
+  right: 0;
+
+  top: 0;
+
+  width: min(430px, 100%);
+
+  height: 100%;
+
+  background: white;
+
+  padding: 20px;
+
+  overflow-y: auto;
+
+}
+
+.cart-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border-bottom: 2px solid #ffd1e4;
+
+  padding-bottom: 12px;
+
+}
+
+.cart-header h2 {
+
+  margin: 0;
+
+  color: #e45297;
+
+}
+
+.close-cart {
+
+  border: none;
+
+  background: #ffe0ed;
+
+  width: 40px;
+
+  height: 40px;
+
+  border-radius: 50%;
+
+  font-size: 23px;
+
+  cursor: pointer;
+
+}
+
+/* CART ITEMS */
+
+.cart-item {
+
+  display: flex;
+
+  gap: 12px;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid #ffdce9;
+
+}
+
+.cart-image {
+
+  width: 78px;
+
+  height: 78px;
+
+  flex-shrink: 0;
+
+  background: #fff0f7;
+
+  border-radius: 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+}
+
+.cart-image img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+}
+
+.cart-image span {
+
+  font-size: 38px;
+
+}
+
+.cart-info {
+
+  flex: 1;
+
+}
+
+.cart-info h3 {
+
+  margin: 0 0 5px;
+
+  font-size: 16px;
+
+}
+
+.cart-info p {
+
+  margin: 3px 0;
+
+  color: #8a6877;
+
+  font-size: 13px;
+
+}
+
+.quantity {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 8px;
+
+}
+
+.quantity button {
+
+  border: none;
+
+  width: 30px;
+
+  height: 30px;
+
+  border-radius: 50%;
+
+  background: #ffe0ed;
+
+  color: #e34f94;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+}
+
+.remove {
+
+  border: none;
+
+  background: none;
+
+  color: #d96c91;
+
+  padding: 0;
+
+  margin-top: 6px;
+
+  cursor: pointer;
+
+}
+
+/* TOTAL */
+
+.cart-total {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 20px;
+
+  padding-top: 15px;
+
+  border-top: 3px solid #ffd0e3;
+
+  color: #e34f94;
+
+  font-size: 21px;
+
+  font-weight: bold;
+
+}
+
+.order-cart {
+
+  display: block;
+
+  width: 100%;
+
+  margin-top: 18px;
+
+  padding: 15px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: #ff72b2;
+
+  color: white;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+}
+
+.clear-cart {
+
+  width: 100%;
+
+  margin-top: 9px;
+
+  padding: 11px;
+
+  border: 2px solid #ffc3dc;
+
+  background: white;
+
+  color: #d96c91;
+
+  border-radius: 999px;
+
+  cursor: pointer;
+
+}
+
+.empty {
+
+  text-align: center;
+
+  padding: 55px 10px;
+
+  color: #9a7182;
+
+  font-size: 18px;
+
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+
+  background: #ffd8e9;
+
+  text-align: center;
+
+  padding: 25px;
+
+  color: #7d5969;
+
+}
+
+/* ================= PHONE ================= */
+
 @media (max-width: 500px) {
+
+  .logo {
+
+    font-size: 19px;
+
+  }
+
+  .cart-button {
+
+    font-size: 14px;
+
+  }
 
   .grid {
 
@@ -400,7 +858,27 @@ footer {
 
   .product h3 {
 
-    font-size: 15px;
+    font-size: 14px;
+
+  }
+
+  .product-price {
+
+    font-size: 17px;
+
+  }
+
+  .add-cart {
+
+    font-size: 12px;
+
+    padding: 9px;
+
+  }
+
+  .modal-picture {
+
+    height: 230px;
 
   }
 
@@ -412,55 +890,277 @@ footer {
 
 <body>
 
+<!-- ================= HEADER ================= -->
+
 <header>
 
-  <h1>🎀 Squishy Mart</h1>
+  <div class="logo">
 
-  <p>Soft, cute & satisfying squishies 💕</p>
+    🎀 Squishy Mart
+
+  </div>
+
+  <button
+
+    class="cart-button"
+
+    id="cartButton"
+
+  >
+
+    🛒 Cart
+
+    <span
+
+      class="cart-count"
+
+      id="cartCount"
+
+    >
+
+      0
+
+    </span>
+
+  </button>
 
 </header>
 
+<!-- ================= HERO ================= -->
+
 <section class="hero">
 
-  <h2>Shop now ✨</h2>
+  <div class="hero-bow">
 
-  <p>Tap any squishy to see it bigger and choose a colour!</p>
+    🎀
+
+  </div>
+
+  <h1>
+
+    Squishy Mart
+
+  </h1>
+
+  <p>
+
+    Soft, cute & satisfying squishies 💕
+
+  </p>
+
+  <a
+
+    href="#shop"
+
+    class="shop-button"
+
+  >
+
+    Shop now ✨
+
+  </a>
 
 </section>
 
-<main class="shop">
+<!-- ================= SHOP ================= -->
 
-  <h2>Our squishies 💕</h2>
+<main
 
-  <div id="products" class="grid"></div>
+  class="shop"
+
+  id="shop"
+
+>
+
+  <h2 class="shop-title">
+
+    Our Squishies 🧸💕
+
+  </h2>
+
+  <div
+
+    id="products"
+
+    class="grid"
+
+  ></div>
 
 </main>
 
-<div id="productModal" class="modal">
+<!-- ================= PRODUCT MODAL ================= -->
+
+<div
+
+  class="modal"
+
+  id="productModal"
+
+>
 
   <div class="modal-box">
 
-    <button class="close" id="closeBtn">×</button>
+    <button
 
-    <div id="modalVisual" class="modal-visual"></div>
+      class="close-modal"
 
-    <h2 id="modalName"></h2>
+      id="closeModal"
 
-    <div id="modalPrice" class="modal-price"></div>
+    >
 
-    <p id="modalDescription"></p>
+      ×
 
-    <div id="modalColors" class="colors"></div>
+    </button>
 
-    <a id="modalOrder" class="order" href="#">
+    <div
 
-      💌 Order by email
+      class="modal-picture"
 
-    </a>
+      id="modalPicture"
+
+    ></div>
+
+    <h2
+
+      id="modalName"
+
+    ></h2>
+
+    <div
+
+      class="modal-price"
+
+      id="modalPrice"
+
+    ></div>
+
+    <p
+
+      class="modal-description"
+
+      id="modalDescription"
+
+    ></p>
+
+    <div
+
+      id="colorArea"
+
+    ></div>
+
+    <button
+
+      class="modal-add"
+
+      id="modalAdd"
+
+    >
+
+      🛒 Add to Cart
+
+    </button>
 
   </div>
 
 </div>
+
+<!-- ================= CART ================= -->
+
+<div
+
+  class="cart-overlay"
+
+  id="cartOverlay"
+
+>
+
+  <div class="cart-panel">
+
+    <div class="cart-header">
+
+      <h2>
+
+        🛒 Your Cart
+
+      </h2>
+
+      <button
+
+        class="close-cart"
+
+        id="closeCart"
+
+      >
+
+        ×
+
+      </button>
+
+    </div>
+
+    <div
+
+      id="cartItems"
+
+    ></div>
+
+    <div
+
+      id="cartBottom"
+
+      style="display:none;"
+
+    >
+
+      <div class="cart-total">
+
+        <span>
+
+          Total
+
+        </span>
+
+        <span id="cartTotal">
+
+          $0
+
+        </span>
+
+      </div>
+
+      <a
+
+        id="orderCart"
+
+        class="order-cart"
+
+        href="#"
+
+      >
+
+        💌 Order Cart by Email
+
+      </a>
+
+      <button
+
+        class="clear-cart"
+
+        id="clearCart"
+
+      >
+
+        🗑️ Clear Cart
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -469,6 +1169,8 @@ footer {
 </footer>
 
 <script>
+
+/* ================= PRODUCTS ================= */
 
 const products = [
 
@@ -482,7 +1184,7 @@ const products = [
 
     image: "IMG_1103.jpeg",
 
-    desc: "A soft slow-rise butter squishy."
+    description: "A soft and satisfying slow-rise butter squishy."
 
   },
 
@@ -496,7 +1198,7 @@ const products = [
 
     image: "IMG_1096.jpeg",
 
-    desc: "A cute buttery squishy."
+    description: "A cute buttery squishy."
 
   },
 
@@ -510,7 +1212,7 @@ const products = [
 
     image: "IMG_1091.jpeg",
 
-    desc: "Crunchy Butter in cute colours.",
+    description: "A crunchy butter squishy.",
 
     colors: ["Blue", "Pink"]
 
@@ -526,7 +1228,7 @@ const products = [
 
     image: "IMG_1098.jpeg",
 
-    desc: "A cheesy squishy for your collection."
+    description: "A cute cheesy squishy."
 
   },
 
@@ -540,7 +1242,7 @@ const products = [
 
     image: "IMG_1101.jpeg",
 
-    desc: "Soft potato squishy."
+    description: "A soft potato squishy."
 
   },
 
@@ -554,7 +1256,7 @@ const products = [
 
     image: "IMG_1093.jpeg",
 
-    desc: "Soft and cute peach squishy."
+    description: "A cute soft peach squishy."
 
   },
 
@@ -568,7 +1270,7 @@ const products = [
 
     image: "IMG_1095.jpeg",
 
-    desc: "A crunchy-looking toast squishy."
+    description: "A crunchy-looking toast squishy."
 
   },
 
@@ -582,7 +1284,7 @@ const products = [
 
     image: null,
 
-    desc: "A super soft cloud squishy."
+    description: "A soft and fluffy cloud squishy."
 
   },
 
@@ -596,7 +1298,7 @@ const products = [
 
     image: "IMG_1094.jpeg",
 
-    desc: "A giant strawberry squishy."
+    description: "A giant strawberry squishy."
 
   },
 
@@ -610,7 +1312,7 @@ const products = [
 
     image: "IMG_1100.jpeg",
 
-    desc: "Choose your apple colour.",
+    description: "Choose your apple colour.",
 
     colors: ["Red", "Green"]
 
@@ -626,9 +1328,19 @@ const products = [
 
     image: "IMG_1090.jpeg",
 
-    desc: "Cute duck squishy.",
+    description: "A cute duck squishy.",
 
-    colors: ["Pink", "Blue", "Orange", "Purple"]
+    colors: [
+
+      "Pink",
+
+      "Blue",
+
+      "Orange",
+
+      "Purple"
+
+    ]
 
   },
 
@@ -642,7 +1354,7 @@ const products = [
 
     image: "IMG_1102.jpeg",
 
-    desc: "A cute crunchy soap squishy."
+    description: "A cute crunchy soap squishy."
 
   },
 
@@ -656,7 +1368,7 @@ const products = [
 
     image: null,
 
-    desc: "Soft and satisfying Needoh-style squishy."
+    description: "A soft and satisfying Needoh-style squishy."
 
   },
 
@@ -670,7 +1382,7 @@ const products = [
 
     image: null,
 
-    desc: "Cute jellyfish squishy."
+    description: "A cute jellyfish squishy."
 
   },
 
@@ -684,7 +1396,7 @@ const products = [
 
     image: null,
 
-    desc: "Sweet cake-shaped Needoh squishy."
+    description: "A sweet cake-shaped squishy."
 
   },
 
@@ -698,7 +1410,7 @@ const products = [
 
     image: null,
 
-    desc: "Cute ice cream Needoh squishy."
+    description: "A cute ice cream squishy."
 
   },
 
@@ -712,47 +1424,117 @@ const products = [
 
     image: "IMG_1092.jpeg",
 
-    desc: "Glittery bear squishy.",
+    description: "A cute glittery bear squishy.",
 
-    colors: ["Pink", "Blue", "Orange", "Purple"]
+    colors: [
+
+      "Pink",
+
+      "Blue",
+
+      "Orange",
+
+      "Purple"
+
+    ]
 
   }
 
 ];
 
-const grid = document.getElementById("products");
+/* ================= VARIABLES ================= */
 
-const modal = document.getElementById("productModal");
+let cart = [];
 
-const modalVisual = document.getElementById("modalVisual");
+let selectedProduct = 0;
 
-const modalName = document.getElementById("modalName");
+let selectedColor = "";
 
-const modalPrice = document.getElementById("modalPrice");
+/* ================= ELEMENTS ================= */
+
+const productsBox =
+
+  document.getElementById("products");
+
+const productModal =
+
+  document.getElementById("productModal");
+
+const modalPicture =
+
+  document.getElementById("modalPicture");
+
+const modalName =
+
+  document.getElementById("modalName");
+
+const modalPrice =
+
+  document.getElementById("modalPrice");
 
 const modalDescription =
 
   document.getElementById("modalDescription");
 
-const modalColors =
+const colorArea =
 
-  document.getElementById("modalColors");
+  document.getElementById("colorArea");
 
-const modalOrder =
+const modalAdd =
 
-  document.getElementById("modalOrder");
+  document.getElementById("modalAdd");
 
-let currentIndex = 0;
+const closeModal =
 
-let currentColor = "";
+  document.getElementById("closeModal");
+
+const cartButton =
+
+  document.getElementById("cartButton");
+
+const cartCount =
+
+  document.getElementById("cartCount");
+
+const cartOverlay =
+
+  document.getElementById("cartOverlay");
+
+const closeCart =
+
+  document.getElementById("closeCart");
+
+const cartItems =
+
+  document.getElementById("cartItems");
+
+const cartBottom =
+
+  document.getElementById("cartBottom");
+
+const cartTotal =
+
+  document.getElementById("cartTotal");
+
+const orderCart =
+
+  document.getElementById("orderCart");
+
+const clearCart =
+
+  document.getElementById("clearCart");
+
+/* ================= SHOW PRODUCTS ================= */
 
 function renderProducts() {
 
-  grid.innerHTML = "";
+  productsBox.innerHTML = "";
 
   products.forEach(function(product, index) {
 
-    const card = document.createElement("article");
+    const card =
+
+      document.createElement("article");
 
     card.className = "product";
 
@@ -798,41 +1580,71 @@ function renderProducts() {
 
       "</h3>" +
 
-      "<p>" +
-
-      product.desc +
-
-      "</p>" +
-
-      '<div class="price">$' +
+      '<div class="product-price">$' +
 
       product.price +
 
-      "</div>";
+      "</div>" +
 
-    card.addEventListener("click", function() {
+      '<button class="add-cart">' +
 
-      openProduct(index);
+      "🛒 Add to Cart" +
 
-    });
+      "</button>";
 
-    grid.appendChild(card);
+    const pictureBox =
+
+      card.querySelector(".toy");
+
+    const addButton =
+
+      card.querySelector(".add-cart");
+
+    pictureBox.addEventListener(
+
+      "click",
+
+      function() {
+
+        openProduct(index);
+
+      }
+
+    );
+
+    addButton.addEventListener(
+
+      "click",
+
+      function() {
+
+        addToCart(index);
+
+      }
+
+    );
+
+    productsBox.appendChild(card);
 
   });
 
 }
 
+/* ================= OPEN PRODUCT ================= */
+
 function openProduct(index) {
 
-  currentIndex = index;
+  selectedProduct = index;
 
-  currentColor = "";
+  selectedColor = "";
 
-  const product = products[index];
+  const product =
+
+    products[index];
 
   if (product.image) {
 
-    modalVisual.innerHTML =
+    modalPicture.innerHTML =
 
       '<img src="' +
 
@@ -846,7 +1658,7 @@ function openProduct(index) {
 
   } else {
 
-    modalVisual.innerHTML =
+    modalPicture.innerHTML =
 
       "<span>" +
 
@@ -856,7 +1668,9 @@ function openProduct(index) {
 
   }
 
-  modalName.textContent = product.name;
+  modalName.textContent =
+
+    product.name;
 
   modalPrice.textContent =
 
@@ -864,149 +1678,145 @@ function openProduct(index) {
 
   modalDescription.textContent =
 
-    product.desc;
+    product.description;
 
-  modalColors.innerHTML = "";
+  colorArea.innerHTML = "";
 
   if (product.colors) {
 
-    product.colors.forEach(function(color) {
+    const title =
 
-      const button =
+      document.createElement("div");
 
-        document.createElement("button");
+    title.className =
 
-      button.className = "color-btn";
+      "colors-title";
 
-      button.textContent = color;
+    title.textContent =
 
-      button.addEventListener(
+      "Choose a colour:";
 
-        "click",
+    const colors =
 
-        function() {
+      document.createElement("div");
 
-          currentColor = color;
+    colors.className =
 
-          document
+      "colors";
 
-            .querySelectorAll(".color-btn")
+    product.colors.forEach(
 
-            .forEach(function(btn) {
+      function(color) {
 
-              btn.classList.remove("selected");
+        const button =
 
-            });
+          document.createElement("button");
 
-          button.classList.add("selected");
+        button.className =
 
-          updateOrder();
+          "color-button";
 
-        }
+        button.textContent =
 
-      );
+          color;
 
-      modalColors.appendChild(button);
+        button.addEventListener(
 
-    });
+          "click",
 
-  }
+          function() {
 
-  updateOrder();
+            selectedColor =
 
-  modal.classList.add("open");
+              color;
 
-}
+            colors
 
-function updateOrder() {
+              .querySelectorAll(
 
-  const product =
+                ".color-button"
 
-    products[currentIndex];
+              )
 
-  let colourText = "";
+              .forEach(
 
-  if (currentColor) {
+                function(item) {
 
-    colourText =
+                  item.classList.remove(
 
-      " Colour: " +
+                    "selected"
 
-      currentColor +
+                  );
 
-      ".";
+                }
 
-  }
+              );
 
-  const subject =
+            button.classList.add(
 
-    encodeURIComponent(
+              "selected"
 
-      "Squishy Order - " +
+            );
 
-      product.name
+          }
 
-    );
+        );
 
-  const body =
+        colors.appendChild(button);
 
-    encodeURIComponent(
-
-      "Hi! I would like to order " +
-
-      product.name +
-
-      " for $" +
-
-      product.price +
-
-      "." +
-
-      colourText
+      }
 
     );
 
-  modalOrder.href =
+    colorArea.appendChild(title);
 
-    "mailto:squishy.mart2026@gmail.com" +
+    colorArea.appendChild(colors);
 
-    "?subject=" +
+  }
 
-    subject +
+  productModal.classList.add(
 
-    "&body=" +
-
-    body;
-
-}
-
-function closeProduct() {
-
-  modal.classList.remove("open");
-
-}
-
-document
-
-  .getElementById("closeBtn")
-
-  .addEventListener(
-
-    "click",
-
-    closeProduct
+    "open"
 
   );
 
-modal.addEventListener(
+}
+
+/* ================= CLOSE PRODUCT ================= */
+
+closeModal.addEventListener(
+
+  "click",
+
+  function() {
+
+    productModal.classList.remove(
+
+      "open"
+
+    );
+
+  }
+
+);
+
+productModal.addEventListener(
 
   "click",
 
   function(event) {
 
-    if (event.target === modal) {
+    if (
 
-      closeProduct();
+      event.target === productModal
+
+    ) {
+
+      productModal.classList.remove(
+
+        "open"
+
+      );
 
     }
 
@@ -1014,7 +1824,527 @@ modal.addEventListener(
 
 );
 
+/* ================= ADD TO CART ================= */
+
+function addToCart(index) {
+
+  const product =
+
+    products[index];
+
+  let existing =
+
+    cart.find(
+
+      function(item) {
+
+        return (
+
+          item.index === index &&
+
+          item.color === selectedColor
+
+        );
+
+      }
+
+    );
+
+  if (existing) {
+
+    existing.quantity++;
+
+  } else {
+
+    cart.push({
+
+      index: index,
+
+      color: selectedColor,
+
+      quantity: 1
+
+    });
+
+  }
+
+  updateCart();
+
+  productModal.classList.remove(
+
+    "open"
+
+  );
+
+}
+
+/* ================= CART ================= */
+
+function updateCart() {
+
+  let count = 0;
+
+  let total = 0;
+
+  cart.forEach(
+
+    function(item) {
+
+      const product =
+
+        products[item.index];
+
+      count +=
+
+        item.quantity;
+
+      total +=
+
+        product.price *
+
+        item.quantity;
+
+    }
+
+  );
+
+  cartCount.textContent =
+
+    count;
+
+  cartItems.innerHTML = "";
+
+  if (cart.length === 0) {
+
+    cartItems.innerHTML =
+
+      '<div class="empty">' +
+
+      "🛒 Your cart is empty!" +
+
+      "<br><br>" +
+
+      "Add some cute squishies 💕" +
+
+      "</div>";
+
+    cartBottom.style.display =
+
+      "none";
+
+    return;
+
+  }
+
+  cartBottom.style.display =
+
+    "block";
+
+  cart.forEach(
+
+    function(item, cartIndex) {
+
+      const product =
+
+        products[item.index];
+
+      const row =
+
+        document.createElement(
+
+          "div"
+
+        );
+
+      row.className =
+
+        "cart-item";
+
+      let picture;
+
+      if (product.image) {
+
+        picture =
+
+          '<img src="' +
+
+          product.image +
+
+          '" alt="' +
+
+          product.name +
+
+          '">';
+
+      } else {
+
+        picture =
+
+          "<span>" +
+
+          product.emoji +
+
+          "</span>";
+
+      }
+
+      let colourText = "";
+
+      if (item.color) {
+
+        colourText =
+
+          "<p>Colour: " +
+
+          item.color +
+
+          "</p>";
+
+      }
+
+      row.innerHTML =
+
+        '<div class="cart-image">' +
+
+        picture +
+
+        "</div>" +
+
+        '<div class="cart-info">' +
+
+        "<h3>" +
+
+        product.name +
+
+        "</h3>" +
+
+        "<p>$" +
+
+        product.price +
+
+        " each</p>" +
+
+        colourText +
+
+        '<div class="quantity">' +
+
+        '<button class="minus">−</button>' +
+
+        "<strong>" +
+
+        item.quantity +
+
+        "</strong>" +
+
+        '<button class="plus">+</button>' +
+
+        "</div>" +
+
+        '<button class="remove">' +
+
+        "Remove" +
+
+        "</button>" +
+
+        "</div>";
+
+      row
+
+        .querySelector(".minus")
+
+        .addEventListener(
+
+          "click",
+
+          function() {
+
+            changeQuantity(
+
+              cartIndex,
+
+              -1
+
+            );
+
+          }
+
+        );
+
+      row
+
+        .querySelector(".plus")
+
+        .addEventListener(
+
+          "click",
+
+          function() {
+
+            changeQuantity(
+
+              cartIndex,
+
+              1
+
+            );
+
+          }
+
+        );
+
+      row
+
+        .querySelector(".remove")
+
+        .addEventListener(
+
+          "click",
+
+          function() {
+
+            cart.splice(
+
+              cartIndex,
+
+              1
+
+            );
+
+            updateCart();
+
+          }
+
+        );
+
+      cartItems.appendChild(row);
+
+    }
+
+  );
+
+  cartTotal.textContent =
+
+    "$" + total;
+
+  updateOrderLink();
+
+}
+
+/* ================= QUANTITY ================= */
+
+function changeQuantity(
+
+  cartIndex,
+
+  amount
+
+) {
+
+  cart[cartIndex].quantity +=
+
+    amount;
+
+  if (
+
+    cart[cartIndex].quantity <= 0
+
+  ) {
+
+    cart.splice(
+
+      cartIndex,
+
+      1
+
+    );
+
+  }
+
+  updateCart();
+
+}
+
+/* ================= EMAIL ORDER ================= */
+
+function updateOrderLink() {
+
+  let body =
+
+    "Hi! I would like to order:%0A%0A";
+
+  let total = 0;
+
+  cart.forEach(
+
+    function(item) {
+
+      const product =
+
+        products[item.index];
+
+      const subtotal =
+
+        product.price *
+
+        item.quantity;
+
+      total +=
+
+        subtotal;
+
+      body +=
+
+        item.quantity +
+
+        " x " +
+
+        product.name;
+
+      if (item.color) {
+
+        body +=
+
+          " (" +
+
+          item.color +
+
+          ")";
+
+      }
+
+      body +=
+
+        " - $" +
+
+        subtotal +
+
+        "%0A";
+
+    }
+
+  );
+
+  body +=
+
+    "%0ATotal: $" +
+
+    total;
+
+  orderCart.href =
+
+    "mailto:squishy.mart2026@gmail.com" +
+
+    "?subject=Squishy%20Mart%20Order" +
+
+    "&body=" +
+
+    body;
+
+}
+
+/* ================= MODAL ADD BUTTON ================= */
+
+modalAdd.addEventListener(
+
+  "click",
+
+  function() {
+
+    addToCart(
+
+      selectedProduct
+
+    );
+
+  }
+
+);
+
+/* ================= OPEN CART ================= */
+
+cartButton.addEventListener(
+
+  "click",
+
+  function() {
+
+    updateCart();
+
+    cartOverlay.classList.add(
+
+      "open"
+
+    );
+
+  }
+
+);
+
+/* ================= CLOSE CART ================= */
+
+closeCart.addEventListener(
+
+  "click",
+
+  function() {
+
+    cartOverlay.classList.remove(
+
+      "open"
+
+    );
+
+  }
+
+);
+
+/* CLOSE CART OUTSIDE */
+
+cartOverlay.addEventListener(
+
+  "click",
+
+  function(event) {
+
+    if (
+
+      event.target === cartOverlay
+
+    ) {
+
+      cartOverlay.classList.remove(
+
+        "open"
+
+      );
+
+    }
+
+  }
+
+);
+
+/* ================= CLEAR CART ================= */
+
+clearCart.addEventListener(
+
+  "click",
+
+  function() {
+
+    cart = [];
+
+    updateCart();
+
+  }
+
+);
+
+/* ================= START ================= */
+
 renderProducts();
+
+updateCart();
 
 </script>
 
