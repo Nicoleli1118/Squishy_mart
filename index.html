@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<div class="country-selector-container" style="margin-bottom: 30px; font-family: sans-serif;">
+  <label for="country-select">🌍 Choose your country: </label>
+  <select id="country-select" onchange="updateAllPrices()" style="padding: 5px; font-size: 16px;">
+    <option value="SGD" selected>Singapore (SGD)</option>
+    <option value="USD">United States (USD)</option>
+    <option value="THB">Thailand (THB)</option>
+    <option value="GBP">United Kingdom (GBP)</option>
+  </select>
+</div><!DOCTYPE html>
 
 <html lang="en">
 
@@ -2151,3 +2159,26 @@ updateCart();
 </body>
 
 </html>
+<script>
+  function updateAllPrices() {
+    const country = document.getElementById('country-select').value;
+    
+    const priceDisplays = document.querySelectorAll('.price-display');
+    const currencyDisplays = document.querySelectorAll('.currency-display');
+    const buyButtons = document.querySelectorAll('.buy-btn');
+
+    priceDisplays.forEach((display, index) => {
+      let newPrice = display.getAttribute('data-' + country.toLowerCase());
+      
+      display.innerText = newPrice;
+      currencyDisplays[index].innerText = country;
+
+      buyButtons[index].setAttribute('data-item-price', newPrice);
+      buyButtons[index].setAttribute('data-item-currency', country);
+    });
+
+    if (window.Snipcart) {
+      Snipcart.api.setCurrency(country);
+    }
+  }
+</script>6
