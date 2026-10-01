@@ -1,1006 +1,806 @@
-<div class="country-selector-container" style="margin-bottom: 30px; font-family: sans-serif;">
-  <label for="country-select">🌍 Choose your country: </label>
-  <select id="country-select" onchange="updateAllPrices()" style="padding: 5px; font-size: 16px;">
-    <option value="SGD" selected>Singapore (SGD)</option>
-    <option value="USD">United States (USD)</option>
-    <option value="THB">Thailand (THB)</option>
-    <option value="GBP">United Kingdom (GBP)</option>
-  </select>
-</div><!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🎀 Squishy Mart</title>
+  <title>Squishy Mart 💗</title>
 
-<style>
+  <style>
 
-* {
+    * {
 
-  box-sizing: border-box;
+      box-sizing: border-box;
 
-}
+    }
 
-body {
+    body {
 
-  margin: 0;
+      margin: 0;
 
-  font-family: Arial, sans-serif;
+      font-family: Arial, sans-serif;
 
-  background: linear-gradient(180deg, #ffe8f3, #fff8fc);
+      background: #ffe4f1;
 
-  color: #5a3b49;
+      color: #333;
 
-}
+    }
 
-header {
+    header {
 
-  background: #ff91c2;
+      background: #ff8fc4;
 
-  color: white;
+      padding: 18px;
 
-  padding: 16px 18px;
+      text-align: center;
 
-  display: flex;
+      color: white;
 
-  align-items: center;
+      position: sticky;
 
-  justify-content: space-between;
+      top: 0;
 
-  position: sticky;
+      z-index: 20;
 
-  top: 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
 
-  z-index: 20;
+    }
 
-  box-shadow: 0 3px 12px #d56f9a33;
+    header h1 {
 
-}
+      margin: 0;
 
-.logo {
+      font-size: 30px;
 
-  font-size: 23px;
+    }
 
-  font-weight: bold;
+    .top-buttons {
 
-}
+      margin-top: 12px;
 
-.cart-button {
+      display: flex;
 
-  border: none;
+      justify-content: center;
 
-  background: white;
+      gap: 8px;
 
-  color: #e34f94;
+      flex-wrap: wrap;
 
-  border-radius: 999px;
+    }
 
-  padding: 10px 15px;
+    button {
 
-  font-size: 16px;
+      border: none;
 
-  font-weight: bold;
+      cursor: pointer;
 
-  cursor: pointer;
+      font-weight: bold;
 
-  position: relative;
+    }
 
-}
+    .country-btn,
 
-.cart-count {
+    .cart-btn {
 
-  position: absolute;
+      background: white;
 
-  top: -7px;
+      color: #ff4f9a;
 
-  right: -7px;
+      padding: 10px 16px;
 
-  width: 23px;
+      border-radius: 20px;
 
-  height: 23px;
+      font-size: 14px;
 
-  background: #e64f94;
+    }
 
-  color: white;
+    .hero {
 
-  border-radius: 50%;
+      text-align: center;
 
-  display: flex;
+      padding: 35px 20px 20px;
 
-  align-items: center;
+    }
 
-  justify-content: center;
+    .hero h2 {
 
-  font-size: 12px;
+      color: #ff4f9a;
 
-}
+      font-size: 28px;
 
-.hero {
+      margin-bottom: 8px;
 
-  text-align: center;
+    }
 
-  padding: 35px 18px 25px;
+    .hero p {
 
-}
+      margin-top: 0;
 
-.hero-bow {
+      color: #777;
 
-  font-size: 42px;
+    }
 
-}
+    #currencyMessage {
 
-.hero h1 {
+      font-weight: bold;
 
-  margin: 5px 0;
+      color: #ff4f9a;
 
-  font-size: 34px;
+    }
 
-  color: #e45297;
+    .products {
 
-}
+      max-width: 1100px;
 
-.hero p {
+      margin: auto;
 
-  margin: 8px 0;
+      padding: 20px;
 
-  font-size: 16px;
+      display: grid;
 
-  color: #7d5969;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 
-}
+      gap: 18px;
 
-.shop-button {
+    }
 
-  display: inline-block;
+    .product {
 
-  margin-top: 12px;
+      background: white;
 
-  padding: 13px 25px;
+      border-radius: 20px;
 
-  background: #ff72b2;
+      padding: 14px;
 
-  color: white;
+      text-align: center;
 
-  text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 
-  border-radius: 999px;
+      transition: transform 0.2s;
 
-  font-weight: bold;
+    }
 
-}
+    .product:hover {
 
-.shop {
+      transform: translateY(-4px);
 
-  max-width: 1100px;
+    }
 
-  margin: auto;
+    .product img {
 
-  padding: 10px 16px 50px;
+      width: 100%;
 
-}
+      height: 170px;
 
-.shop-title {
+      object-fit: contain;
 
-  text-align: center;
+      border-radius: 15px;
 
-  color: #e45297;
+      background: #fff7fb;
 
-  margin-bottom: 22px;
+    }
 
-}
+    .emoji-image {
 
-.grid {
+      height: 170px;
 
-  display: grid;
+      display: flex;
 
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      align-items: center;
 
-  gap: 16px;
+      justify-content: center;
 
-}
+      background: #fff7fb;
 
-.product {
+      border-radius: 15px;
 
-  background: white;
+      font-size: 75px;
 
-  border: 3px solid #ffd0e4;
+    }
 
-  border-radius: 22px;
+    .product h3 {
 
-  padding: 12px;
+      margin: 12px 0 5px;
 
-  text-align: center;
+      font-size: 18px;
 
-  box-shadow: 0 6px 18px #d98aaa20;
+    }
 
-}
+    .price {
 
-.toy {
+      color: #ff4f9a;
 
-  height: 155px;
+      font-size: 19px;
 
-  border-radius: 17px;
+      font-weight: bold;
 
-  background: #fff0f7;
+      margin-bottom: 10px;
 
-  display: flex;
+    }
 
-  align-items: center;
+    .add-btn {
 
-  justify-content: center;
+      background: #ff75b5;
 
-  overflow: hidden;
+      color: white;
 
-  cursor: pointer;
+      padding: 10px 18px;
 
-}
+      border-radius: 20px;
 
-.toy img {
+      width: 100%;
 
-  width: 100%;
+    }
 
-  height: 100%;
+    .add-btn:hover {
 
-  object-fit: contain;
+      background: #ff4f9a;
 
-}
+    }
 
-.toy span {
+    /* Country screen */
 
-  font-size: 68px;
+    .country-overlay {
 
-}
+      position: fixed;
 
-.product h3 {
+      inset: 0;
 
-  margin: 10px 3px 5px;
+      background: rgba(255, 228, 241, 0.98);
 
-  font-size: 17px;
+      z-index: 100;
 
-}
+      display: flex;
 
-.product-price {
+      align-items: center;
 
-  color: #e34f94;
+      justify-content: center;
 
-  font-size: 19px;
+      padding: 20px;
 
-  font-weight: bold;
+    }
 
-  margin-bottom: 9px;
+    .country-box {
 
-}
+      background: white;
 
-.add-cart {
+      width: min(500px, 100%);
 
-  width: 100%;
+      padding: 28px;
 
-  border: none;
+      border-radius: 25px;
 
-  background: #ff72b2;
+      text-align: center;
 
-  color: white;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
 
-  padding: 11px;
+    }
 
-  border-radius: 999px;
+    .country-box h2 {
 
-  font-size: 14px;
+      color: #ff4f9a;
 
-  font-weight: bold;
+      margin-top: 0;
 
-  cursor: pointer;
+    }
 
-}
+    .country-choice {
 
-.add-cart:active,
+      width: 100%;
 
-.modal-add:active {
+      padding: 14px;
 
-  transform: scale(.97);
+      margin: 7px 0;
 
-}
+      border-radius: 15px;
 
-/* PRODUCT POPUP */
+      background: #fff0f7;
 
-.modal {
+      color: #ff4f9a;
 
-  display: none;
+      font-size: 17px;
 
-  position: fixed;
+      border: 2px solid transparent;
 
-  inset: 0;
+    }
 
-  background: #4b263766;
+    .country-choice:hover {
 
-  z-index: 80;
+      border-color: #ff75b5;
 
-  padding: 18px;
+    }
 
-  align-items: center;
+    #otherCountryArea {
 
-  justify-content: center;
+      display: none;
 
-}
+      margin-top: 12px;
 
-.modal.open {
+    }
 
-  display: flex;
+    #otherCountryInput {
 
-}
+      width: 100%;
 
-.modal-box {
+      padding: 13px;
 
-  width: min(520px, 100%);
+      border: 2px solid #ffc2dd;
 
-  max-height: 92vh;
+      border-radius: 15px;
 
-  overflow-y: auto;
+      font-size: 16px;
 
-  background: white;
+      outline: none;
 
-  border-radius: 28px;
+    }
 
-  padding: 20px;
+    .continue-btn {
 
-  position: relative;
+      margin-top: 15px;
 
-}
+      background: #ff4f9a;
 
-.close-modal {
+      color: white;
 
-  position: absolute;
+      padding: 13px 25px;
 
-  right: 12px;
+      border-radius: 20px;
 
-  top: 10px;
+      font-size: 16px;
 
-  width: 42px;
+      display: none;
 
-  height: 42px;
+      width: 100%;
 
-  border: none;
+    }
 
-  border-radius: 50%;
+    .country-error {
 
-  background: #ffe0ed;
+      color: #e53935;
 
-  font-size: 25px;
+      font-size: 14px;
 
-  cursor: pointer;
+      margin-top: 10px;
 
-}
+    }
 
-.modal-picture {
+    /* Modal */
 
-  height: 280px;
+    .modal {
 
-  background: #fff0f7;
+      display: none;
 
-  border-radius: 20px;
+      position: fixed;
 
-  display: flex;
+      inset: 0;
 
-  align-items: center;
+      background: rgba(0,0,0,0.5);
 
-  justify-content: center;
+      z-index: 50;
 
-  overflow: hidden;
+      align-items: center;
 
-}
+      justify-content: center;
 
-.modal-picture img {
+      padding: 20px;
 
-  width: 100%;
+    }
 
-  height: 100%;
+    .modal-box {
 
-  object-fit: contain;
+      background: white;
 
-}
+      width: min(450px, 100%);
 
-.modal-picture span {
+      max-height: 90vh;
 
-  font-size: 110px;
+      overflow-y: auto;
 
-}
+      border-radius: 25px;
 
-.modal-box h2 {
+      padding: 25px;
 
-  color: #e45297;
+      text-align: center;
 
-  margin: 15px 0 5px;
+    }
 
-}
+    .modal-box img {
 
-.modal-price {
+      width: 100%;
 
-  color: #e34f94;
+      height: 220px;
 
-  font-size: 23px;
+      object-fit: contain;
 
-  font-weight: bold;
+      border-radius: 15px;
 
-}
+      background: #fff7fb;
 
-.modal-description {
+    }
 
-  color: #7d5969;
+    .modal-box h2 {
 
-}
+      color: #ff4f9a;
 
-.colors-title {
+    }
 
-  font-weight: bold;
+    .color-title {
 
-  margin-top: 15px;
+      font-weight: bold;
 
-  margin-bottom: 8px;
+      margin-top: 15px;
 
-}
+    }
 
-.colors {
+    .color-options {
 
-  display: flex;
+      display: flex;
 
-  flex-wrap: wrap;
+      justify-content: center;
 
-  gap: 8px;
+      flex-wrap: wrap;
 
-}
+      gap: 8px;
 
-.color-button {
+      margin: 12px 0;
 
-  border: 2px solid #ffc3dc;
+    }
 
-  background: white;
+    .color-btn {
 
-  color: #70495b;
+      background: #ffe1ef;
 
-  border-radius: 999px;
+      color: #ff4f9a;
 
-  padding: 10px 15px;
+      padding: 9px 15px;
 
-  cursor: pointer;
+      border-radius: 18px;
 
-}
+      border: 2px solid transparent;
 
-.color-button.selected {
+    }
 
-  background: #ff91c2;
+    .color-btn.selected {
 
-  color: white;
+      border-color: #ff4f9a;
 
-  border-color: #ff91c2;
+      background: #ffc1dd;
 
-}
+    }
 
-.choose-message {
+    .modal-add {
 
-  color: #e34f94;
+      background: #ff4f9a;
 
-  font-weight: bold;
+      color: white;
 
-  margin-top: 10px;
+      padding: 13px;
 
-  display: none;
+      border-radius: 20px;
 
-}
+      width: 100%;
 
-.modal-add {
+      margin-top: 10px;
 
-  width: 100%;
+    }
 
-  border: none;
+    .close-btn {
 
-  background: #ff72b2;
+      background: #eee;
 
-  color: white;
+      color: #555;
 
-  padding: 14px;
+      padding: 10px 18px;
 
-  border-radius: 999px;
+      border-radius: 20px;
 
-  font-size: 16px;
+      margin-top: 8px;
 
-  font-weight: bold;
+    }
 
-  margin-top: 17px;
+    /* Cart */
 
-  cursor: pointer;
+    .cart-box {
 
-}
+      text-align: left;
 
-/* CART */
+    }
 
-.cart-overlay {
+    .cart-item {
 
-  display: none;
+      background: #fff2f8;
 
-  position: fixed;
+      padding: 12px;
 
-  inset: 0;
+      border-radius: 15px;
 
-  background: #4b263766;
+      margin-bottom: 10px;
 
-  z-index: 100;
+    }
 
-}
+    .cart-item strong {
 
-.cart-overlay.open {
+      color: #ff4f9a;
 
-  display: block;
+    }
 
-}
+    .quantity-row {
 
-.cart-panel {
+      display: flex;
 
-  position: absolute;
+      align-items: center;
 
-  right: 0;
+      gap: 8px;
 
-  top: 0;
+      margin-top: 8px;
 
-  width: min(430px, 100%);
+    }
 
-  height: 100%;
+    .quantity-row button {
 
-  background: white;
+      background: #ffb5d7;
 
-  padding: 20px;
+      color: white;
 
-  overflow-y: auto;
+      width: 30px;
 
-}
+      height: 30px;
 
-.cart-header {
+      border-radius: 50%;
 
-  display: flex;
+    }
 
-  align-items: center;
+    .remove-btn {
 
-  justify-content: space-between;
+      background: #ff6b6b !important;
 
-  border-bottom: 2px solid #ffd1e4;
+      width: auto !important;
 
-  padding-bottom: 12px;
+      padding: 5px 10px;
 
-}
+      border-radius: 10px !important;
 
-.cart-header h2 {
+    }
 
-  margin: 0;
+    .cart-total {
 
-  color: #e45297;
+      text-align: center;
 
-}
+      font-size: 22px;
 
-.close-cart {
+      color: #ff4f9a;
 
-  border: none;
+      font-weight: bold;
 
-  background: #ffe0ed;
+      margin: 18px 0;
 
-  width: 40px;
+    }
 
-  height: 40px;
+    .email-btn {
 
-  border-radius: 50%;
+      background: #ff4f9a;
 
-  font-size: 23px;
+      color: white;
 
-  cursor: pointer;
+      width: 100%;
 
-}
+      padding: 14px;
 
-.cart-item {
+      border-radius: 20px;
 
-  display: flex;
+      font-size: 16px;
 
-  gap: 12px;
+    }
 
-  padding: 15px 0;
+    .clear-btn {
 
-  border-bottom: 1px solid #ffdce9;
+      background: #eee;
 
-}
+      color: #555;
 
-.cart-image {
+      width: 100%;
 
-  width: 78px;
+      padding: 11px;
 
-  height: 78px;
+      border-radius: 20px;
 
-  flex-shrink: 0;
+      margin-top: 8px;
 
-  background: #fff0f7;
+    }
 
-  border-radius: 15px;
+    @media (max-width: 500px) {
 
-  display: flex;
+      .products {
 
-  align-items: center;
+        grid-template-columns: repeat(2, 1fr);
 
-  justify-content: center;
+        padding: 12px;
 
-  overflow: hidden;
+        gap: 12px;
 
-}
+      }
 
-.cart-image img {
+      .product img,
 
-  width: 100%;
+      .emoji-image {
 
-  height: 100%;
+        height: 130px;
 
-  object-fit: contain;
+      }
 
-}
+      .product h3 {
 
-.cart-image span {
+        font-size: 15px;
 
-  font-size: 38px;
+      }
 
-}
+      .price {
 
-.cart-info {
+        font-size: 16px;
 
-  flex: 1;
+      }
 
-}
+    }
 
-.cart-info h3 {
-
-  margin: 0 0 5px;
-
-  font-size: 16px;
-
-}
-
-.cart-info p {
-
-  margin: 3px 0;
-
-  color: #8a6877;
-
-  font-size: 13px;
-
-}
-
-.quantity {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  margin-top: 8px;
-
-}
-
-.quantity button {
-
-  border: none;
-
-  width: 30px;
-
-  height: 30px;
-
-  border-radius: 50%;
-
-  background: #ffe0ed;
-
-  color: #e34f94;
-
-  font-size: 18px;
-
-  cursor: pointer;
-
-}
-
-.remove {
-
-  border: none;
-
-  background: none;
-
-  color: #d96c91;
-
-  padding: 0;
-
-  margin-top: 6px;
-
-  cursor: pointer;
-
-}
-
-.cart-total {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  margin-top: 20px;
-
-  padding-top: 15px;
-
-  border-top: 3px solid #ffd0e3;
-
-  color: #e34f94;
-
-  font-size: 21px;
-
-  font-weight: bold;
-
-}
-
-.order-cart {
-
-  display: block;
-
-  width: 100%;
-
-  margin-top: 18px;
-
-  padding: 15px;
-
-  border-radius: 999px;
-
-  background: #ff72b2;
-
-  color: white;
-
-  text-align: center;
-
-  text-decoration: none;
-
-  font-size: 16px;
-
-  font-weight: bold;
-
-}
-
-.clear-cart {
-
-  width: 100%;
-
-  margin-top: 9px;
-
-  padding: 11px;
-
-  border: 2px solid #ffc3dc;
-
-  background: white;
-
-  color: #d96c91;
-
-  border-radius: 999px;
-
-  cursor: pointer;
-
-}
-
-.empty {
-
-  text-align: center;
-
-  padding: 55px 10px;
-
-  color: #9a7182;
-
-  font-size: 18px;
-
-}
-
-footer {
-
-  background: #ffd8e9;
-
-  text-align: center;
-
-  padding: 25px;
-
-  color: #7d5969;
-
-}
-
-@media (max-width: 500px) {
-
-  .logo {
-
-    font-size: 19px;
-
-  }
-
-  .cart-button {
-
-    font-size: 14px;
-
-  }
-
-  .grid {
-
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: 10px;
-
-  }
-
-  .toy {
-
-    height: 125px;
-
-  }
-
-  .toy span {
-
-    font-size: 55px;
-
-  }
-
-  .product h3 {
-
-    font-size: 14px;
-
-  }
-
-  .product-price {
-
-    font-size: 17px;
-
-  }
-
-  .add-cart {
-
-    font-size: 12px;
-
-    padding: 9px;
-
-  }
-
-  .modal-picture {
-
-    height: 230px;
-
-  }
-
-}
-
-</style>
+  </style>
 
 </head>
 
 <body>
 
-<header>
+  <!-- COUNTRY SELECTION -->
 
-  <div class="logo">
+  <div class="country-overlay" id="countryOverlay">
 
-    🎀 Squishy Mart
+    <div class="country-box">
 
-  </div>
+      <h2>🌎 Choose Your Country</h2>
 
-  <button class="cart-button" id="cartButton">
+      <p>Prices will automatically use your country's currency.</p>
 
-    🛒 Cart
+      <button class="country-choice" onclick="selectCountry('USA')">
 
-    <span class="cart-count" id="cartCount">0</span>
-
-  </button>
-
-</header>
-
-<section class="hero">
-
-  <div class="hero-bow">🎀</div>
-
-  <h1>Squishy Mart</h1>
-
-  <p>Soft, cute & satisfying squishies 💕</p>
-
-  <a href="#shop" class="shop-button">
-
-    Shop now ✨
-
-  </a>
-
-</section>
-
-<main class="shop" id="shop">
-
-  <h2 class="shop-title">
-
-    Our Squishies 🧸💕
-
-  </h2>
-
-  <div id="products" class="grid"></div>
-
-</main>
-
-<!-- PRODUCT POPUP -->
-
-<div class="modal" id="productModal">
-
-  <div class="modal-box">
-
-    <button class="close-modal" id="closeModal">
-
-      ×
-
-    </button>
-
-    <div class="modal-picture" id="modalPicture"></div>
-
-    <h2 id="modalName"></h2>
-
-    <div class="modal-price" id="modalPrice"></div>
-
-    <p class="modal-description" id="modalDescription"></p>
-
-    <div id="colorArea"></div>
-
-    <div class="choose-message" id="chooseMessage">
-
-      💕 Please choose a colour first!
-
-    </div>
-
-    <button class="modal-add" id="modalAdd">
-
-      🛒 Add to Cart
-
-    </button>
-
-  </div>
-
-</div>
-
-<!-- CART -->
-
-<div class="cart-overlay" id="cartOverlay">
-
-  <div class="cart-panel">
-
-    <div class="cart-header">
-
-      <h2>🛒 Your Cart</h2>
-
-      <button class="close-cart" id="closeCart">
-
-        ×
+        🇺🇸 USA
 
       </button>
 
-    </div>
+      <button class="country-choice" onclick="selectCountry('Singapore')">
 
-    <div id="cartItems"></div>
+        🇸🇬 Singapore
 
-    <div id="cartBottom" style="display:none;">
+      </button>
 
-      <div class="cart-total">
+      <button class="country-choice" onclick="selectCountry('Thailand')">
 
-        <span>Total</span>
+        🇹🇭 Thailand
 
-        <span id="cartTotal">$0</span>
+      </button>
+
+      <button class="country-choice" onclick="selectCountry('UK')">
+
+        🇬🇧 UK
+
+      </button>
+
+      <button class="country-choice" onclick="showOtherCountry()">
+
+        🌎 Other
+
+      </button>
+
+      <div id="otherCountryArea">
+
+        <input
+
+          id="otherCountryInput"
+
+          type="text"
+
+          placeholder="Type your country"
+
+        >
+
+        <button class="continue-btn" id="otherContinue" onclick="continueOtherCountry()">
+
+          Continue
+
+        </button>
 
       </div>
 
-      <a id="orderCart" class="order-cart" href="#">
+      <div id="countryError" class="country-error"></div>
 
-        💌 Order Cart by Email
+    </div>
 
-      </a>
+  </div>
 
-      <button class="clear-cart" id="clearCart">
+  <!-- HEADER -->
 
-        🗑️ Clear Cart
+  <header>
+
+    <h1>💗 Squishy Mart 💗</h1>
+
+    <div class="top-buttons">
+
+      <button class="country-btn" onclick="openCountrySelector()">
+
+        🌎 Country
+
+      </button>
+
+      <button class="cart-btn" onclick="openCart()">
+
+        🛒 Cart (<span id="cartCount">0</span>)
+
+      </button>
+
+    </div>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <h2>Welcome to Squishy Mart! 🧸</h2>
+
+    <p>Pick your favourite squishy! 💕</p>
+
+    <p id="currencyMessage">Choose your country to see prices.</p>
+
+  </section>
+
+  <!-- PRODUCTS -->
+
+  <main class="products" id="products"></main>
+
+  <!-- PRODUCT MODAL -->
+
+  <div class="modal" id="productModal">
+
+    <div class="modal-box">
+
+      <div id="modalContent"></div>
+
+    </div>
+
+  </div>
+
+  <!-- CART MODAL -->
+
+  <div class="modal" id="cartModal">
+
+    <div class="modal-box cart-box">
+
+      <h2>🛒 Your Cart</h2>
+
+      <div id="cartItems"></div>
+
+      <div class="cart-total" id="cartTotal">
+
+        Total: $0.00
+
+      </div>
+
+      <button class="email-btn" onclick="emailOrder()">
+
+        📧 Order by Email
+
+      </button>
+
+      <button class="clear-btn" onclick="clearCart()">
+
+        Clear Cart
+
+      </button>
+
+      <button class="close-btn" onclick="closeCart()">
+
+        Close
 
       </button>
 
@@ -1008,1177 +808,1376 @@ footer {
 
   </div>
 
-</div>
-
-<footer>
-
-  Made with 💗 for squishy lovers
-
-</footer>
-
 <script>
 
-/* PRODUCTS */
+  /* =========================
 
-const products = [
+     PRODUCTS
 
-  {
+  ========================= */
 
-    name: "Slow Rise Butter",
+  const products = [
 
-    price: 6,
+    {
 
-    emoji: "🧈",
+      id: 1,
 
-    image: "IMG_1103.jpeg",
+      name: "Slow Rise Butter",
 
-    description: "A soft slow-rise butter squishy."
+      price: 6,
 
-  },
+      image: "IMG_1103.jpeg"
 
-  {
+    },
 
-    name: "Vaseline Butter",
+    {
 
-    price: 6,
+      id: 2,
 
-    emoji: "🧈",
+      name: "Vaseline Butter",
 
-    image: "IMG_1096.jpeg",
+      price: 6,
 
-    description: "A cute buttery squishy."
+      image: "IMG_1096.jpeg"
 
-  },
+    },
 
-  {
+    {
 
-    name: "Crunchy Butter",
+      id: 3,
 
-    price: 6,
+      name: "Crunchy Butter",
 
-    emoji: "🧈",
+      price: 6,
 
-    image: "IMG_1091.jpeg",
+      image: "IMG_1091.jpeg",
 
-    description: "A crunchy butter squishy.",
+      colors: ["Blue", "Pink"]
 
-    colors: ["Blue", "Pink"]
+    },
 
-  },
+    {
 
-  {
+      id: 4,
 
-    name: "Cheese",
+      name: "Cheese",
 
-    price: 6,
+      price: 6,
 
-    emoji: "🧀",
+      image: "IMG_1098.jpeg"
 
-    image: "IMG_1098.jpeg",
+    },
 
-    description: "A cute cheesy squishy."
+    {
 
-  },
+      id: 5,
 
-  {
+      name: "Potato",
 
-    name: "Potato",
+      price: 6,
 
-    price: 6,
+      image: "IMG_1101.jpeg"
 
-    emoji: "🥔",
+    },
 
-    image: "IMG_1101.jpeg",
+    {
 
-    description: "A soft potato squishy."
+      id: 6,
 
-  },
+      name: "Peach",
 
-  {
+      price: 6,
 
-    name: "Peach",
+      image: "IMG_1093.jpeg"
 
-    price: 6,
+    },
 
-    emoji: "🍑",
+    {
 
-    image: "IMG_1093.jpeg",
+      id: 7,
 
-    description: "A cute peach squishy."
+      name: "Crunchy Toast",
 
-  },
+      price: 6,
 
-  {
+      image: "IMG_1095.jpeg"
 
-    name: "Crunchy Toast",
+    },
 
-    price: 6,
+    {
 
-    emoji: "🍞",
+      id: 8,
 
-    image: "IMG_1095.jpeg",
+      name: "Needoh Cloud",
 
-    description: "A crunchy toast squishy."
+      price: 8,
 
-  },
+      emoji: "☁️"
 
-  {
+    },
 
-    name: "Needoh Cloud",
+    {
 
-    price: 8,
+      id: 9,
 
-    emoji: "☁️",
+      name: "Giant Strawberry",
 
-    image: null,
+      price: 9,
 
-    description: "A soft cloud squishy."
+      image: "IMG_1094.jpeg"
 
-  },
+    },
 
-  {
+    {
 
-    name: "Giant Strawberry",
+      id: 10,
 
-    price: 9,
+      name: "Slushy Apple",
 
-    emoji: "🍓",
+      price: 6,
 
-    image: "IMG_1094.jpeg",
+      image: "IMG_1100.jpeg",
 
-    description: "A giant strawberry squishy."
+      colors: ["Red", "Green"]
 
-  },
+    },
 
-  {
+    {
 
-    name: "Slushy Apple",
+      id: 11,
 
-    price: 6,
+      name: "Duck",
 
-    emoji: "🍏",
+      price: 6,
 
-    image: "IMG_1100.jpeg",
+      image: "IMG_1090.jpeg",
 
-    description: "Choose your apple colour.",
+      colors: ["Pink", "Blue", "Orange", "Purple"]
 
-    colors: ["Red", "Green"]
+    },
 
-  },
+    {
 
-  {
+      id: 12,
 
-    name: "Duck",
+      name: "Crunchy Soap",
 
-    price: 6,
+      price: 6,
 
-    emoji: "🦆",
+      image: "IMG_1102.jpeg"
 
-    image: "IMG_1090.jpeg",
+    },
 
-    description: "A cute duck squishy.",
+    {
 
-    colors: ["Pink", "Blue", "Orange", "Purple"]
+      id: 13,
 
-  },
+      name: "Needoh",
 
-  {
+      price: 8,
 
-    name: "Crunchy Soap",
+      emoji: "🌈"
 
-    price: 6,
+    },
 
-    emoji: "🧼",
+    {
 
-    image: "IMG_1102.jpeg",
+      id: 14,
 
-    description: "A crunchy soap squishy."
+      name: "Needoh Jellyfish",
 
-  },
+      price: 8,
 
-  {
+      emoji: "🪼"
 
-    name: "Needoh",
+    },
 
-    price: 8,
+    {
 
-    emoji: "🌈",
+      id: 15,
 
-    image: null,
+      name: "Needoh Cake",
 
-    description: "A soft Needoh-style squishy."
+      price: 8,
 
-  },
+      emoji: "🍰"
 
-  {
+    },
 
-    name: "Needoh Jellyfish",
+    {
 
-    price: 8,
+      id: 16,
 
-    emoji: "🪼",
+      name: "Needoh Ice Cream",
 
-    image: null,
+      price: 8,
 
-    description: "A cute jellyfish squishy."
+      emoji: "🍦"
 
-  },
+    },
 
-  {
+    {
 
-    name: "Needoh Cake",
+      id: 17,
 
-    price: 8,
+      name: "Bear",
 
-    emoji: "🍰",
+      price: 3,
 
-    image: null,
+      image: "IMG_1092.jpeg",
 
-    description: "A sweet cake squishy."
-
-  },
-
-  {
-
-    name: "Needoh Ice Cream",
-
-    price: 8,
-
-    emoji: "🍦",
-
-    image: null,
-
-    description: "A cute ice cream squishy."
-
-  },
-
-  {
-
-    name: "Bear",
-
-    price: 3,
-
-    emoji: "🐻",
-
-    image: "IMG_1092.jpeg",
-
-    description: "A cute bear squishy.",
-
-    colors: ["Pink", "Blue", "Orange", "Purple"]
-
-  }
-
-];
-
-/* VARIABLES */
-
-let cart = [];
-
-let selectedProduct = 0;
-
-let selectedColor = "";
-
-/* ELEMENTS */
-
-const productsBox =
-
-  document.getElementById("products");
-
-const productModal =
-
-  document.getElementById("productModal");
-
-const modalPicture =
-
-  document.getElementById("modalPicture");
-
-const modalName =
-
-  document.getElementById("modalName");
-
-const modalPrice =
-
-  document.getElementById("modalPrice");
-
-const modalDescription =
-
-  document.getElementById("modalDescription");
-
-const colorArea =
-
-  document.getElementById("colorArea");
-
-const chooseMessage =
-
-  document.getElementById("chooseMessage");
-
-const modalAdd =
-
-  document.getElementById("modalAdd");
-
-const closeModal =
-
-  document.getElementById("closeModal");
-
-const cartButton =
-
-  document.getElementById("cartButton");
-
-const cartCount =
-
-  document.getElementById("cartCount");
-
-const cartOverlay =
-
-  document.getElementById("cartOverlay");
-
-const closeCart =
-
-  document.getElementById("closeCart");
-
-const cartItems =
-
-  document.getElementById("cartItems");
-
-const cartBottom =
-
-  document.getElementById("cartBottom");
-
-const cartTotal =
-
-  document.getElementById("cartTotal");
-
-const orderCart =
-
-  document.getElementById("orderCart");
-
-const clearCart =
-
-  document.getElementById("clearCart");
-
-/* SHOW PRODUCTS */
-
-function renderProducts() {
-
-  productsBox.innerHTML = "";
-
-  products.forEach(function(product, index) {
-
-    const card =
-
-      document.createElement("article");
-
-    card.className = "product";
-
-    let picture;
-
-    if (product.image) {
-
-      picture =
-
-        '<img src="' +
-
-        product.image +
-
-        '" alt="' +
-
-        product.name +
-
-        '">';
-
-    } else {
-
-      picture =
-
-        "<span>" +
-
-        product.emoji +
-
-        "</span>";
+      colors: ["Pink", "Blue", "Orange", "Purple"]
 
     }
 
-    card.innerHTML =
+  ];
 
-      '<div class="toy">' +
+  /* =========================
 
-      picture +
+     CURRENCY SETTINGS
 
-      "</div>" +
+  ========================= */
 
-      "<h3>" +
+  let selectedCountry = localStorage.getItem("squishyCountry") || "";
 
-      product.name +
+  let selectedCurrency = localStorage.getItem("squishyCurrency") || "";
 
-      "</h3>" +
+  let exchangeRate = 1;
 
-      '<div class="product-price">$' +
+  /*
 
-      product.price +
+    Singapore is a special rule requested by you:
 
-      "</div>" +
+    $6 USD becomes S$6.
 
-      '<button class="add-cart">' +
+    Therefore Singapore uses a 1:1 price conversion.
 
-      "🛒 Add to Cart" +
+  */
 
-      "</button>";
+  const countryCurrencies = {
 
-    card.querySelector(".toy")
+    USA: "USD",
 
-      .addEventListener("click", function() {
+    Singapore: "SGD",
 
-        openProduct(index);
+    Thailand: "THB",
 
-      });
+    UK: "GBP"
 
-    card.querySelector(".add-cart")
+  };
 
-      .addEventListener("click", function() {
+  /* =========================
 
-        /*
+     COUNTRY SELECTION
 
-          IMPORTANT:
+  ========================= */
 
-          Products with colours MUST open the colour picker.
+  function selectCountry(country) {
 
-        */
+    selectedCountry = country;
 
-        if (product.colors) {
+    selectedCurrency = countryCurrencies[country];
 
-          openProduct(index);
+    document.getElementById("countryError").textContent = "";
 
-        } else {
+    if (country === "Singapore") {
 
-          addToCart(index, "");
+      exchangeRate = 1;
 
-        }
+      saveCountry();
 
-      });
-
-    productsBox.appendChild(card);
-
-  });
-
-}
-
-/* OPEN PRODUCT */
-
-function openProduct(index) {
-
-  selectedProduct = index;
-
-  selectedColor = "";
-
-  const product =
-
-    products[index];
-
-  if (product.image) {
-
-    modalPicture.innerHTML =
-
-      '<img src="' +
-
-      product.image +
-
-      '" alt="' +
-
-      product.name +
-
-      '">';
-
-  } else {
-
-    modalPicture.innerHTML =
-
-      "<span>" +
-
-      product.emoji +
-
-      "</span>";
-
-  }
-
-  modalName.textContent =
-
-    product.name;
-
-  modalPrice.textContent =
-
-    "$" + product.price;
-
-  modalDescription.textContent =
-
-    product.description;
-
-  colorArea.innerHTML = "";
-
-  chooseMessage.style.display =
-
-    "none";
-
-  /* COLOUR PICKER */
-
-  if (product.colors) {
-
-    const title =
-
-      document.createElement("div");
-
-    title.className =
-
-      "colors-title";
-
-    title.textContent =
-
-      "🎨 Choose a colour:";
-
-    const colors =
-
-      document.createElement("div");
-
-    colors.className =
-
-      "colors";
-
-    product.colors.forEach(function(color) {
-
-      const button =
-
-        document.createElement("button");
-
-      button.type = "button";
-
-      button.className =
-
-        "color-button";
-
-      button.textContent =
-
-        color;
-
-      button.addEventListener(
-
-        "click",
-
-        function() {
-
-          selectedColor =
-
-            color;
-
-          chooseMessage.style.display =
-
-            "none";
-
-          colors
-
-            .querySelectorAll(".color-button")
-
-            .forEach(function(btn) {
-
-              btn.classList.remove(
-
-                "selected"
-
-              );
-
-            });
-
-          button.classList.add(
-
-            "selected"
-
-          );
-
-        }
-
-      );
-
-      colors.appendChild(button);
-
-    });
-
-    colorArea.appendChild(title);
-
-    colorArea.appendChild(colors);
-
-  }
-
-  productModal.classList.add(
-
-    "open"
-
-  );
-
-}
-
-/* ADD FROM POPUP */
-
-modalAdd.addEventListener(
-
-  "click",
-
-  function() {
-
-    const product =
-
-      products[selectedProduct];
-
-    /* MAKE SURE COLOUR IS CHOSEN */
-
-    if (
-
-      product.colors &&
-
-      !selectedColor
-
-    ) {
-
-      chooseMessage.style.display =
-
-        "block";
+      finishCountrySelection();
 
       return;
 
     }
 
-    addToCart(
+    if (country === "USA") {
 
-      selectedProduct,
+      exchangeRate = 1;
 
-      selectedColor
+      saveCountry();
 
-    );
+      finishCountrySelection();
 
-    productModal.classList.remove(
+      return;
 
-      "open"
+    }
 
-    );
+    getExchangeRate("USD", selectedCurrency);
 
   }
 
-);
+  function showOtherCountry() {
 
-/* ADD TO CART */
+    const area = document.getElementById("otherCountryArea");
 
-function addToCart(index, color) {
+    const continueButton = document.getElementById("otherContinue");
 
-  const existing =
+    area.style.display = "block";
 
-    cart.find(function(item) {
+    continueButton.style.display = "block";
 
-      return (
+    document.getElementById("otherCountryInput").focus();
 
-        item.index === index &&
+  }
 
-        item.color === color
+  async function continueOtherCountry() {
+
+    const input = document
+
+      .getElementById("otherCountryInput")
+
+      .value
+
+      .trim();
+
+    const error = document.getElementById("countryError");
+
+    if (!input) {
+
+      error.textContent = "Please type your country.";
+
+      return;
+
+    }
+
+    error.textContent = "";
+
+    /*
+
+      A list of common country → currency mappings.
+
+      This lets customers type their country name.
+
+    */
+
+    const countryMap = {
+
+      malaysia: "MYR",
+
+      australia: "AUD",
+
+      canada: "CAD",
+
+      japan: "JPY",
+
+      china: "CNY",
+
+      india: "INR",
+
+      indonesia: "IDR",
+
+      philippines: "PHP",
+
+      vietnam: "VND",
+
+      south korea: "KRW",
+
+      korea: "KRW",
+
+      france: "EUR",
+
+      germany: "EUR",
+
+      italy: "EUR",
+
+      spain: "EUR",
+
+      portugal: "EUR",
+
+      netherlands: "EUR",
+
+      belgium: "EUR",
+
+      austria: "EUR",
+
+      ireland: "EUR",
+
+      switzerland: "CHF",
+
+      new zealand: "NZD",
+
+      brazil: "BRL",
+
+      mexico: "MXN",
+
+      south africa: "ZAR",
+
+      uae: "AED",
+
+      "united arab emirates": "AED",
+
+      saudi arabia: "SAR",
+
+      qatar: "QAR",
+
+      hong kong: "HKD",
+
+      taiwan: "TWD"
+
+    };
+
+    const countryLower = input.toLowerCase();
+
+    if (countryMap[countryLower]) {
+
+      selectedCountry = input;
+
+      selectedCurrency = countryMap[countryLower];
+
+      await getExchangeRate("USD", selectedCurrency);
+
+      return;
+
+    }
+
+    /*
+
+      If the country is not in the list, ask for a currency code.
+
+      This prevents the website from guessing incorrectly.
+
+    */
+
+    error.innerHTML =
+
+      "I don't recognize that country yet.<br>" +
+
+      "Please type its 3-letter currency code below.";
+
+    const area = document.getElementById("otherCountryArea");
+
+    if (!document.getElementById("currencyCodeInput")) {
+
+      const currencyInput = document.createElement("input");
+
+      currencyInput.id = "currencyCodeInput";
+
+      currencyInput.type = "text";
+
+      currencyInput.placeholder = "Currency code e.g. EUR";
+
+      currencyInput.maxLength = 3;
+
+      currencyInput.style.width = "100%";
+
+      currencyInput.style.padding = "13px";
+
+      currencyInput.style.marginTop = "8px";
+
+      currencyInput.style.border = "2px solid #ffc2dd";
+
+      currencyInput.style.borderRadius = "15px";
+
+      currencyInput.style.fontSize = "16px";
+
+      currencyInput.style.textTransform = "uppercase";
+
+      area.appendChild(currencyInput);
+
+      const codeButton = document.createElement("button");
+
+      codeButton.textContent = "Use This Currency";
+
+      codeButton.className = "continue-btn";
+
+      codeButton.style.display = "block";
+
+      codeButton.onclick = async function() {
+
+        const code = currencyInput.value.trim().toUpperCase();
+
+        if (!/^[A-Z]{3}$/.test(code)) {
+
+          error.textContent =
+
+            "Please enter a valid 3-letter currency code.";
+
+          return;
+
+        }
+
+        selectedCountry = input;
+
+        selectedCurrency = code;
+
+        await getExchangeRate("USD", code);
+
+      };
+
+      area.appendChild(codeButton);
+
+    }
+
+  }
+
+  async function getExchangeRate(from, to) {
+
+    const error = document.getElementById("countryError");
+
+    if (to === "USD") {
+
+      exchangeRate = 1;
+
+      saveCountry();
+
+      finishCountrySelection();
+
+      return;
+
+    }
+
+    error.textContent = "Getting the current exchange rate... 💕";
+
+    try {
+
+      const response = await fetch(
+
+        "https://open.er-api.com/v6/latest/USD"
 
       );
 
-    });
+      if (!response.ok) {
 
-  if (existing) {
+        throw new Error("Currency service unavailable");
 
-    existing.quantity++;
+      }
 
-  } else {
+      const data = await response.json();
 
-    cart.push({
+      if (
 
-      index: index,
+        !data.rates ||
 
-      color: color,
+        typeof data.rates[to] !== "number"
 
-      quantity: 1
+      ) {
+
+        throw new Error("Currency not supported");
+
+      }
+
+      exchangeRate = data.rates[to];
+
+      saveCountry();
+
+      finishCountrySelection();
+
+    } catch (errorObject) {
+
+      console.error(errorObject);
+
+      error.textContent =
+
+        "Sorry, I couldn't find that currency. Please check the country or currency code.";
+
+    }
+
+  }
+
+  function saveCountry() {
+
+    localStorage.setItem("squishyCountry", selectedCountry);
+
+    localStorage.setItem("squishyCurrency", selectedCurrency);
+
+  }
+
+  function finishCountrySelection() {
+
+    document.getElementById("countryOverlay").style.display = "none";
+
+    updateCurrencyMessage();
+
+    renderProducts();
+
+    updateCart();
+
+  }
+
+  function openCountrySelector() {
+
+    document.getElementById("countryOverlay").style.display = "flex";
+
+    document.getElementById("countryError").textContent = "";
+
+  }
+
+  /* =========================
+
+     PRICE FORMATTING
+
+  ========================= */
+
+  function convertedPrice(usdPrice) {
+
+    return usdPrice * exchangeRate;
+
+  }
+
+  function formatMoney(usdPrice) {
+
+    const amount = convertedPrice(usdPrice);
+
+    try {
+
+      return new Intl.NumberFormat(undefined, {
+
+        style: "currency",
+
+        currency: selectedCurrency || "USD"
+
+      }).format(amount);
+
+    } catch {
+
+      return `${selectedCurrency || "USD"} ${amount.toFixed(2)}`;
+
+    }
+
+  }
+
+  function updateCurrencyMessage() {
+
+    const message = document.getElementById("currencyMessage");
+
+    if (!selectedCurrency) {
+
+      message.textContent = "Choose your country to see prices.";
+
+      return;
+
+    }
+
+    message.textContent =
+
+      `Prices shown in ${selectedCurrency} for ${selectedCountry} 🌎`;
+
+  }
+
+  /* =========================
+
+     PRODUCTS
+
+  ========================= */
+
+  function renderProducts() {
+
+    const container = document.getElementById("products");
+
+    container.innerHTML = "";
+
+    products.forEach(product => {
+
+      const card = document.createElement("div");
+
+      card.className = "product";
+
+      let imageHTML = "";
+
+      if (product.image) {
+
+        imageHTML = `
+
+          <img
+
+            src="${product.image}"
+
+            alt="${product.name}"
+
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+
+          >
+
+          <div class="emoji-image" style="display:none;">
+
+            💗
+
+          </div>
+
+        `;
+
+      } else {
+
+        imageHTML = `
+
+          <div class="emoji-image">
+
+            ${product.emoji}
+
+          </div>
+
+        `;
+
+      }
+
+      card.innerHTML = `
+
+        ${imageHTML}
+
+        <h3>${product.name}</h3>
+
+        <div class="price">
+
+          ${formatMoney(product.price)}
+
+        </div>
+
+        <button
+
+          class="add-btn"
+
+          onclick="openProduct(${product.id})"
+
+        >
+
+          🛒 Add to Cart
+
+        </button>
+
+      `;
+
+      container.appendChild(card);
 
     });
 
   }
 
-  updateCart();
+  /* =========================
 
-}
+     PRODUCT MODAL
 
-/* UPDATE CART */
+  ========================= */
 
-function updateCart() {
+  let selectedColor = "";
 
-  let count = 0;
+  function openProduct(productId) {
 
-  let total = 0;
+    const product = products.find(p => p.id === productId);
 
-  cart.forEach(function(item) {
+    if (!product) return;
 
-    const product =
+    selectedColor = "";
 
-      products[item.index];
-
-    count +=
-
-      item.quantity;
-
-    total +=
-
-      product.price *
-
-      item.quantity;
-
-  });
-
-  cartCount.textContent =
-
-    count;
-
-  cartItems.innerHTML = "";
-
-  if (cart.length === 0) {
-
-    cartItems.innerHTML =
-
-      '<div class="empty">' +
-
-      "🛒 Your cart is empty!" +
-
-      "<br><br>" +
-
-      "Add some cute squishies 💕" +
-
-      "</div>";
-
-    cartBottom.style.display =
-
-      "none";
-
-    return;
-
-  }
-
-  cartBottom.style.display =
-
-    "block";
-
-  cart.forEach(function(item, cartIndex) {
-
-    const product =
-
-      products[item.index];
-
-    const row =
-
-      document.createElement("div");
-
-    row.className =
-
-      "cart-item";
-
-    let picture;
+    let imageHTML = "";
 
     if (product.image) {
 
-      picture =
+      imageHTML = `
 
-        '<img src="' +
+        <img
 
-        product.image +
+          src="${product.image}"
 
-        '" alt="' +
+          alt="${product.name}"
 
-        product.name +
+        >
 
-        '">';
+      `;
 
     } else {
 
-      picture =
+      imageHTML = `
 
-        "<span>" +
+        <div class="emoji-image">
 
-        product.emoji +
+          ${product.emoji}
 
-        "</span>";
+        </div>
 
-    }
-
-    let colorText = "";
-
-    if (item.color) {
-
-      colorText =
-
-        "<p>Colour: " +
-
-        item.color +
-
-        "</p>";
+      `;
 
     }
 
-    row.innerHTML =
+    let colorsHTML = "";
 
-      '<div class="cart-image">' +
+    if (product.colors) {
 
-      picture +
+      colorsHTML = `
 
-      "</div>" +
+        <div class="color-title">
 
-      '<div class="cart-info">' +
+          Choose a colour:
 
-      "<h3>" +
+        </div>
 
-      product.name +
+        <div class="color-options">
 
-      "</h3>" +
+          ${product.colors.map(color => `
 
-      "<p>$" +
+            <button
 
-      product.price +
+              class="color-btn"
 
-      " each</p>" +
+              onclick="chooseColor('${color}', this)"
 
-      colorText +
+            >
 
-      '<div class="quantity">' +
+              ${color}
 
-      '<button class="minus">−</button>' +
+            </button>
 
-      "<strong>" +
+          `).join("")}
 
-      item.quantity +
+        </div>
 
-      "</strong>" +
+      `;
 
-      '<button class="plus">+</button>' +
+    }
 
-      "</div>" +
+    document.getElementById("modalContent").innerHTML = `
 
-      '<button class="remove">' +
+      ${imageHTML}
 
-      "Remove" +
+      <h2>${product.name}</h2>
 
-      "</button>" +
+      <div class="price">
 
-      "</div>";
+        ${formatMoney(product.price)}
 
-    row.querySelector(".minus")
+      </div>
 
-      .addEventListener("click", function() {
+      ${colorsHTML}
 
-        changeQuantity(
+      <button
 
-          cartIndex,
+        class="modal-add"
 
-          -1
+        onclick="addProductToCart(${product.id})"
 
-        );
+      >
 
-      });
+        Add to Cart 💗
 
-    row.querySelector(".plus")
+      </button>
 
-      .addEventListener("click", function() {
+      <br>
 
-        changeQuantity(
+      <button
 
-          cartIndex,
+        class="close-btn"
 
-          1
+        onclick="closeProductModal()"
 
-        );
+      >
 
-      });
+        Close
 
-    row.querySelector(".remove")
+      </button>
 
-      .addEventListener("click", function() {
+    `;
 
-        cart.splice(
+    document.getElementById("productModal").style.display = "flex";
 
-          cartIndex,
+  }
 
-          1
+  function chooseColor(color, button) {
 
-        );
+    selectedColor = color;
 
-        updateCart();
+    document.querySelectorAll(".color-btn").forEach(btn => {
 
-      });
+      btn.classList.remove("selected");
 
-    cartItems.appendChild(row);
+    });
 
-  });
+    button.classList.add("selected");
 
-  cartTotal.textContent =
+  }
 
-    "$" + total;
+  function closeProductModal() {
 
-  updateOrderEmail();
+    document.getElementById("productModal").style.display = "none";
 
-}
+  }
 
-/* CHANGE QUANTITY */
+  /* =========================
 
-function changeQuantity(
+     CART
 
-  cartIndex,
+  ========================= */
 
-  amount
+  let cart = JSON.parse(
 
-) {
+    localStorage.getItem("squishyCart") || "[]"
 
-  cart[cartIndex].quantity +=
+  );
 
-    amount;
+  function addProductToCart(productId) {
 
-  if (
+    const product = products.find(p => p.id === productId);
 
-    cart[cartIndex].quantity <= 0
+    if (!product) return;
 
-  ) {
+    if (product.colors && !selectedColor) {
 
-    cart.splice(
+      alert("Please choose a colour first! 💗");
 
-      cartIndex,
+      return;
 
-      1
+    }
+
+    const color = selectedColor || "";
+
+    const existing = cart.find(item =>
+
+      item.productId === productId &&
+
+      item.color === color
 
     );
 
-  }
+    if (existing) {
 
-  updateCart();
+      existing.quantity++;
 
-}
+    } else {
 
-/* EMAIL ORDER */
+      cart.push({
 
-function updateOrderEmail() {
+        productId: productId,
 
-  let body =
+        color: color,
 
-    "Hi! I would like to order:%0A%0A";
+        quantity: 1
 
-  let total = 0;
-
-  cart.forEach(function(item) {
-
-    const product =
-
-      products[item.index];
-
-    const subtotal =
-
-      product.price *
-
-      item.quantity;
-
-    total +=
-
-      subtotal;
-
-    body +=
-
-      item.quantity +
-
-      " x " +
-
-      product.name;
-
-    if (item.color) {
-
-      body +=
-
-        " (" +
-
-        item.color +
-
-        ")";
+      });
 
     }
 
-    body +=
-
-      " - $" +
-
-      subtotal +
-
-      "%0A";
-
-  });
-
-  body +=
-
-    "%0ATotal: $" +
-
-    total;
-
-  orderCart.href =
-
-    "mailto:squishy.mart2026@gmail.com" +
-
-    "?subject=Squishy%20Mart%20Order" +
-
-    "&body=" +
-
-    body;
-
-}
-
-/* CLOSE PRODUCT */
-
-closeModal.addEventListener(
-
-  "click",
-
-  function() {
-
-    productModal.classList.remove(
-
-      "open"
-
-    );
-
-  }
-
-);
-
-productModal.addEventListener(
-
-  "click",
-
-  function(event) {
-
-    if (
-
-      event.target === productModal
-
-    ) {
-
-      productModal.classList.remove(
-
-        "open"
-
-      );
-
-    }
-
-  }
-
-);
-
-/* OPEN CART */
-
-cartButton.addEventListener(
-
-  "click",
-
-  function() {
+    saveCart();
 
     updateCart();
 
-    cartOverlay.classList.add(
+    closeProductModal();
 
-      "open"
+    alert(`${product.name} was added to your cart! 💗`);
+
+  }
+
+  function saveCart() {
+
+    localStorage.setItem(
+
+      "squishyCart",
+
+      JSON.stringify(cart)
 
     );
 
   }
 
-);
+  function updateCart() {
 
-/* CLOSE CART */
+    const count = cart.reduce(
 
-closeCart.addEventListener(
+      (total, item) => total + item.quantity,
 
-  "click",
-
-  function() {
-
-    cartOverlay.classList.remove(
-
-      "open"
+      0
 
     );
 
+    document.getElementById("cartCount").textContent = count;
+
   }
 
-);
+  function openCart() {
 
-/* CLOSE CART OUTSIDE */
+    renderCart();
 
-cartOverlay.addEventListener(
+    document.getElementById("cartModal").style.display = "flex";
 
-  "click",
+  }
 
-  function(event) {
+  function closeCart() {
 
-    if (
+    document.getElementById("cartModal").style.display = "none";
 
-      event.target === cartOverlay
+  }
 
-    ) {
+  function renderCart() {
 
-      cartOverlay.classList.remove(
+    const container = document.getElementById("cartItems");
 
-        "open"
+    if (cart.length === 0) {
 
-      );
+      container.innerHTML = `
+
+        <p style="text-align:center;">
+
+          Your cart is empty 💗
+
+        </p>
+
+      `;
+
+      document.getElementById("cartTotal").textContent =
+
+        `Total: ${formatMoney(0)}`;
+
+      return;
 
     }
 
+    let totalUSD = 0;
+
+    container.innerHTML = "";
+
+    cart.forEach((item, index) => {
+
+      const product = products.find(
+
+        p => p.id === item.productId
+
+      );
+
+      if (!product) return;
+
+      const itemTotalUSD =
+
+        product.price * item.quantity;
+
+      totalUSD += itemTotalUSD;
+
+      const colorText = item.color
+
+        ? `<br>Colour: ${item.color}`
+
+        : "";
+
+      const itemDiv = document.createElement("div");
+
+      itemDiv.className = "cart-item";
+
+      itemDiv.innerHTML = `
+
+        <strong>${product.name}</strong>
+
+        ${colorText}
+
+        <br>
+
+        ${formatMoney(product.price)}
+
+        each
+
+        <div class="quantity-row">
+
+          <button onclick="changeQuantity(${index}, -1)">
+
+            −
+
+          </button>
+
+          <span>${item.quantity}</span>
+
+          <button onclick="changeQuantity(${index}, 1)">
+
+            +
+
+          </button>
+
+          <button
+
+            class="remove-btn"
+
+            onclick="removeFromCart(${index})"
+
+          >
+
+            Remove
+
+          </button>
+
+        </div>
+
+        <div style="margin-top:8px;font-weight:bold;">
+
+          Item total:
+
+          ${formatMoney(itemTotalUSD)}
+
+        </div>
+
+      `;
+
+      container.appendChild(itemDiv);
+
+    });
+
+    document.getElementById("cartTotal").textContent =
+
+      `Total: ${formatMoney(totalUSD)}`;
+
   }
 
-);
+  function changeQuantity(index, amount) {
 
-/* CLEAR CART */
+    if (!cart[index]) return;
 
-clearCart.addEventListener(
+    cart[index].quantity += amount;
 
-  "click",
+    if (cart[index].quantity <= 0) {
 
-  function() {
+      cart.splice(index, 1);
+
+    }
+
+    saveCart();
+
+    updateCart();
+
+    renderCart();
+
+  }
+
+  function removeFromCart(index) {
+
+    cart.splice(index, 1);
+
+    saveCart();
+
+    updateCart();
+
+    renderCart();
+
+  }
+
+  function clearCart() {
 
     cart = [];
 
+    saveCart();
+
     updateCart();
+
+    renderCart();
 
   }
 
-);
+  /* =========================
 
-/* START WEBSITE */
+     EMAIL ORDER
 
-renderProducts();
+  ========================= */
 
-updateCart();
+  function emailOrder() {
+
+    if (cart.length === 0) {
+
+      alert("Your cart is empty! 💗");
+
+      return;
+
+    }
+
+    let totalUSD = 0;
+
+    let orderText =
+
+      "Hello Squishy Mart! 💗%0D%0A%0D%0A";
+
+    orderText +=
+
+      "I would like to order:%0D%0A%0D%0A";
+
+    cart.forEach(item => {
+
+      const product = products.find(
+
+        p => p.id === item.productId
+
+      );
+
+      if (!product) return;
+
+      const itemTotalUSD =
+
+        product.price * item.quantity;
+
+      totalUSD += itemTotalUSD;
+
+      orderText +=
+
+        `${product.name} x${item.quantity}`;
+
+      if (item.color) {
+
+        orderText +=
+
+          ` (${item.color})`;
+
+      }
+
+      orderText +=
+
+        ` - ${encodeURIComponent(
+
+          formatMoney(itemTotalUSD)
+
+        )}%0D%0A`;
+
+    });
+
+    orderText +=
+
+      `%0D%0ATotal: ${encodeURIComponent(
+
+        formatMoney(totalUSD)
+
+      )}%0D%0A`;
+
+    orderText +=
+
+      `Country: ${encodeURIComponent(
+
+        selectedCountry
+
+      )}%0D%0A`;
+
+    orderText +=
+
+      `Currency: ${encodeURIComponent(
+
+        selectedCurrency
+
+      )}%0D%0A%0D%0A`;
+
+    orderText +=
+
+      "Thank you! 💗";
+
+    const emailURL =
+
+      `mailto:squishy.mart2026@gmail.com` +
+
+      `?subject=Squishy Mart Order` +
+
+      `&body=${orderText}`;
+
+    window.location.href = emailURL;
+
+  }
+
+  /* =========================
+
+     START WEBSITE
+
+  ========================= */
+
+  async function startWebsite() {
+
+    if (
+
+      selectedCountry &&
+
+      selectedCurrency
+
+    ) {
+
+      /*
+
+        Singapore stays 1:1 as requested.
+
+      */
+
+      if (
+
+        selectedCountry === "Singapore" &&
+
+        selectedCurrency === "SGD"
+
+      ) {
+
+        exchangeRate = 1;
+
+        finishCountrySelection();
+
+        return;
+
+      }
+
+      /*
+
+        USA stays 1:1.
+
+      */
+
+      if (
+
+        selectedCountry === "USA" &&
+
+        selectedCurrency === "USD"
+
+      ) {
+
+        exchangeRate = 1;
+
+        finishCountrySelection();
+
+        return;
+
+      }
+
+      /*
+
+        Other currencies need a live exchange rate.
+
+      */
+
+      try {
+
+        const response = await fetch(
+
+          "https://open.er-api.com/v6/latest/USD"
+
+        );
+
+        const data = await response.json();
+
+        if (
+
+          data.rates &&
+
+          typeof data.rates[selectedCurrency] === "number"
+
+        ) {
+
+          exchangeRate =
+
+            data.rates[selectedCurrency];
+
+          finishCountrySelection();
+
+        } else {
+
+          openCountrySelector();
+
+        }
+
+      } catch {
+
+        openCountrySelector();
+
+      }
+
+    } else {
+
+      document.getElementById(
+
+        "countryOverlay"
+
+      ).style.display = "flex";
+
+    }
+
+  }
+
+  startWebsite();
 
 </script>
 
 </body>
 
 </html>
-<script>
-  function updateAllPrices() {
-    const country = document.getElementById('country-select').value;
-    
-    const priceDisplays = document.querySelectorAll('.price-display');
-    const currencyDisplays = document.querySelectorAll('.currency-display');
-    const buyButtons = document.querySelectorAll('.buy-btn');
-
-    priceDisplays.forEach((display, index) => {
-      let newPrice = display.getAttribute('data-' + country.toLowerCase());
-      
-      display.innerText = newPrice;
-      currencyDisplays[index].innerText = country;
-
-      buyButtons[index].setAttribute('data-item-price', newPrice);
-      buyButtons[index].setAttribute('data-item-currency', country);
-    });
-
-    if (window.Snipcart) {
-      Snipcart.api.setCurrency(country);
-    }
-  }
-</script>6
