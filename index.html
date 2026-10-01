@@ -38,6 +38,12 @@ button {
 
 }
 
+/* =========================
+
+   HEADER
+
+========================= */
+
 header {
 
   background: #ff8fc7;
@@ -94,6 +100,12 @@ header {
 
 }
 
+/* =========================
+
+   HERO
+
+========================= */
+
 .hero {
 
   text-align: center;
@@ -125,6 +137,12 @@ header {
   font-size: 14px;
 
 }
+
+/* =========================
+
+   SHOP
+
+========================= */
 
 .shop {
 
@@ -226,7 +244,7 @@ header {
 
   border-radius: 15px;
 
-  padding: 6px 9px;
+  padding: 7px 10px;
 
   font-size: 12px;
 
@@ -256,13 +274,11 @@ header {
 
 }
 
-.add-btn:hover {
+/* =========================
 
-  background: #ff459f;
+   COUNTRY SCREEN
 
-}
-
-/* COUNTRY SCREEN */
+========================= */
 
 .country-screen {
 
@@ -414,7 +430,11 @@ header {
 
 }
 
-/* CART */
+/* =========================
+
+   CART
+
+========================= */
 
 .cart-panel {
 
@@ -501,6 +521,8 @@ header {
   gap: 8px;
 
   margin-top: 8px;
+
+  flex-wrap: wrap;
 
 }
 
@@ -594,17 +616,133 @@ header {
 
 }
 
-.loading {
+/* =========================
 
-  text-align: center;
+   ADDRESS POPUP
 
-  color: #ff4fa7;
+========================= */
 
-  font-weight: bold;
+.address-screen {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0,0,0,0.45);
+
+  z-index: 500;
+
+  display: none;
+
+  align-items: center;
+
+  justify-content: center;
 
   padding: 20px;
 
 }
+
+.address-box {
+
+  background: white;
+
+  width: min(450px, 100%);
+
+  border-radius: 25px;
+
+  padding: 25px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+}
+
+.address-box h2 {
+
+  color: #ff4fa7;
+
+  text-align: center;
+
+  margin-top: 0;
+
+}
+
+.address-box p {
+
+  text-align: center;
+
+  color: #777;
+
+}
+
+.address-box textarea {
+
+  width: 100%;
+
+  min-height: 130px;
+
+  padding: 14px;
+
+  border: 2px solid #ffc5df;
+
+  border-radius: 15px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 16px;
+
+  resize: vertical;
+
+}
+
+.address-box button {
+
+  width: 100%;
+
+  border: none;
+
+  border-radius: 20px;
+
+  padding: 14px;
+
+  margin-top: 10px;
+
+  font-weight: bold;
+
+  font-size: 16px;
+
+}
+
+#continueOrderBtn {
+
+  background: #ff69b4;
+
+  color: white;
+
+}
+
+#cancelAddressBtn {
+
+  background: #eee;
+
+  color: #555;
+
+}
+
+.address-error {
+
+  color: #e74c3c;
+
+  text-align: center;
+
+  margin-top: 8px;
+
+}
+
+/* =========================
+
+   MOBILE
+
+========================= */
 
 @media (max-width: 500px) {
 
@@ -662,7 +800,11 @@ header {
 
 <body>
 
-<!-- COUNTRY SCREEN -->
+<!-- =========================
+
+     COUNTRY SCREEN
+
+========================= -->
 
 <div class="country-screen" id="countryScreen">
 
@@ -670,7 +812,11 @@ header {
 
     <h1>🌎 Choose Your Country</h1>
 
-    <p>Choose your country to see prices in your currency.</p>
+    <p>
+
+      Choose your country to see prices in your currency.
+
+    </p>
 
     <div class="country-options">
 
@@ -732,7 +878,11 @@ header {
 
 </div>
 
-<!-- HEADER -->
+<!-- =========================
+
+     HEADER
+
+========================= -->
 
 <header>
 
@@ -760,13 +910,21 @@ header {
 
 </header>
 
-<!-- HERO -->
+<!-- =========================
+
+     HERO
+
+========================= -->
 
 <section class="hero">
 
   <h1>🩷 Squishy Mart 🩷</h1>
 
-  <p>Super cute squishies for everyone!</p>
+  <p>
+
+    Super cute squishies for everyone!
+
+  </p>
 
   <div class="country-display" id="countryDisplay">
 
@@ -776,21 +934,23 @@ header {
 
 </section>
 
-<!-- SHOP -->
+<!-- =========================
+
+     PRODUCTS
+
+========================= -->
 
 <main class="shop">
 
-  <div id="loadingMessage" class="loading">
-
-    Loading Squishy Mart...
-
-  </div>
-
-  <div class="products" id="products"></div>
+  <div id="products" class="products"></div>
 
 </main>
 
-<!-- CART -->
+<!-- =========================
+
+     CART
+
+========================= -->
 
 <div class="cart-panel" id="cartPanel">
 
@@ -828,9 +988,67 @@ header {
 
 </div>
 
+<!-- =========================
+
+     ADDRESS POPUP
+
+========================= -->
+
+<div class="address-screen" id="addressScreen">
+
+  <div class="address-box">
+
+    <h2>📦 Add Your Address</h2>
+
+    <p>
+
+      Enter your delivery address for your order.
+
+    </p>
+
+    <textarea
+
+      id="addressInput"
+
+      placeholder="House number, street, city, postal code, country"
+
+    ></textarea>
+
+    <div
+
+      id="addressError"
+
+      class="address-error"
+
+    ></div>
+
+    <button id="continueOrderBtn">
+
+      CONTINUE →
+
+    </button>
+
+    <button id="cancelAddressBtn">
+
+      CANCEL
+
+    </button>
+
+  </div>
+
+</div>
+
 <script>
 
-const SHOP_EMAIL = "squishy.mart2026@gmail.com";
+/* =========================
+
+   SHOP SETTINGS
+
+========================= */
+
+const SHOP_EMAIL =
+
+  "squishy.mart2026@gmail.com";
 
 /* =========================
 
@@ -1056,7 +1274,7 @@ const products = [
 
 /* =========================
 
-   COUNTRY / CURRENCY
+   COUNTRY SETTINGS
 
 ========================= */
 
@@ -1066,47 +1284,41 @@ let currencyCode = "USD";
 
 let exchangeRate = 1;
 
-const countryScreen = document.getElementById("countryScreen");
+/* =========================
 
-const nextBtn = document.getElementById("nextBtn");
+   ELEMENTS
 
-const otherCountryBox = document.getElementById("otherCountryBox");
+========================= */
 
-const otherCountryInput = document.getElementById("otherCountryInput");
+const countryScreen =
 
-const countryError = document.getElementById("countryError");
+  document.getElementById("countryScreen");
 
-const countryDisplay = document.getElementById("countryDisplay");
+const nextBtn =
 
-/*
+  document.getElementById("nextBtn");
 
-  Singapore is intentionally 1:1 because
+const otherCountryBox =
 
-  that is the pricing rule for your shop.
+  document.getElementById("otherCountryBox");
 
-*/
+const otherCountryInput =
 
-const fixedCurrencies = {
+  document.getElementById("otherCountryInput");
 
-  "USA": {
+const countryError =
 
-    currency: "USD",
+  document.getElementById("countryError");
 
-    rate: 1
+const countryDisplay =
 
-  },
+  document.getElementById("countryDisplay");
 
-  "Singapore": {
+/* =========================
 
-    currency: "SGD",
+   COUNTRY → CURRENCY
 
-    rate: 1
-
-  }
-
-};
-
-/* Common country → currency list */
+========================= */
 
 const countryCurrencies = {
 
@@ -1200,37 +1412,53 @@ const countryCurrencies = {
 
 ========================= */
 
-document.querySelectorAll(".country-option").forEach(button => {
+document
 
-  button.addEventListener("click", () => {
+  .querySelectorAll(".country-option")
 
-    document.querySelectorAll(".country-option")
+  .forEach(button => {
 
-      .forEach(b => b.classList.remove("selected"));
+    button.addEventListener("click", () => {
 
-    button.classList.add("selected");
+      document
 
-    selectedCountry = button.dataset.country;
+        .querySelectorAll(".country-option")
 
-    countryError.textContent = "";
+        .forEach(b =>
 
-    if (selectedCountry === "Other") {
+          b.classList.remove("selected")
 
-      otherCountryBox.style.display = "block";
+        );
 
-      otherCountryInput.focus();
+      button.classList.add("selected");
 
-    } else {
+      selectedCountry =
 
-      otherCountryBox.style.display = "none";
+        button.dataset.country;
 
-    }
+      countryError.textContent = "";
 
-    nextBtn.disabled = false;
+      if (selectedCountry === "Other") {
+
+        otherCountryBox.style.display =
+
+          "block";
+
+        otherCountryInput.focus();
+
+      } else {
+
+        otherCountryBox.style.display =
+
+          "none";
+
+      }
+
+      nextBtn.disabled = false;
+
+    });
 
   });
-
-});
 
 /* =========================
 
@@ -1238,135 +1466,185 @@ document.querySelectorAll(".country-option").forEach(button => {
 
 ========================= */
 
-nextBtn.addEventListener("click", async () => {
+nextBtn.addEventListener(
 
-  countryError.textContent = "";
+  "click",
 
-  nextBtn.disabled = true;
+  async () => {
 
-  nextBtn.textContent = "LOADING...";
+    countryError.textContent = "";
 
-  try {
+    nextBtn.disabled = true;
 
-    if (selectedCountry === "USA") {
+    nextBtn.textContent = "LOADING...";
 
-      currencyCode = "USD";
+    try {
 
-      exchangeRate = 1;
+      if (selectedCountry === "USA") {
 
-    }
+        currencyCode = "USD";
 
-    else if (selectedCountry === "Singapore") {
-
-      currencyCode = "SGD";
-
-      // Special Squishy Mart rule:
-
-      // US$6 → S$6
-
-      exchangeRate = 1;
-
-    }
-
-    else if (selectedCountry === "Thailand") {
-
-      currencyCode = "THB";
-
-      exchangeRate = await getExchangeRate("THB");
-
-    }
-
-    else if (selectedCountry === "UK") {
-
-      currencyCode = "GBP";
-
-      exchangeRate = await getExchangeRate("GBP");
-
-    }
-
-    else if (selectedCountry === "Other") {
-
-      const typedCountry =
-
-        otherCountryInput.value.trim();
-
-      if (!typedCountry) {
-
-        throw new Error("Please type your country.");
+        exchangeRate = 1;
 
       }
 
-      currencyCode =
+      else if (
 
-        await findCurrencyForCountry(typedCountry);
+        selectedCountry === "Singapore"
 
-      exchangeRate =
+      ) {
 
-        await getExchangeRate(currencyCode);
+        currencyCode = "SGD";
 
-      selectedCountry = typedCountry;
+        /*
+
+          Special Squishy Mart rule:
+
+          US$6 = S$6
+
+        */
+
+        exchangeRate = 1;
+
+      }
+
+      else if (
+
+        selectedCountry === "Thailand"
+
+      ) {
+
+        currencyCode = "THB";
+
+        exchangeRate =
+
+          await getExchangeRate("THB");
+
+      }
+
+      else if (
+
+        selectedCountry === "UK"
+
+      ) {
+
+        currencyCode = "GBP";
+
+        exchangeRate =
+
+          await getExchangeRate("GBP");
+
+      }
+
+      else if (
+
+        selectedCountry === "Other"
+
+      ) {
+
+        const typedCountry =
+
+          otherCountryInput.value.trim();
+
+        if (!typedCountry) {
+
+          throw new Error(
+
+            "Please type your country."
+
+          );
+
+        }
+
+        currencyCode =
+
+          await findCurrencyForCountry(
+
+            typedCountry
+
+          );
+
+        exchangeRate =
+
+          await getExchangeRate(
+
+            currencyCode
+
+          );
+
+        selectedCountry =
+
+          typedCountry;
+
+      }
+
+      /* Save */
+
+      localStorage.setItem(
+
+        "squishyCountry",
+
+        selectedCountry
+
+      );
+
+      localStorage.setItem(
+
+        "squishyCurrency",
+
+        currencyCode
+
+      );
+
+      localStorage.setItem(
+
+        "squishyRate",
+
+        exchangeRate
+
+      );
+
+      /* Open shop */
+
+      countryScreen.style.display =
+
+        "none";
+
+      countryDisplay.textContent =
+
+        `🌎 ${selectedCountry} • ${currencyCode}`;
+
+      renderProducts();
+
+      renderCart();
 
     }
 
-    /* Save selection */
+    catch (error) {
 
-    localStorage.setItem(
+      console.error(error);
 
-      "squishyCountry",
+      countryError.textContent =
 
-      selectedCountry
+        error.message ||
 
-    );
+        "Something went wrong. Please try again.";
 
-    localStorage.setItem(
+    }
 
-      "squishyCurrency",
+    nextBtn.disabled = false;
 
-      currencyCode
+    nextBtn.textContent =
 
-    );
-
-    localStorage.setItem(
-
-      "squishyRate",
-
-      exchangeRate
-
-    );
-
-    /* Show shop */
-
-    countryScreen.style.display = "none";
-
-    countryDisplay.textContent =
-
-      `🌎 ${selectedCountry} • ${currencyCode}`;
-
-    renderProducts();
+      "NEXT →";
 
   }
 
-  catch(error) {
-
-    console.error(error);
-
-    countryError.textContent =
-
-      error.message ||
-
-      "We couldn't find the currency. Please try again.";
-
-  }
-
-  nextBtn.disabled = false;
-
-  nextBtn.textContent = "NEXT →";
-
-});
+);
 
 /* =========================
 
-   FIND CURRENCY
+   FIND OTHER COUNTRY
 
 ========================= */
 
@@ -1376,45 +1654,45 @@ async function findCurrencyForCountry(country) {
 
     country.toLowerCase().trim();
 
-  /* Check our list first */
-
   if (countryCurrencies[clean]) {
 
     return countryCurrencies[clean];
 
   }
 
-  /*
+  const response =
 
-    If it isn't in the list,
+    await fetch(
 
-    ask the country database.
+      "https://restcountries.com/v3.1/name/" +
 
-  */
+      encodeURIComponent(country) +
 
-  const response = await fetch(
+      "?fields=name,currencies"
 
-    "https://restcountries.com/v3.1/name/" +
-
-    encodeURIComponent(country) +
-
-    "?fields=name,currencies"
-
-  );
+    );
 
   if (!response.ok) {
 
     throw new Error(
 
-      "I couldn't find that country. Please check the spelling."
+      "I couldn't find that country. Check the spelling."
 
     );
 
   }
 
-  const data = await response.json();
+  const data =
 
-  if (!data.length || !data[0].currencies) {
+    await response.json();
+
+  if (
+
+    !data.length ||
+
+    !data[0].currencies
+
+  ) {
 
     throw new Error(
 
@@ -1426,7 +1704,11 @@ async function findCurrencyForCountry(country) {
 
   const currencies =
 
-    Object.keys(data[0].currencies);
+    Object.keys(
+
+      data[0].currencies
+
+    );
 
   if (!currencies.length) {
 
@@ -1444,7 +1726,7 @@ async function findCurrencyForCountry(country) {
 
 /* =========================
 
-   EXCHANGE RATE
+   GET EXCHANGE RATE
 
 ========================= */
 
@@ -1456,11 +1738,13 @@ async function getExchangeRate(currency) {
 
   }
 
-  const response = await fetch(
+  const response =
 
-    "https://open.er-api.com/v6/latest/USD"
+    await fetch(
 
-  );
+      "https://open.er-api.com/v6/latest/USD"
+
+    );
 
   if (!response.ok) {
 
@@ -1472,7 +1756,9 @@ async function getExchangeRate(currency) {
 
   }
 
-  const data = await response.json();
+  const data =
+
+    await response.json();
 
   if (
 
@@ -1490,27 +1776,25 @@ async function getExchangeRate(currency) {
 
   }
 
-  return Number(data.rates[currency]);
+  return Number(
+
+    data.rates[currency]
+
+  );
 
 }
 
 /* =========================
 
-   PRICE FORMAT
+   MONEY
 
 ========================= */
-
-function convertedPrice(usdPrice) {
-
-  return usdPrice * exchangeRate;
-
-}
 
 function formatMoney(usdPrice) {
 
   const amount =
 
-    convertedPrice(usdPrice);
+    usdPrice * exchangeRate;
 
   try {
 
@@ -1532,7 +1816,15 @@ function formatMoney(usdPrice) {
 
   catch {
 
-    return `${currencyCode} ${amount.toFixed(2)}`;
+    return (
+
+      currencyCode +
+
+      " " +
+
+      amount.toFixed(2)
+
+    );
 
   }
 
@@ -1540,7 +1832,7 @@ function formatMoney(usdPrice) {
 
 /* =========================
 
-   RENDER PRODUCTS
+   PRODUCTS
 
 ========================= */
 
@@ -1548,13 +1840,7 @@ const productsContainer =
 
   document.getElementById("products");
 
-const loadingMessage =
-
-  document.getElementById("loadingMessage");
-
 function renderProducts() {
-
-  loadingMessage.style.display = "none";
 
   productsContainer.innerHTML = "";
 
@@ -1578,7 +1864,13 @@ function renderProducts() {
 
           alt="${product.name}"
 
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          onerror="
+
+            this.style.display='none';
+
+            this.nextElementSibling.style.display='flex';
+
+          "
 
         >
 
@@ -1626,25 +1918,29 @@ function renderProducts() {
 
         >
 
-          ${product.colors.map(color => `
+          ${product.colors.map(
 
-            <button
+            color => `
 
-              type="button"
+              <button
 
-              class="color-btn"
+                type="button"
 
-              data-product="${product.id}"
+                class="color-btn"
 
-              data-color="${color}"
+                data-product="${product.id}"
 
-            >
+                data-color="${color}"
 
-              ${color}
+              >
 
-            </button>
+                ${color}
 
-          `).join("")}
+              </button>
+
+            `
+
+          ).join("")}
 
         </div>
 
@@ -1656,7 +1952,11 @@ function renderProducts() {
 
       ${pictureHTML}
 
-      <h3>${product.name}</h3>
+      <h3>
+
+        ${product.name}
+
+      </h3>
 
       <div class="price">
 
@@ -1688,51 +1988,67 @@ function renderProducts() {
 
   /* Color buttons */
 
-  document.querySelectorAll(".color-btn")
+  document
+
+    .querySelectorAll(".color-btn")
 
     .forEach(button => {
 
-      button.addEventListener("click", () => {
+      button.addEventListener(
 
-        const productId =
+        "click",
 
-          button.dataset.product;
+        () => {
 
-        document
+          const productId =
 
-          .querySelectorAll(
+            button.dataset.product;
 
-            `.color-btn[data-product="${productId}"]`
+          document
 
-          )
+            .querySelectorAll(
 
-          .forEach(b =>
+              `.color-btn[data-product="${productId}"]`
 
-            b.classList.remove("selected")
+            )
 
-          );
+            .forEach(b =>
 
-        button.classList.add("selected");
+              b.classList.remove("selected")
 
-      });
+            );
+
+          button.classList.add("selected");
+
+        }
+
+      );
 
     });
 
   /* Add buttons */
 
-  document.querySelectorAll("[data-add]")
+  document
+
+    .querySelectorAll("[data-add]")
 
     .forEach(button => {
 
-      button.addEventListener("click", () => {
+      button.addEventListener(
 
-        const productId =
+        "click",
 
-          button.dataset.add;
+        () => {
 
-        addToCart(productId);
+          addToCart(
 
-      });
+            button.dataset.add
+
+          );
+
+        }
+
+      );
 
     });
 
@@ -1750,11 +2066,17 @@ try {
 
   const savedCart =
 
-    localStorage.getItem("squishyCart");
+    localStorage.getItem(
+
+      "squishyCart"
+
+    );
 
   if (savedCart) {
 
-    cart = JSON.parse(savedCart);
+    cart =
+
+      JSON.parse(savedCart);
 
   }
 
@@ -1782,7 +2104,11 @@ function addToCart(productId) {
 
   const product =
 
-    products.find(p => p.id === productId);
+    products.find(
+
+      p => p.id === productId
+
+    );
 
   if (!product) return;
 
@@ -1818,11 +2144,13 @@ function addToCart(productId) {
 
   const existing =
 
-    cart.find(item =>
+    cart.find(
 
-      item.productId === productId &&
+      item =>
 
-      item.color === color
+        item.productId === productId &&
+
+        item.color === color
 
     );
 
@@ -1836,11 +2164,17 @@ function addToCart(productId) {
 
     cart.push({
 
-      productId: productId,
+      productId:
 
-      color: color,
+        productId,
 
-      quantity: 1
+      color:
+
+        color,
+
+      quantity:
+
+        1
 
     });
 
@@ -1849,8 +2183,6 @@ function addToCart(productId) {
   saveCart();
 
   renderCart();
-
-  /* Open cart */
 
   document
 
@@ -1862,7 +2194,7 @@ function addToCart(productId) {
 
 /* =========================
 
-   RENDER CART
+   CART DISPLAY
 
 ========================= */
 
@@ -1882,7 +2214,7 @@ function renderCart() {
 
   cartItems.innerHTML = "";
 
-  let total = 0;
+  let totalUSD = 0;
 
   let count = 0;
 
@@ -1900,137 +2232,143 @@ function renderCart() {
 
   }
 
-  cart.forEach((item, index) => {
+  cart.forEach(
 
-    const product =
+    (item, index) => {
 
-      products.find(
+      const product =
 
-        p => p.id === item.productId
+        products.find(
 
-      );
+          p =>
 
-    if (!product) return;
+            p.id === item.productId
 
-    const itemTotal =
+        );
 
-      product.price *
+      if (!product) return;
 
-      item.quantity *
+      totalUSD +=
 
-      exchangeRate;
+        product.price *
 
-    total += itemTotal;
+        item.quantity;
 
-    count += item.quantity;
+      count +=
 
-    const div =
+        item.quantity;
 
-      document.createElement("div");
+      const div =
 
-    div.className = "cart-item";
+        document.createElement("div");
 
-    div.innerHTML = `
+      div.className =
 
-      <div class="cart-item-title">
+        "cart-item";
 
-        ${product.name}
+      div.innerHTML = `
 
-      </div>
+        <div class="cart-item-title">
 
-      ${
+          ${product.name}
 
-        item.color
+        </div>
 
-          ? `<div>Color: ${item.color}</div>`
+        ${
 
-          : ""
+          item.color
 
-      }
+            ? `<div>Color: ${item.color}</div>`
 
-      <div>
+            : ""
 
-        ${formatMoney(product.price)}
+        }
 
-        each
+        <div>
 
-      </div>
+          ${formatMoney(product.price)}
 
-      <div class="cart-item-controls">
+          each
 
-        <button
+        </div>
 
-          class="qty-btn"
+        <div class="cart-item-controls">
 
-          data-minus="${index}"
+          <button
 
-        >
+            class="qty-btn"
 
-          −
+            data-minus="${index}"
 
-        </button>
+          >
 
-        <strong>
+            −
 
-          ${item.quantity}
+          </button>
 
-        </strong>
+          <strong>
 
-        <button
+            ${item.quantity}
 
-          class="qty-btn"
+          </strong>
 
-          data-plus="${index}"
+          <button
 
-        >
+            class="qty-btn"
 
-          +
+            data-plus="${index}"
 
-        </button>
+          >
 
-        <button
+            +
 
-          class="remove-btn"
+          </button>
 
-          data-remove="${index}"
+          <button
 
-        >
+            class="remove-btn"
 
-          Remove
+            data-remove="${index}"
 
-        </button>
+          >
 
-      </div>
+            Remove
 
-      <div>
+          </button>
 
-        <strong>
+        </div>
 
-          ${formatMoney(
+        <div>
 
-            product.price * item.quantity
+          <strong>
 
-          )}
+            ${formatMoney(
 
-        </strong>
+              product.price *
 
-      </div>
+              item.quantity
 
-    `;
+            )}
 
-    cartItems.appendChild(div);
+          </strong>
 
-  });
+        </div>
+
+      `;
+
+      cartItems.appendChild(div);
+
+    }
+
+  );
 
   cartTotal.textContent =
 
-    formatMoney(
+    formatMoney(totalUSD);
 
-      total / exchangeRate
+  cartCount.textContent =
 
-    );
-
-  cartCount.textContent = count;
+    count;
 
   /* Minus */
 
@@ -2040,25 +2378,39 @@ function renderCart() {
 
     .forEach(button => {
 
-      button.addEventListener("click", () => {
+      button.addEventListener(
 
-        const index =
+        "click",
 
-          Number(button.dataset.minus);
+        () => {
 
-        cart[index].quantity--;
+          const index =
 
-        if (cart[index].quantity <= 0) {
+            Number(
 
-          cart.splice(index, 1);
+              button.dataset.minus
+
+            );
+
+          cart[index].quantity--;
+
+          if (
+
+            cart[index].quantity <= 0
+
+          ) {
+
+            cart.splice(index, 1);
+
+          }
+
+          saveCart();
+
+          renderCart();
 
         }
 
-        saveCart();
-
-        renderCart();
-
-      });
+      );
 
     });
 
@@ -2070,19 +2422,29 @@ function renderCart() {
 
     .forEach(button => {
 
-      button.addEventListener("click", () => {
+      button.addEventListener(
 
-        const index =
+        "click",
 
-          Number(button.dataset.plus);
+        () => {
 
-        cart[index].quantity++;
+          const index =
 
-        saveCart();
+            Number(
 
-        renderCart();
+              button.dataset.plus
 
-      });
+            );
+
+          cart[index].quantity++;
+
+          saveCart();
+
+          renderCart();
+
+        }
+
+      );
 
     });
 
@@ -2094,19 +2456,29 @@ function renderCart() {
 
     .forEach(button => {
 
-      button.addEventListener("click", () => {
+      button.addEventListener(
 
-        const index =
+        "click",
 
-          Number(button.dataset.remove);
+        () => {
 
-        cart.splice(index, 1);
+          const index =
 
-        saveCart();
+            Number(
 
-        renderCart();
+              button.dataset.remove
 
-      });
+            );
+
+          cart.splice(index, 1);
+
+          saveCart();
+
+          renderCart();
+
+        }
+
+      );
 
     });
 
@@ -2114,7 +2486,7 @@ function renderCart() {
 
 /* =========================
 
-   CART BUTTONS
+   CART OPEN/CLOSE
 
 ========================= */
 
@@ -2122,147 +2494,321 @@ document
 
   .getElementById("cartBtn")
 
-  .addEventListener("click", () => {
+  .addEventListener(
 
-    document
+    "click",
 
-      .getElementById("cartPanel")
+    () => {
 
-      .classList.add("open");
+      document
 
-  });
+        .getElementById("cartPanel")
+
+        .classList.add("open");
+
+    }
+
+  );
 
 document
 
   .getElementById("closeCart")
 
-  .addEventListener("click", () => {
+  .addEventListener(
 
-    document
+    "click",
 
-      .getElementById("cartPanel")
+    () => {
 
-      .classList.remove("open");
+      document
 
-  });
+        .getElementById("cartPanel")
+
+        .classList.remove("open");
+
+    }
+
+  );
 
 document
 
   .getElementById("clearCart")
 
-  .addEventListener("click", () => {
+  .addEventListener(
 
-    cart = [];
+    "click",
 
-    saveCart();
+    () => {
 
-    renderCart();
+      cart = [];
 
-  });
+      saveCart();
+
+      renderCart();
+
+    }
+
+  );
 
 /* =========================
 
-   EMAIL ORDER
+   ORDER BY EMAIL
 
 ========================= */
+
+const addressScreen =
+
+  document.getElementById(
+
+    "addressScreen"
+
+  );
+
+const addressInput =
+
+  document.getElementById(
+
+    "addressInput"
+
+  );
+
+const addressError =
+
+  document.getElementById(
+
+    "addressError"
+
+  );
 
 document
 
   .getElementById("emailOrder")
 
-  .addEventListener("click", () => {
+  .addEventListener(
 
-    if (!cart.length) {
+    "click",
 
-      alert("Your cart is empty!");
+    () => {
 
-      return;
+      if (!cart.length) {
 
-    }
+        alert(
 
-    let message =
-
-      `Hello Squishy Mart!%0D%0A%0D%0A`;
-
-    message +=
-
-      `I would like to order:%0D%0A%0D%0A`;
-
-    let totalUSD = 0;
-
-    cart.forEach(item => {
-
-      const product =
-
-        products.find(
-
-          p => p.id === item.productId
+          "Your cart is empty!"
 
         );
 
-      if (!product) return;
-
-      const itemUSD =
-
-        product.price *
-
-        item.quantity;
-
-      totalUSD += itemUSD;
-
-      message +=
-
-        `${product.name}`;
-
-      if (item.color) {
-
-        message +=
-
-          ` - ${item.color}`;
+        return;
 
       }
 
-      message +=
+      addressInput.value = "";
 
-        ` x${item.quantity} = ` +
+      addressError.textContent = "";
 
-        `${formatMoney(itemUSD)}` +
+      addressScreen.style.display =
 
-        `%0D%0A`;
+        "flex";
 
-    });
+      addressInput.focus();
 
-    message += `%0D%0A`;
+    }
 
-    message +=
-
-      `Total: ${formatMoney(totalUSD)}%0D%0A`;
-
-    message +=
-
-      `Country: ${selectedCountry}%0D%0A`;
-
-    message +=
-
-      `Currency: ${currencyCode}%0D%0A%0D%0A`;
-
-    message +=
-
-      `Thank you! 🩷`;
-
-    window.location.href =
-
-      `mailto:${SHOP_EMAIL}` +
-
-      `?subject=Squishy Mart Order` +
-
-      `&body=${message}`;
-
-  });
+  );
 
 /* =========================
 
-   COUNTRY BUTTON IN HEADER
+   CONTINUE ORDER
+
+========================= */
+
+document
+
+  .getElementById("continueOrderBtn")
+
+  .addEventListener(
+
+    "click",
+
+    () => {
+
+      const address =
+
+        addressInput.value.trim();
+
+      if (!address) {
+
+        addressError.textContent =
+
+          "Please enter your address.";
+
+        return;
+
+      }
+
+      let message =
+
+        "Hello Squishy Mart!%0D%0A%0D%0A";
+
+      message +=
+
+        "I would like to order:%0D%0A%0D%0A";
+
+      let totalUSD = 0;
+
+      cart.forEach(item => {
+
+        const product =
+
+          products.find(
+
+            p =>
+
+              p.id === item.productId
+
+          );
+
+        if (!product) return;
+
+        const itemUSD =
+
+          product.price *
+
+          item.quantity;
+
+        totalUSD +=
+
+          itemUSD;
+
+        message +=
+
+          encodeURIComponent(
+
+            product.name
+
+          );
+
+        if (item.color) {
+
+          message +=
+
+            encodeURIComponent(
+
+              " - " + item.color
+
+            );
+
+        }
+
+        message +=
+
+          encodeURIComponent(
+
+            ` x${item.quantity} = ${formatMoney(itemUSD)}`
+
+          );
+
+        message +=
+
+          "%0D%0A";
+
+      });
+
+      message +=
+
+        "%0D%0A";
+
+      message +=
+
+        encodeURIComponent(
+
+          `Total: ${formatMoney(totalUSD)}`
+
+        );
+
+      message +=
+
+        "%0D%0A";
+
+      message +=
+
+        encodeURIComponent(
+
+          `Country: ${selectedCountry}`
+
+        );
+
+      message +=
+
+        "%0D%0A";
+
+      message +=
+
+        encodeURIComponent(
+
+          `Currency: ${currencyCode}`
+
+        );
+
+      message +=
+
+        "%0D%0A";
+
+      message +=
+
+        encodeURIComponent(
+
+          `Delivery Address: ${address}`
+
+        );
+
+      message +=
+
+        "%0D%0A%0D%0A";
+
+      message +=
+
+        "Thank you! 🩷";
+
+      window.location.href =
+
+        `mailto:${SHOP_EMAIL}` +
+
+        `?subject=Squishy Mart Order` +
+
+        `&body=${message}`;
+
+    }
+
+  );
+
+/* =========================
+
+   CANCEL ADDRESS
+
+========================= */
+
+document
+
+  .getElementById("cancelAddressBtn")
+
+  .addEventListener(
+
+    "click",
+
+    () => {
+
+      addressScreen.style.display =
+
+        "none";
+
+    }
+
+  );
+
+/* =========================
+
+   COUNTRY BUTTON
 
 ========================= */
 
@@ -2270,11 +2816,19 @@ document
 
   .getElementById("countryBtn")
 
-  .addEventListener("click", () => {
+  .addEventListener(
 
-    countryScreen.style.display = "flex";
+    "click",
 
-  });
+    () => {
+
+      countryScreen.style.display =
+
+        "flex";
+
+    }
+
+  );
 
 /* =========================
 
@@ -2286,15 +2840,27 @@ function loadSavedCountry() {
 
   const savedCountry =
 
-    localStorage.getItem("squishyCountry");
+    localStorage.getItem(
+
+      "squishyCountry"
+
+    );
 
   const savedCurrency =
 
-    localStorage.getItem("squishyCurrency");
+    localStorage.getItem(
+
+      "squishyCurrency"
+
+    );
 
   const savedRate =
 
-    localStorage.getItem("squishyRate");
+    localStorage.getItem(
+
+      "squishyRate"
+
+    );
 
   if (
 
@@ -2332,7 +2898,7 @@ function loadSavedCountry() {
 
 /* =========================
 
-   START
+   START WEBSITE
 
 ========================= */
 
