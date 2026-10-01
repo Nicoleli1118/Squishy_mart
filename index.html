@@ -38,11 +38,7 @@ button {
 
 }
 
-/* =========================
-
-   HEADER
-
-========================= */
+/* HEADER */
 
 header {
 
@@ -100,11 +96,7 @@ header {
 
 }
 
-/* =========================
-
-   HERO
-
-========================= */
+/* HERO */
 
 .hero {
 
@@ -138,11 +130,7 @@ header {
 
 }
 
-/* =========================
-
-   SHOP
-
-========================= */
+/* SHOP */
 
 .shop {
 
@@ -274,11 +262,7 @@ header {
 
 }
 
-/* =========================
-
-   COUNTRY SCREEN
-
-========================= */
+/* COUNTRY SCREEN */
 
 .country-screen {
 
@@ -430,11 +414,7 @@ header {
 
 }
 
-/* =========================
-
-   CART
-
-========================= */
+/* CART */
 
 .cart-panel {
 
@@ -616,11 +596,7 @@ header {
 
 }
 
-/* =========================
-
-   ADDRESS POPUP
-
-========================= */
+/* ADDRESS POPUP */
 
 .address-screen {
 
@@ -738,11 +714,7 @@ header {
 
 }
 
-/* =========================
-
-   MOBILE
-
-========================= */
+/* MOBILE */
 
 @media (max-width: 500px) {
 
@@ -800,11 +772,7 @@ header {
 
 <body>
 
-<!-- =========================
-
-     COUNTRY SCREEN
-
-========================= -->
+<!-- COUNTRY SCREEN -->
 
 <div class="country-screen" id="countryScreen">
 
@@ -878,11 +846,7 @@ header {
 
 </div>
 
-<!-- =========================
-
-     HEADER
-
-========================= -->
+<!-- HEADER -->
 
 <header>
 
@@ -910,11 +874,7 @@ header {
 
 </header>
 
-<!-- =========================
-
-     HERO
-
-========================= -->
+<!-- HERO -->
 
 <section class="hero">
 
@@ -934,11 +894,7 @@ header {
 
 </section>
 
-<!-- =========================
-
-     PRODUCTS
-
-========================= -->
+<!-- PRODUCTS -->
 
 <main class="shop">
 
@@ -946,11 +902,7 @@ header {
 
 </main>
 
-<!-- =========================
-
-     CART
-
-========================= -->
+<!-- CART -->
 
 <div class="cart-panel" id="cartPanel">
 
@@ -988,11 +940,7 @@ header {
 
 </div>
 
-<!-- =========================
-
-     ADDRESS POPUP
-
-========================= -->
+<!-- ADDRESS -->
 
 <div class="address-screen" id="addressScreen">
 
@@ -1040,11 +988,7 @@ header {
 
 <script>
 
-/* =========================
-
-   SHOP SETTINGS
-
-========================= */
+/* SHOP EMAIL */
 
 const SHOP_EMAIL =
 
@@ -1102,7 +1046,7 @@ const products = [
 
     name: "Cheese",
 
-    price: 6,
+    price: 4,
 
     image: "IMG_1098.jpeg"
 
@@ -1126,7 +1070,7 @@ const products = [
 
     name: "Peach",
 
-    price: 6,
+    price: 9,
 
     image: "IMG_1093.jpeg"
 
@@ -1274,7 +1218,7 @@ const products = [
 
 /* =========================
 
-   COUNTRY SETTINGS
+   COUNTRY VARIABLES
 
 ========================= */
 
@@ -1286,7 +1230,7 @@ let exchangeRate = 1;
 
 /* =========================
 
-   ELEMENTS
+   COUNTRY ELEMENTS
 
 ========================= */
 
@@ -1316,7 +1260,7 @@ const countryDisplay =
 
 /* =========================
 
-   COUNTRY → CURRENCY
+   COUNTRY CURRENCY LIST
 
 ========================= */
 
@@ -1408,7 +1352,7 @@ const countryCurrencies = {
 
 /* =========================
 
-   COUNTRY BUTTONS
+   COUNTRY SELECTION
 
 ========================= */
 
@@ -1424,11 +1368,11 @@ document
 
         .querySelectorAll(".country-option")
 
-        .forEach(b =>
+        .forEach(b => {
 
-          b.classList.remove("selected")
+          b.classList.remove("selected");
 
-        );
+        });
 
       button.classList.add("selected");
 
@@ -1438,7 +1382,11 @@ document
 
       countryError.textContent = "";
 
-      if (selectedCountry === "Other") {
+      if (
+
+        selectedCountry === "Other"
+
+      ) {
 
         otherCountryBox.style.display =
 
@@ -1446,7 +1394,9 @@ document
 
         otherCountryInput.focus();
 
-      } else {
+      }
+
+      else {
 
         otherCountryBox.style.display =
 
@@ -1462,7 +1412,7 @@ document
 
 /* =========================
 
-   NEXT BUTTON
+   NEXT
 
 ========================= */
 
@@ -1480,13 +1430,21 @@ nextBtn.addEventListener(
 
     try {
 
-      if (selectedCountry === "USA") {
+      /* USA */
+
+      if (
+
+        selectedCountry === "USA"
+
+      ) {
 
         currencyCode = "USD";
 
         exchangeRate = 1;
 
       }
+
+      /* SINGAPORE */
 
       else if (
 
@@ -1496,17 +1454,17 @@ nextBtn.addEventListener(
 
         currencyCode = "SGD";
 
-        /*
+        /* Special shop rule:
 
-          Special Squishy Mart rule:
-
-          US$6 = S$6
+           US$6 = S$6
 
         */
 
         exchangeRate = 1;
 
       }
+
+      /* THAILAND */
 
       else if (
 
@@ -1522,6 +1480,8 @@ nextBtn.addEventListener(
 
       }
 
+      /* UK */
+
       else if (
 
         selectedCountry === "UK"
@@ -1535,6 +1495,8 @@ nextBtn.addEventListener(
           await getExchangeRate("GBP");
 
       }
+
+      /* OTHER */
 
       else if (
 
@@ -1578,7 +1540,7 @@ nextBtn.addEventListener(
 
       }
 
-      /* Save */
+      /* SAVE COUNTRY */
 
       localStorage.setItem(
 
@@ -1604,7 +1566,7 @@ nextBtn.addEventListener(
 
       );
 
-      /* Open shop */
+      /* OPEN SHOP */
 
       countryScreen.style.display =
 
@@ -1634,9 +1596,7 @@ nextBtn.addEventListener(
 
     nextBtn.disabled = false;
 
-    nextBtn.textContent =
-
-      "NEXT →";
+    nextBtn.textContent = "NEXT →";
 
   }
 
@@ -1648,13 +1608,21 @@ nextBtn.addEventListener(
 
 ========================= */
 
-async function findCurrencyForCountry(country) {
+async function findCurrencyForCountry(
+
+  country
+
+) {
 
   const clean =
 
     country.toLowerCase().trim();
 
-  if (countryCurrencies[clean]) {
+  if (
+
+    countryCurrencies[clean]
+
+  ) {
 
     return countryCurrencies[clean];
 
@@ -1726,11 +1694,15 @@ async function findCurrencyForCountry(country) {
 
 /* =========================
 
-   GET EXCHANGE RATE
+   EXCHANGE RATE
 
 ========================= */
 
-async function getExchangeRate(currency) {
+async function getExchangeRate(
+
+  currency
+
+) {
 
   if (currency === "USD") {
 
@@ -1786,11 +1758,15 @@ async function getExchangeRate(currency) {
 
 /* =========================
 
-   MONEY
+   PRICE FORMAT
 
 ========================= */
 
-function formatMoney(usdPrice) {
+function formatMoney(
+
+  usdPrice
+
+) {
 
   const amount =
 
@@ -1832,13 +1808,17 @@ function formatMoney(usdPrice) {
 
 /* =========================
 
-   PRODUCTS
+   RENDER PRODUCTS
 
 ========================= */
 
 const productsContainer =
 
-  document.getElementById("products");
+  document.getElementById(
+
+    "products"
+
+  );
 
 function renderProducts() {
 
@@ -1850,7 +1830,9 @@ function renderProducts() {
 
       document.createElement("div");
 
-    card.className = "product";
+    card.className =
+
+      "product";
 
     let pictureHTML = "";
 
@@ -1918,29 +1900,33 @@ function renderProducts() {
 
         >
 
-          ${product.colors.map(
+          ${product.colors
 
-            color => `
+            .map(
 
-              <button
+              color => `
 
-                type="button"
+                <button
 
-                class="color-btn"
+                  type="button"
 
-                data-product="${product.id}"
+                  class="color-btn"
 
-                data-color="${color}"
+                  data-product="${product.id}"
 
-              >
+                  data-color="${color}"
 
-                ${color}
+                >
 
-              </button>
+                  ${color}
 
-            `
+                </button>
 
-          ).join("")}
+              `
+
+            )
+
+            .join("")}
 
         </div>
 
@@ -1986,7 +1972,7 @@ function renderProducts() {
 
   });
 
-  /* Color buttons */
+  /* COLORS */
 
   document
 
@@ -2012,13 +1998,21 @@ function renderProducts() {
 
             )
 
-            .forEach(b =>
+            .forEach(b => {
 
-              b.classList.remove("selected")
+              b.classList.remove(
 
-            );
+                "selected"
 
-          button.classList.add("selected");
+              );
+
+            });
+
+          button.classList.add(
+
+            "selected"
+
+          );
 
         }
 
@@ -2026,7 +2020,7 @@ function renderProducts() {
 
     });
 
-  /* Add buttons */
+  /* ADD TO CART */
 
   document
 
@@ -2100,13 +2094,21 @@ function saveCart() {
 
 }
 
-function addToCart(productId) {
+/* ADD TO CART */
+
+function addToCart(
+
+  productId
+
+) {
 
   const product =
 
     products.find(
 
-      p => p.id === productId
+      p =>
+
+        p.id === productId
 
     );
 
@@ -2200,15 +2202,27 @@ function addToCart(productId) {
 
 const cartItems =
 
-  document.getElementById("cartItems");
+  document.getElementById(
+
+    "cartItems"
+
+  );
 
 const cartTotal =
 
-  document.getElementById("cartTotal");
+  document.getElementById(
+
+    "cartTotal"
+
+  );
 
 const cartCount =
 
-  document.getElementById("cartCount");
+  document.getElementById(
+
+    "cartCount"
+
+  );
 
 function renderCart() {
 
@@ -2370,7 +2384,7 @@ function renderCart() {
 
     count;
 
-  /* Minus */
+  /* MINUS */
 
   document
 
@@ -2400,7 +2414,13 @@ function renderCart() {
 
           ) {
 
-            cart.splice(index, 1);
+            cart.splice(
+
+              index,
+
+              1
+
+            );
 
           }
 
@@ -2414,7 +2434,7 @@ function renderCart() {
 
     });
 
-  /* Plus */
+  /* PLUS */
 
   document
 
@@ -2448,7 +2468,7 @@ function renderCart() {
 
     });
 
-  /* Remove */
+  /* REMOVE */
 
   document
 
@@ -2470,7 +2490,13 @@ function renderCart() {
 
             );
 
-          cart.splice(index, 1);
+          cart.splice(
+
+            index,
+
+            1
+
+          );
 
           saveCart();
 
@@ -2486,7 +2512,7 @@ function renderCart() {
 
 /* =========================
 
-   CART OPEN/CLOSE
+   CART BUTTONS
 
 ========================= */
 
@@ -2552,7 +2578,7 @@ document
 
 /* =========================
 
-   ORDER BY EMAIL
+   ADDRESS
 
 ========================= */
 
@@ -2579,6 +2605,8 @@ const addressError =
     "addressError"
 
   );
+
+/* ORDER BUTTON */
 
 document
 
@@ -2680,31 +2708,29 @@ document
 
           itemUSD;
 
-        message +=
+        let line =
 
-          encodeURIComponent(
-
-            product.name
-
-          );
+          product.name;
 
         if (item.color) {
 
-          message +=
+          line +=
 
-            encodeURIComponent(
+            " - " +
 
-              " - " + item.color
-
-            );
+            item.color;
 
         }
+
+        line +=
+
+          ` x${item.quantity} = ${formatMoney(itemUSD)}`;
 
         message +=
 
           encodeURIComponent(
 
-            ` x${item.quantity} = ${formatMoney(itemUSD)}`
+            line
 
           );
 
@@ -2774,7 +2800,7 @@ document
 
         `mailto:${SHOP_EMAIL}` +
 
-        `?subject=Squishy Mart Order` +
+        `?subject=Squishy%20Mart%20Order` +
 
         `&body=${message}`;
 
@@ -2782,11 +2808,7 @@ document
 
   );
 
-/* =========================
-
-   CANCEL ADDRESS
-
-========================= */
+/* CANCEL ADDRESS */
 
 document
 
@@ -2898,7 +2920,7 @@ function loadSavedCountry() {
 
 /* =========================
 
-   START WEBSITE
+   START
 
 ========================= */
 
