@@ -596,7 +596,7 @@ header {
 
 }
 
-/* ADDRESS POPUP */
+/* ADDRESS */
 
 .address-screen {
 
@@ -940,7 +940,7 @@ header {
 
 </div>
 
-<!-- ADDRESS -->
+<!-- ADDRESS POPUP -->
 
 <div class="address-screen" id="addressScreen">
 
@@ -987,8 +987,6 @@ header {
 </div>
 
 <script>
-
-/* SHOP EMAIL */
 
 const SHOP_EMAIL =
 
@@ -1152,6 +1150,8 @@ const products = [
 
   },
 
+  /* NEEDOH — COLORS */
+
   {
 
     id: "needoh",
@@ -1160,7 +1160,9 @@ const products = [
 
     price: 8,
 
-    emoji: "🌈"
+    emoji: "🌈",
+
+    colors: ["Blue", "Pink", "Purple"]
 
   },
 
@@ -1172,9 +1174,13 @@ const products = [
 
     price: 8,
 
-    emoji: "🪼"
+    emoji: "🪼",
+
+    colors: ["Blue", "Pink", "Purple"]
 
   },
+
+  /* NEEDOH CAKE — NO COLORS */
 
   {
 
@@ -1188,6 +1194,8 @@ const products = [
 
   },
 
+  /* NEEDOH ICE CREAM — NO COLORS */
+
   {
 
     id: "needoh-ice-cream",
@@ -1199,6 +1207,8 @@ const products = [
     emoji: "🍦"
 
   },
+
+  /* BEAR */
 
   {
 
@@ -1218,7 +1228,7 @@ const products = [
 
 /* =========================
 
-   COUNTRY VARIABLES
+   COUNTRY
 
 ========================= */
 
@@ -1227,12 +1237,6 @@ let selectedCountry = "";
 let currencyCode = "USD";
 
 let exchangeRate = 1;
-
-/* =========================
-
-   COUNTRY ELEMENTS
-
-========================= */
 
 const countryScreen =
 
@@ -1260,7 +1264,7 @@ const countryDisplay =
 
 /* =========================
 
-   COUNTRY CURRENCY LIST
+   COUNTRY CURRENCIES
 
 ========================= */
 
@@ -1352,7 +1356,7 @@ const countryCurrencies = {
 
 /* =========================
 
-   COUNTRY SELECTION
+   COUNTRY BUTTONS
 
 ========================= */
 
@@ -1368,11 +1372,11 @@ document
 
         .querySelectorAll(".country-option")
 
-        .forEach(b => {
+        .forEach(b =>
 
-          b.classList.remove("selected");
+          b.classList.remove("selected")
 
-        });
+        );
 
       button.classList.add("selected");
 
@@ -1382,11 +1386,7 @@ document
 
       countryError.textContent = "";
 
-      if (
-
-        selectedCountry === "Other"
-
-      ) {
+      if (selectedCountry === "Other") {
 
         otherCountryBox.style.display =
 
@@ -1394,9 +1394,7 @@ document
 
         otherCountryInput.focus();
 
-      }
-
-      else {
+      } else {
 
         otherCountryBox.style.display =
 
@@ -1430,21 +1428,13 @@ nextBtn.addEventListener(
 
     try {
 
-      /* USA */
-
-      if (
-
-        selectedCountry === "USA"
-
-      ) {
+      if (selectedCountry === "USA") {
 
         currencyCode = "USD";
 
         exchangeRate = 1;
 
       }
-
-      /* SINGAPORE */
 
       else if (
 
@@ -1454,7 +1444,7 @@ nextBtn.addEventListener(
 
         currencyCode = "SGD";
 
-        /* Special shop rule:
+        /* Squishy Mart special rule:
 
            US$6 = S$6
 
@@ -1463,8 +1453,6 @@ nextBtn.addEventListener(
         exchangeRate = 1;
 
       }
-
-      /* THAILAND */
 
       else if (
 
@@ -1480,8 +1468,6 @@ nextBtn.addEventListener(
 
       }
 
-      /* UK */
-
       else if (
 
         selectedCountry === "UK"
@@ -1495,8 +1481,6 @@ nextBtn.addEventListener(
           await getExchangeRate("GBP");
 
       }
-
-      /* OTHER */
 
       else if (
 
@@ -1540,8 +1524,6 @@ nextBtn.addEventListener(
 
       }
 
-      /* SAVE COUNTRY */
-
       localStorage.setItem(
 
         "squishyCountry",
@@ -1565,8 +1547,6 @@ nextBtn.addEventListener(
         exchangeRate
 
       );
-
-      /* OPEN SHOP */
 
       countryScreen.style.display =
 
@@ -1604,7 +1584,7 @@ nextBtn.addEventListener(
 
 /* =========================
 
-   FIND OTHER COUNTRY
+   FIND COUNTRY CURRENCY
 
 ========================= */
 
@@ -1618,11 +1598,7 @@ async function findCurrencyForCountry(
 
     country.toLowerCase().trim();
 
-  if (
-
-    countryCurrencies[clean]
-
-  ) {
+  if (countryCurrencies[clean]) {
 
     return countryCurrencies[clean];
 
@@ -1758,7 +1734,7 @@ async function getExchangeRate(
 
 /* =========================
 
-   PRICE FORMAT
+   MONEY
 
 ========================= */
 
@@ -1808,17 +1784,13 @@ function formatMoney(
 
 /* =========================
 
-   RENDER PRODUCTS
+   PRODUCTS
 
 ========================= */
 
 const productsContainer =
 
-  document.getElementById(
-
-    "products"
-
-  );
+  document.getElementById("products");
 
 function renderProducts() {
 
@@ -1830,9 +1802,7 @@ function renderProducts() {
 
       document.createElement("div");
 
-    card.className =
-
-      "product";
+    card.className = "product";
 
     let pictureHTML = "";
 
@@ -1892,13 +1862,7 @@ function renderProducts() {
 
       colorsHTML = `
 
-        <div
-
-          class="colors"
-
-          id="colors-${product.id}"
-
-        >
+        <div class="colors">
 
           ${product.colors
 
@@ -1972,7 +1936,7 @@ function renderProducts() {
 
   });
 
-  /* COLORS */
+  /* COLOR BUTTONS */
 
   document
 
@@ -1998,21 +1962,13 @@ function renderProducts() {
 
             )
 
-            .forEach(b => {
+            .forEach(b =>
 
-              b.classList.remove(
+              b.classList.remove("selected")
 
-                "selected"
+            );
 
-              );
-
-            });
-
-          button.classList.add(
-
-            "selected"
-
-          );
+          button.classList.add("selected");
 
         }
 
@@ -2020,7 +1976,7 @@ function renderProducts() {
 
     });
 
-  /* ADD TO CART */
+  /* ADD BUTTONS */
 
   document
 
@@ -2512,7 +2468,7 @@ function renderCart() {
 
 /* =========================
 
-   CART BUTTONS
+   CART OPEN/CLOSE
 
 ========================= */
 
@@ -2606,7 +2562,7 @@ const addressError =
 
   );
 
-/* ORDER BUTTON */
+/* ORDER BY EMAIL */
 
 document
 
@@ -2728,11 +2684,7 @@ document
 
         message +=
 
-          encodeURIComponent(
-
-            line
-
-          );
+          encodeURIComponent(line);
 
         message +=
 
@@ -2920,7 +2872,7 @@ function loadSavedCountry() {
 
 /* =========================
 
-   START
+   START WEBSITE
 
 ========================= */
 
