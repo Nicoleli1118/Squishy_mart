@@ -12,485 +12,961 @@
 
 <style>
 
-*{box-sizing:border-box}
+/* =========================================================
 
-body{
+   BASIC SETTINGS
 
-  margin:0;
+========================================================= */
 
-  font-family:Arial,sans-serif;
+* {
 
-  background:#ffe4f1;
-
-  color:#444;
+  box-sizing: border-box;
 
 }
 
-header{
+html {
 
-  background:#ff8fc4;
-
-  color:white;
-
-  padding:14px 16px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  position:sticky;
-
-  top:0;
-
-  z-index:50;
+  scroll-behavior: smooth;
 
 }
 
-header h1{
+body {
 
-  margin:0;
+  margin: 0;
 
-  font-size:24px;
+  padding: 0;
 
-}
+  font-family: Arial, Helvetica, sans-serif;
 
-.header-actions{
+  background: #ffe4f1;
 
-  display:flex;
-
-  gap:7px;
+  color: #555;
 
 }
 
-button{
+button,
 
-  border:0;
+input,
 
-  cursor:pointer;
+textarea,
 
-  font-family:inherit;
+select {
 
-}
-
-.top-btn{
-
-  background:white;
-
-  color:#ff5fa4;
-
-  border-radius:20px;
-
-  padding:9px 12px;
-
-  font-weight:bold;
+  font-family: inherit;
 
 }
 
-.hero{
+button {
 
-  text-align:center;
+  cursor: pointer;
 
-  padding:30px 15px 20px;
-
-}
-
-.hero h2{
-
-  color:#ff5fa4;
-
-  font-size:30px;
-
-  margin:0 0 8px;
+  border: none;
 
 }
 
-.hero p{
+img {
 
-  margin:0;
-
-  color:#777;
-
-  font-size:18px;
+  max-width: 100%;
 
 }
 
-.currency-message{
+/* =========================================================
 
-  text-align:center;
+   HEADER
 
-  color:#ff5fa4;
+========================================================= */
 
-  font-weight:bold;
+.header {
 
-  margin:5px 15px 20px;
+  width: 100%;
 
-}
+  background: #ff8fc4;
 
-.products{
+  color: white;
 
-  width:94%;
+  padding: 14px 18px;
 
-  max-width:1150px;
+  display: flex;
 
-  margin:auto;
+  align-items: center;
 
-  display:grid;
+  justify-content: space-between;
 
-  grid-template-columns:repeat(4,1fr);
+  position: sticky;
 
-  gap:18px;
+  top: 0;
 
-  padding-bottom:40px;
+  z-index: 1000;
 
-}
-
-.product{
-
-  background:white;
-
-  border-radius:20px;
-
-  padding:12px;
-
-  text-align:center;
-
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
-
-  transition:.2s;
-
-  cursor:pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 
 }
 
-.product:hover{
+.logo {
 
-  transform:translateY(-4px);
+  font-size: 25px;
 
-}
+  font-weight: bold;
 
-.product-img{
-
-  width:100%;
-
-  height:175px;
-
-  object-fit:contain;
-
-  border-radius:15px;
-
-  background:#fff8fc;
+  white-space: nowrap;
 
 }
 
-.emoji-img{
+.header-right {
 
-  width:100%;
+  display: flex;
 
-  height:175px;
+  align-items: center;
 
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  background:#fff8fc;
-
-  border-radius:15px;
-
-  font-size:75px;
+  gap: 8px;
 
 }
 
-.product h3{
+.header-button {
 
-  margin:10px 0 5px;
+  background: white;
 
-  font-size:17px;
+  color: #ff5fa4;
 
-}
+  padding: 9px 13px;
 
-.price{
+  border-radius: 22px;
 
-  color:#ff5fa4;
+  font-size: 14px;
 
-  font-size:18px;
+  font-weight: bold;
 
-  font-weight:bold;
-
-  margin:6px 0 10px;
+  transition: 0.2s;
 
 }
 
-.add-btn{
+.header-button:hover {
 
-  background:#ff8fc4;
-
-  color:white;
-
-  border-radius:20px;
-
-  padding:9px 15px;
-
-  font-weight:bold;
+  transform: scale(1.04);
 
 }
 
-.overlay{
+/* =========================================================
 
-  display:none;
+   HERO
 
-  position:fixed;
+========================================================= */
 
-  inset:0;
+.hero {
 
-  background:rgba(0,0,0,.45);
+  text-align: center;
 
-  z-index:100;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:15px;
+  padding: 42px 15px 25px;
 
 }
 
-.modal{
+.hero-title {
 
-  width:100%;
+  margin: 0;
 
-  max-width:440px;
+  color: #ff5fa4;
 
-  max-height:90vh;
+  font-size: 34px;
 
-  overflow:auto;
-
-  background:white;
-
-  border-radius:23px;
-
-  padding:22px;
-
-  text-align:center;
+  line-height: 1.2;
 
 }
 
-.modal h2{
+.hero-subtitle {
 
-  color:#ff5fa4;
+  margin-top: 10px;
 
-  margin-top:8px;
+  color: #777;
 
-}
-
-.close{
-
-  float:right;
-
-  width:32px;
-
-  height:32px;
-
-  border-radius:50%;
-
-  background:#eee;
-
-  font-size:20px;
+  font-size: 19px;
 
 }
 
-.country-btn{
+.hero-small {
 
-  width:100%;
+  margin-top: 8px;
 
-  padding:14px;
+  color: #ff79b5;
 
-  margin:7px 0;
-
-  border-radius:15px;
-
-  background:#ffe0ed;
-
-  color:#ff4f9c;
-
-  font-weight:bold;
-
-  font-size:16px;
+  font-size: 14px;
 
 }
 
-.country-btn:hover{
+/* =========================================================
 
-  background:#ffc8df;
+   COUNTRY MESSAGE
 
-}
+========================================================= */
 
-input,textarea{
+.currency-message {
 
-  width:100%;
+  width: 92%;
 
-  border:2px solid #ffc1dc;
+  max-width: 900px;
 
-  border-radius:12px;
+  margin: 0 auto 22px;
 
-  padding:12px;
+  text-align: center;
 
-  font-size:16px;
+  color: #ff5fa4;
 
-  margin:7px 0;
+  font-size: 16px;
 
-}
-
-.primary{
-
-  background:#ff72b4;
-
-  color:white;
-
-  padding:12px 20px;
-
-  border-radius:20px;
-
-  font-weight:bold;
-
-  margin-top:8px;
+  font-weight: bold;
 
 }
 
-.secondary{
+/* =========================================================
 
-  background:#eee;
+   SEARCH / FILTER BAR
 
-  color:#555;
+========================================================= */
 
-  padding:10px 18px;
+.shop-tools {
 
-  border-radius:20px;
+  width: 92%;
 
-  margin-top:8px;
+  max-width: 1100px;
 
-}
+  margin: 0 auto 25px;
 
-.color-btn{
+  display: flex;
 
-  background:#ffe0ed;
+  gap: 10px;
 
-  color:#ff4f9c;
+  flex-wrap: wrap;
 
-  padding:9px 14px;
-
-  border-radius:15px;
-
-  margin:4px;
+  justify-content: center;
 
 }
 
-.color-btn.selected{
+.search-box {
 
-  background:#ff72b4;
+  flex: 1;
 
-  color:white;
+  min-width: 220px;
 
-}
+  padding: 12px 16px;
 
-.modal-product-img{
+  border: 2px solid #ffc1dc;
 
-  width:100%;
+  border-radius: 25px;
 
-  height:230px;
+  outline: none;
 
-  object-fit:contain;
+  background: white;
 
-  border-radius:15px;
-
-  background:#fff8fc;
+  font-size: 16px;
 
 }
 
-.cart-item{
+.search-box:focus {
 
-  text-align:left;
-
-  padding:13px 0;
-
-  border-bottom:1px solid #eee;
+  border-color: #ff72b4;
 
 }
 
-.quantity{
+.filter-button {
 
-  display:flex;
+  background: white;
 
-  align-items:center;
+  color: #ff5fa4;
 
-  gap:8px;
+  border: 2px solid #ffc1dc;
 
-  margin-top:8px;
+  padding: 10px 16px;
 
-}
+  border-radius: 22px;
 
-.quantity button{
-
-  width:31px;
-
-  height:31px;
-
-  border-radius:50%;
-
-  background:#ff9bc8;
-
-  color:white;
-
-  font-size:18px;
+  font-weight: bold;
 
 }
 
-.remove{
+/* =========================================================
 
-  margin-left:auto;
+   PRODUCT GRID
 
-  width:auto!important;
+========================================================= */
 
-  padding:4px 10px!important;
+.products {
 
-  border-radius:12px!important;
+  width: 94%;
 
-  background:#ff6b9f!important;
+  max-width: 1150px;
 
-}
+  margin: auto;
 
-.total{
+  display: grid;
 
-  color:#ff5fa4;
+  grid-template-columns: repeat(4, 1fr);
 
-  font-size:21px;
+  gap: 18px;
 
-  font-weight:bold;
-
-  margin:17px 0;
+  padding-bottom: 60px;
 
 }
 
-#loading{
+/* =========================================================
 
-  text-align:center;
+   PRODUCT CARD
 
-  color:#ff5fa4;
+========================================================= */
 
-  font-weight:bold;
+.product-card {
 
-  grid-column:1/-1;
+  background: white;
+
+  border-radius: 21px;
+
+  padding: 12px;
+
+  text-align: center;
+
+  box-shadow:
+
+    0 4px 13px rgba(0,0,0,0.08);
+
+  transition:
+
+    transform 0.2s,
+
+    box-shadow 0.2s;
+
+  cursor: pointer;
+
+  overflow: hidden;
 
 }
 
-@media(max-width:850px){
+.product-card:hover {
 
-  .products{
+  transform: translateY(-5px);
 
-    grid-template-columns:repeat(2,1fr);
+  box-shadow:
+
+    0 7px 18px rgba(0,0,0,0.12);
+
+}
+
+/* =========================================================
+
+   PRODUCT IMAGE
+
+========================================================= */
+
+.product-image {
+
+  width: 100%;
+
+  height: 175px;
+
+  object-fit: contain;
+
+  background: #fff8fc;
+
+  border-radius: 16px;
+
+  display: block;
+
+}
+
+.product-emoji {
+
+  width: 100%;
+
+  height: 175px;
+
+  background: #fff8fc;
+
+  border-radius: 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 80px;
+
+}
+
+/* =========================================================
+
+   PRODUCT TEXT
+
+========================================================= */
+
+.product-name {
+
+  margin: 12px 3px 5px;
+
+  font-size: 17px;
+
+  color: #555;
+
+  min-height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+.product-price {
+
+  color: #ff5fa4;
+
+  font-size: 19px;
+
+  font-weight: bold;
+
+  margin-bottom: 10px;
+
+}
+
+.view-button {
+
+  background: #ff8fc4;
+
+  color: white;
+
+  padding: 9px 17px;
+
+  border-radius: 20px;
+
+  font-weight: bold;
+
+  transition: 0.2s;
+
+}
+
+.view-button:hover {
+
+  background: #ff69ad;
+
+}
+
+/* =========================================================
+
+   EMPTY SEARCH MESSAGE
+
+========================================================= */
+
+.no-products {
+
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  padding: 40px;
+
+  color: #ff5fa4;
+
+  font-weight: bold;
+
+}
+
+/* =========================================================
+
+   OVERLAY
+
+========================================================= */
+
+.overlay {
+
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0,0,0,0.45);
+
+  z-index: 2000;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 15px;
+
+}
+
+/* =========================================================
+
+   MODAL
+
+========================================================= */
+
+.modal {
+
+  width: 100%;
+
+  max-width: 460px;
+
+  max-height: 92vh;
+
+  overflow-y: auto;
+
+  background: white;
+
+  border-radius: 25px;
+
+  padding: 23px;
+
+  text-align: center;
+
+  box-shadow:
+
+    0 10px 35px rgba(0,0,0,0.18);
+
+}
+
+.modal-title {
+
+  color: #ff5fa4;
+
+  margin-top: 8px;
+
+  margin-bottom: 10px;
+
+}
+
+.close-button {
+
+  float: right;
+
+  width: 34px;
+
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: #eeeeee;
+
+  color: #555;
+
+  font-size: 21px;
+
+  line-height: 34px;
+
+}
+
+/* =========================================================
+
+   COUNTRY BUTTONS
+
+========================================================= */
+
+.country-button {
+
+  display: block;
+
+  width: 100%;
+
+  padding: 14px;
+
+  margin: 9px 0;
+
+  border-radius: 16px;
+
+  background: #ffe0ed;
+
+  color: #ff4f9c;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  transition: 0.2s;
+
+}
+
+.country-button:hover {
+
+  background: #ffc8df;
+
+}
+
+/* =========================================================
+
+   INPUTS
+
+========================================================= */
+
+.input {
+
+  width: 100%;
+
+  padding: 13px;
+
+  margin: 8px 0;
+
+  border-radius: 13px;
+
+  border: 2px solid #ffc1dc;
+
+  outline: none;
+
+  font-size: 16px;
+
+}
+
+.input:focus {
+
+  border-color: #ff72b4;
+
+}
+
+.address-box {
+
+  width: 100%;
+
+  min-height: 130px;
+
+  resize: vertical;
+
+  padding: 13px;
+
+  border-radius: 13px;
+
+  border: 2px solid #ffc1dc;
+
+  outline: none;
+
+  font-size: 16px;
+
+}
+
+/* =========================================================
+
+   GENERAL BUTTONS
+
+========================================================= */
+
+.primary-button {
+
+  background: #ff72b4;
+
+  color: white;
+
+  padding: 12px 22px;
+
+  border-radius: 22px;
+
+  font-weight: bold;
+
+  font-size: 15px;
+
+  margin-top: 9px;
+
+}
+
+.primary-button:hover {
+
+  background: #ff5fa4;
+
+}
+
+.secondary-button {
+
+  background: #eeeeee;
+
+  color: #555;
+
+  padding: 10px 19px;
+
+  border-radius: 20px;
+
+  font-weight: bold;
+
+  margin-top: 9px;
+
+}
+
+.secondary-button:hover {
+
+  background: #dddddd;
+
+}
+
+/* =========================================================
+
+   PRODUCT MODAL IMAGE
+
+========================================================= */
+
+.modal-product-image {
+
+  width: 100%;
+
+  height: 250px;
+
+  object-fit: contain;
+
+  background: #fff8fc;
+
+  border-radius: 17px;
+
+  margin-top: 5px;
+
+}
+
+/* =========================================================
+
+   COLOR SELECTION
+
+========================================================= */
+
+.color-title {
+
+  color: #777;
+
+  font-weight: bold;
+
+  margin-top: 17px;
+
+}
+
+.color-button {
+
+  background: #ffe0ed;
+
+  color: #ff4f9c;
+
+  padding: 9px 14px;
+
+  border-radius: 16px;
+
+  margin: 4px;
+
+  font-weight: bold;
+
+}
+
+.color-button.selected {
+
+  background: #ff72b4;
+
+  color: white;
+
+}
+
+/* =========================================================
+
+   CART
+
+========================================================= */
+
+.cart-item {
+
+  padding: 14px 0;
+
+  border-bottom: 1px solid #eeeeee;
+
+  text-align: left;
+
+}
+
+.cart-item-name {
+
+  color: #555;
+
+  font-weight: bold;
+
+  font-size: 17px;
+
+}
+
+.cart-item-info {
+
+  color: #777;
+
+  margin-top: 4px;
+
+  font-size: 14px;
+
+}
+
+.quantity-row {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 9px;
+
+}
+
+.quantity-button {
+
+  width: 32px;
+
+  height: 32px;
+
+  border-radius: 50%;
+
+  background: #ff9bc8;
+
+  color: white;
+
+  font-size: 18px;
+
+  font-weight: bold;
+
+}
+
+.quantity-number {
+
+  min-width: 25px;
+
+  text-align: center;
+
+  font-weight: bold;
+
+}
+
+.remove-button {
+
+  margin-left: auto;
+
+  background: #ff6b9f;
+
+  color: white;
+
+  padding: 6px 10px;
+
+  border-radius: 12px;
+
+  font-size: 12px;
+
+}
+
+.cart-total {
+
+  color: #ff5fa4;
+
+  font-size: 22px;
+
+  font-weight: bold;
+
+  margin: 18px 0;
+
+}
+
+.empty-cart {
+
+  padding: 25px 0;
+
+  color: #888;
+
+}
+
+/* =========================================================
+
+   FOOTER
+
+========================================================= */
+
+.footer {
+
+  background: #ff8fc4;
+
+  color: white;
+
+  text-align: center;
+
+  padding: 25px 15px;
+
+  margin-top: 20px;
+
+}
+
+.footer-title {
+
+  font-size: 20px;
+
+  font-weight: bold;
+
+  margin-bottom: 8px;
+
+}
+
+.footer-text {
+
+  margin: 5px;
+
+  font-size: 14px;
+
+}
+
+/* =========================================================
+
+   LOADING
+
+========================================================= */
+
+.loading {
+
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  color: #ff5fa4;
+
+  padding: 40px;
+
+  font-weight: bold;
+
+}
+
+/* =========================================================
+
+   MOBILE
+
+========================================================= */
+
+@media(max-width:900px){
+
+  .products {
+
+    grid-template-columns: repeat(3,1fr);
+
+  }
+
+}
+
+@media(max-width:700px){
+
+  .products {
+
+    grid-template-columns: repeat(2,1fr);
+
+    gap: 11px;
+
+  }
+
+  .product-image,
+
+  .product-emoji {
+
+    height: 140px;
+
+  }
+
+  .hero-title {
+
+    font-size: 27px;
+
+  }
+
+  .hero-subtitle {
+
+    font-size: 17px;
 
   }
 
@@ -498,17 +974,75 @@ input,textarea{
 
 @media(max-width:450px){
 
-  header h1{font-size:19px}
+  .header {
 
-  .top-btn{font-size:12px;padding:8px 9px}
+    padding: 12px 9px;
 
-  .products{gap:10px}
+  }
 
-  .product{padding:8px}
+  .logo {
 
-  .product-img,.emoji-img{height:130px}
+    font-size: 18px;
 
-  .hero h2{font-size:25px}
+  }
+
+  .header-button {
+
+    padding: 7px 9px;
+
+    font-size: 11px;
+
+  }
+
+  .products {
+
+    width: 95%;
+
+    gap: 9px;
+
+  }
+
+  .product-card {
+
+    padding: 8px;
+
+    border-radius: 17px;
+
+  }
+
+  .product-image,
+
+  .product-emoji {
+
+    height: 125px;
+
+  }
+
+  .product-emoji {
+
+    font-size: 60px;
+
+  }
+
+  .product-name {
+
+    font-size: 15px;
+
+  }
+
+  .product-price {
+
+    font-size: 17px;
+
+  }
+
+  .view-button {
+
+    padding: 8px 11px;
+
+    font-size: 13px;
+
+  }
 
 }
 
@@ -518,17 +1052,41 @@ input,textarea{
 
 <body>
 
-<header>
+<!-- =========================================================
 
-  <h1>Squishy Mart 💗</h1>
+     HEADER
 
-  <div class="header-actions">
+========================================================= -->
 
-    <button class="top-btn" onclick="openCountry()">🌎 Country</button>
+<header class="header">
 
-    <button class="top-btn" onclick="openCart()">
+  <div class="logo">
 
-      🛒 Cart (<span id="cartCount">0</span>)
+    Squishy Mart 💗
+
+  </div>
+
+  <div class="header-right">
+
+    <button
+
+      class="header-button"
+
+      onclick="openCountryModal()">
+
+      🌎 Country
+
+    </button>
+
+    <button
+
+      class="header-button"
+
+      onclick="openCartModal()">
+
+      🛒 Cart
+
+      (<span id="cartCount">0</span>)
 
     </button>
 
@@ -536,71 +1094,213 @@ input,textarea{
 
 </header>
 
+<!-- =========================================================
+
+     HERO
+
+========================================================= -->
+
 <section class="hero">
 
-  <h2>Welcome to Squishy Mart! 🧸</h2>
+  <h1 class="hero-title">
 
-  <p>Pick your favourite squishy! 💕</p>
+    Welcome to Squishy Mart! 🧸
+
+  </h1>
+
+  <p class="hero-subtitle">
+
+    Pick your favourite squishy! 💕
+
+  </p>
+
+  <p class="hero-small">
+
+    Cute • Soft • Squishy • Fun
+
+  </p>
 
 </section>
 
-<div class="currency-message" id="currencyMessage">
+<!-- =========================================================
+
+     CURRENCY MESSAGE
+
+========================================================= -->
+
+<div
+
+  class="currency-message"
+
+  id="currencyMessage">
 
   Choose your country to see prices.
 
 </div>
 
-<div class="products" id="products">
+<!-- =========================================================
 
-  <div id="loading">Loading squishies... 💕</div>
+     SEARCH
+
+========================================================= -->
+
+<div class="shop-tools">
+
+  <input
+
+    id="searchInput"
+
+    class="search-box"
+
+    type="text"
+
+    placeholder="Search for a squishy... 🔎"
+
+  >
+
+  <button
+
+    class="filter-button"
+
+    onclick="showAllProducts()">
+
+    Show All
+
+  </button>
 
 </div>
 
-<!-- COUNTRY MODAL -->
+<!-- =========================================================
 
-<div class="overlay" id="countryModal">
+     PRODUCTS
+
+========================================================= -->
+
+<main>
+
+  <div
+
+    class="products"
+
+    id="products">
+
+    <div class="loading">
+
+      Loading squishies... 💕
+
+    </div>
+
+  </div>
+
+</main>
+
+<!-- =========================================================
+
+     COUNTRY MODAL
+
+========================================================= -->
+
+<div
+
+  class="overlay"
+
+  id="countryModal">
 
   <div class="modal">
 
-    <h2>Choose Your Country 🌎</h2>
+    <button
 
-    <p>Prices will automatically use your country's currency.</p>
+      class="close-button"
 
-    <button class="country-btn" onclick="selectCountry('USA')">
+      onclick="closeCountryModal()">
+
+      ×
+
+    </button>
+
+    <h2 class="modal-title">
+
+      Choose Your Country 🌎
+
+    </h2>
+
+    <p>
+
+      Prices will automatically use your country's currency.
+
+    </p>
+
+    <button
+
+      class="country-button"
+
+      onclick="chooseCountry('USA')">
 
       🇺🇸 USA
 
     </button>
 
-    <button class="country-btn" onclick="selectCountry('Singapore')">
+    <button
+
+      class="country-button"
+
+      onclick="chooseCountry('Singapore')">
 
       🇸🇬 Singapore
 
     </button>
 
-    <button class="country-btn" onclick="selectCountry('Thailand')">
+    <button
+
+      class="country-button"
+
+      onclick="chooseCountry('Thailand')">
 
       🇹🇭 Thailand
 
     </button>
 
-    <button class="country-btn" onclick="selectCountry('UK')">
+    <button
+
+      class="country-button"
+
+      onclick="chooseCountry('UK')">
 
       🇬🇧 UK
 
     </button>
 
-    <button class="country-btn" onclick="showOther()">
+    <button
+
+      class="country-button"
+
+      onclick="showOtherCountry()">
 
       🌎 Other Country
 
     </button>
 
-    <div id="otherBox" style="display:none">
+    <div
 
-      <input id="otherCountry" placeholder="Type your country">
+      id="otherCountryArea"
 
-      <button class="primary" onclick="selectOther()">
+      style="display:none;">
+
+      <input
+
+        id="otherCountryInput"
+
+        class="input"
+
+        placeholder="Type your country"
+
+      >
+
+      <button
+
+        class="primary-button"
+
+        onclick="chooseOtherCountry()">
 
         NEXT
 
@@ -612,23 +1312,63 @@ input,textarea{
 
 </div>
 
-<!-- PRODUCT MODAL -->
+<!-- =========================================================
 
-<div class="overlay" id="productModal">
+     PRODUCT MODAL
+
+========================================================= -->
+
+<div
+
+  class="overlay"
+
+  id="productModal">
 
   <div class="modal">
 
-    <button class="close" onclick="closeProduct()">×</button>
+    <button
 
-    <img id="modalImage" class="modal-product-img">
+      class="close-button"
 
-    <h2 id="modalName"></h2>
+      onclick="closeProductModal()">
 
-    <div class="price" id="modalPrice"></div>
+      ×
 
-    <div id="colorArea"></div>
+    </button>
 
-    <button class="primary" onclick="addSelectedToCart()">
+    <img
+
+      id="modalProductImage"
+
+      class="modal-product-image"
+
+      alt="Product"
+
+    >
+
+    <h2
+
+      id="modalProductName"
+
+      class="modal-title">
+
+    </h2>
+
+    <div
+
+      id="modalProductPrice"
+
+      class="product-price">
+
+    </div>
+
+    <div id="modalColorArea"></div>
+
+    <button
+
+      class="primary-button"
+
+      onclick="addSelectedProductToCart()">
 
       🛒 Add to Cart
 
@@ -638,29 +1378,63 @@ input,textarea{
 
 </div>
 
-<!-- CART MODAL -->
+<!-- =========================================================
 
-<div class="overlay" id="cartModal">
+     CART MODAL
+
+========================================================= -->
+
+<div
+
+  class="overlay"
+
+  id="cartModal">
 
   <div class="modal">
 
-    <button class="close" onclick="closeCart()">×</button>
+    <button
 
-    <h2>🛒 Your Cart</h2>
+      class="close-button"
+
+      onclick="closeCartModal()">
+
+      ×
+
+    </button>
+
+    <h2 class="modal-title">
+
+      🛒 Your Cart
+
+    </h2>
 
     <div id="cartItems"></div>
 
-    <div class="total" id="cartTotal"></div>
+    <div
 
-    <button class="primary" onclick="startOrder()">
+      id="cartTotal"
 
-      📧 Order by Email
+      class="cart-total">
+
+    </div>
+
+    <button
+
+      class="primary-button"
+
+      onclick="startCheckout()">
+
+      📦 Continue to Checkout
 
     </button>
 
     <br>
 
-    <button class="secondary" onclick="clearCart()">
+    <button
+
+      class="secondary-button"
+
+      onclick="clearCart()">
 
       Clear Cart
 
@@ -670,33 +1444,49 @@ input,textarea{
 
 </div>
 
-<!-- ADDRESS MODAL -->
+<!-- =========================================================
 
-<div class="overlay" id="addressModal">
+     ADDRESS MODAL
+
+========================================================= -->
+
+<div
+
+  class="overlay"
+
+  id="addressModal">
 
   <div class="modal">
 
-    <h2>📦 Delivery Address</h2>
+    <h2 class="modal-title">
 
-    <p>Where should we deliver your squishies?</p>
+      📦 Delivery Address
+
+    </h2>
+
+    <p>
+
+      Enter your delivery address before payment.
+
+    </p>
 
     <textarea
 
-      id="address"
+      id="deliveryAddress"
 
-      rows="5"
+      class="address-box"
 
-      placeholder="Name, address, postal code..."
+      placeholder="Name, street, building, unit, postal code..."
 
     ></textarea>
 
     <button
 
-      class="primary"
-
       id="paymentButton"
 
-      onclick="goToPayment()">
+      class="primary-button"
+
+      onclick="continueToPayment()">
 
       Continue to Payment 💳
 
@@ -704,7 +1494,11 @@ input,textarea{
 
     <br>
 
-    <button class="secondary" onclick="closeAddress()">
+    <button
+
+      class="secondary-button"
+
+      onclick="closeAddressModal()">
 
       Cancel
 
@@ -714,369 +1508,579 @@ input,textarea{
 
 </div>
 
+<!-- =========================================================
+
+     FOOTER
+
+========================================================= -->
+
+<footer class="footer">
+
+  <div class="footer-title">
+
+    Squishy Mart 💗
+
+  </div>
+
+  <p class="footer-text">
+
+    Thanks for supporting our squishy shop! 🧸💕
+
+  </p>
+
+  <p class="footer-text">
+
+    Cute squishies for squishy lovers everywhere 🌎
+
+  </p>
+
+</footer>
+
 <script>
+
+/* =========================================================
+
+   PRODUCT DATA
+
+========================================================= */
 
 const products = [
 
   {
 
-    id:"slow-rise-butter",
+    id: "slow-rise-butter",
 
-    name:"Slow Rise Butter",
+    name: "Slow Rise Butter",
 
-    price:6,
+    price: 6,
 
-    image:"IMG_1103.jpeg",
+    image: "IMG_1103.jpeg",
 
-    colors:[]
-
-  },
-
-  {
-
-    id:"vaseline-butter",
-
-    name:"Vaseline Butter",
-
-    price:6,
-
-    image:"IMG_1096.jpeg",
-
-    colors:[]
+    colors: []
 
   },
 
   {
 
-    id:"crunchy-butter",
+    id: "vaseline-butter",
 
-    name:"Crunchy Butter",
+    name: "Vaseline Butter",
 
-    price:6,
+    price: 6,
 
-    image:"IMG_1091.jpeg",
+    image: "IMG_1096.jpeg",
 
-    colors:["Blue","Pink"]
-
-  },
-
-  {
-
-    id:"cheese",
-
-    name:"Cheese",
-
-    price:4,
-
-    image:"IMG_1098.jpeg",
-
-    colors:[]
+    colors: []
 
   },
 
   {
 
-    id:"potato",
+    id: "crunchy-butter",
 
-    name:"Potato",
+    name: "Crunchy Butter",
 
-    price:6,
+    price: 6,
 
-    image:"IMG_1101.jpeg",
+    image: "IMG_1091.jpeg",
 
-    colors:[]
+    colors: [
 
-  },
+      "Blue",
 
-  {
+      "Pink"
 
-    id:"peach",
-
-    name:"Peach",
-
-    price:9,
-
-    image:"IMG_1093.jpeg",
-
-    colors:[]
+    ]
 
   },
 
   {
 
-    id:"crunchy-toast",
+    id: "cheese",
 
-    name:"Crunchy Toast",
+    name: "Cheese",
 
-    price:6,
+    price: 4,
 
-    image:"IMG_1095.jpeg",
+    image: "IMG_1098.jpeg",
 
-    colors:[]
-
-  },
-
-  {
-
-    id:"needoh-cloud",
-
-    name:"Needoh Cloud",
-
-    price:8,
-
-    emoji:"☁️",
-
-    colors:[]
+    colors: []
 
   },
 
   {
 
-    id:"giant-strawberry",
+    id: "potato",
 
-    name:"Giant Strawberry",
+    name: "Potato",
 
-    price:9,
+    price: 6,
 
-    image:"IMG_1094.jpeg",
+    image: "IMG_1101.jpeg",
 
-    colors:[]
-
-  },
-
-  {
-
-    id:"slushy-apple",
-
-    name:"Slushy Apple",
-
-    price:6,
-
-    image:"IMG_1100.jpeg",
-
-    colors:["Red","Green"]
+    colors: []
 
   },
 
   {
 
-    id:"duck",
+    id: "peach",
 
-    name:"Duck",
+    name: "Peach",
 
-    price:6,
+    price: 9,
 
-    image:"IMG_1090.jpeg",
+    image: "IMG_1093.jpeg",
 
-    colors:["Pink","Blue","Orange","Purple"]
-
-  },
-
-  {
-
-    id:"crunchy-soap",
-
-    name:"Crunchy Soap",
-
-    price:6,
-
-    image:"IMG_1102.jpeg",
-
-    colors:[]
+    colors: []
 
   },
 
   {
 
-    id:"needoh",
+    id: "crunchy-toast",
 
-    name:"Needoh",
+    name: "Crunchy Toast",
 
-    price:8,
+    price: 6,
 
-    emoji:"🌈",
+    image: "IMG_1095.jpeg",
 
-    colors:["Blue","Pink","Purple"]
-
-  },
-
-  {
-
-    id:"needoh-jellyfish",
-
-    name:"Needoh Jellyfish",
-
-    price:8,
-
-    emoji:"🪼",
-
-    colors:["Blue","Pink","Purple"]
+    colors: []
 
   },
 
   {
 
-    id:"needoh-cake",
+    id: "needoh-cloud",
 
-    name:"Needoh Cake",
+    name: "Needoh Cloud",
 
-    price:8,
+    price: 8,
 
-    emoji:"🍰",
+    emoji: "☁️",
 
-    colors:[]
-
-  },
-
-  {
-
-    id:"needoh-ice-cream",
-
-    name:"Needoh Ice Cream",
-
-    price:8,
-
-    emoji:"🍦",
-
-    colors:["Blue","Pink","Orange"]
+    colors: []
 
   },
 
   {
 
-    id:"bear",
+    id: "giant-strawberry",
 
-    name:"Bear",
+    name: "Giant Strawberry",
 
-    price:3,
+    price: 9,
 
-    image:"IMG_1092.jpeg",
+    image: "IMG_1094.jpeg",
 
-    colors:["Pink","Blue","Orange","Purple"]
+    colors: []
+
+  },
+
+  {
+
+    id: "slushy-apple",
+
+    name: "Slushy Apple",
+
+    price: 6,
+
+    image: "IMG_1100.jpeg",
+
+    colors: [
+
+      "Red",
+
+      "Green"
+
+    ]
+
+  },
+
+  {
+
+    id: "duck",
+
+    name: "Duck",
+
+    price: 6,
+
+    image: "IMG_1090.jpeg",
+
+    colors: [
+
+      "Pink",
+
+      "Blue",
+
+      "Orange",
+
+      "Purple"
+
+    ]
+
+  },
+
+  {
+
+    id: "crunchy-soap",
+
+    name: "Crunchy Soap",
+
+    price: 6,
+
+    image: "IMG_1102.jpeg",
+
+    colors: []
+
+  },
+
+  {
+
+    id: "needoh",
+
+    name: "Needoh",
+
+    price: 8,
+
+    emoji: "🌈",
+
+    colors: [
+
+      "Blue",
+
+      "Pink",
+
+      "Purple"
+
+    ]
+
+  },
+
+  {
+
+    id: "needoh-jellyfish",
+
+    name: "Needoh Jellyfish",
+
+    price: 8,
+
+    emoji: "🪼",
+
+    colors: [
+
+      "Blue",
+
+      "Pink",
+
+      "Purple"
+
+    ]
+
+  },
+
+  {
+
+    id: "needoh-cake",
+
+    name: "Needoh Cake",
+
+    price: 8,
+
+    emoji: "🍰",
+
+    colors: []
+
+  },
+
+  {
+
+    id: "needoh-ice-cream",
+
+    name: "Needoh Ice Cream",
+
+    price: 8,
+
+    emoji: "🍦",
+
+    colors: [
+
+      "Blue",
+
+      "Pink",
+
+      "Orange"
+
+    ]
+
+  },
+
+  {
+
+    id: "bear",
+
+    name: "Bear",
+
+    price: 3,
+
+    image: "IMG_1092.jpeg",
+
+    colors: [
+
+      "Pink",
+
+      "Blue",
+
+      "Orange",
+
+      "Purple"
+
+    ]
 
   }
 
 ];
 
-let country =
+/* =========================================================
 
-  localStorage.getItem("country") || "";
+   WEBSITE STATE
 
-let currency =
+========================================================= */
 
-  localStorage.getItem("currency") || "USD";
+let selectedCountry =
 
-let symbol =
+  localStorage.getItem("squishyCountry") || "";
 
-  localStorage.getItem("symbol") || "$";
+let selectedCurrency =
+
+  localStorage.getItem("squishyCurrency") || "USD";
+
+let selectedSymbol =
+
+  localStorage.getItem("squishySymbol") || "$";
 
 let cart =
 
-  JSON.parse(localStorage.getItem("cart") || "[]");
+  JSON.parse(
+
+    localStorage.getItem("squishyCart") || "[]"
+
+  );
 
 let selectedProduct = null;
 
 let selectedColor = null;
 
-/* COUNTRY */
+/* =========================================================
 
-function openCountry(){
+   CURRENCY SYMBOLS
+
+========================================================= */
+
+const currencySymbols = {
+
+  USD: "$",
+
+  SGD: "S$",
+
+  THB: "฿",
+
+  GBP: "£",
+
+  EUR: "€",
+
+  JPY: "¥",
+
+  KRW: "₩",
+
+  CNY: "¥",
+
+  HKD: "HK$",
+
+  TWD: "NT$",
+
+  MYR: "RM",
+
+  IDR: "Rp",
+
+  PHP: "₱",
+
+  AUD: "A$",
+
+  NZD: "NZ$",
+
+  CAD: "C$",
+
+  INR: "₹",
+
+  VND: "₫",
+
+  CHF: "CHF ",
+
+  SEK: "kr ",
+
+  NOK: "kr ",
+
+  DKK: "kr ",
+
+  PLN: "zł ",
+
+  MXN: "MX$",
+
+  BRL: "R$",
+
+  ZAR: "R ",
+
+  AED: "AED ",
+
+  SAR: "SAR ",
+
+  QAR: "QAR ",
+
+  ILS: "₪",
+
+  TRY: "₺"
+
+};
+
+/* =========================================================
+
+   OPEN COUNTRY
+
+========================================================= */
+
+function openCountryModal() {
 
   document
 
     .getElementById("countryModal")
 
-    .style.display="flex";
+    .style.display = "flex";
 
 }
 
-function showOther(){
+/* =========================================================
+
+   CLOSE COUNTRY
+
+========================================================= */
+
+function closeCountryModal() {
 
   document
 
-    .getElementById("otherBox")
+    .getElementById("countryModal")
 
-    .style.display="block";
+    .style.display = "none";
 
 }
 
-function selectCountry(name){
+/* =========================================================
 
-  country=name;
+   OTHER COUNTRY
 
-  if(name==="USA"){
+========================================================= */
 
-    currency="USD";
+function showOtherCountry() {
 
-    symbol="$";
+  document
+
+    .getElementById("otherCountryArea")
+
+    .style.display = "block";
+
+}
+
+/* =========================================================
+
+   CHOOSE COUNTRY
+
+========================================================= */
+
+async function chooseCountry(country) {
+
+  selectedCountry = country;
+
+  if (country === "USA") {
+
+    selectedCurrency = "USD";
+
+    selectedSymbol = "$";
 
   }
 
-  if(name==="Singapore"){
+  if (country === "Singapore") {
 
-    currency="SGD";
+    selectedCurrency = "SGD";
 
-    symbol="S$";
-
-  }
-
-  if(name==="Thailand"){
-
-    currency="THB";
-
-    symbol="฿";
+    selectedSymbol = "S$";
 
   }
 
-  if(name==="UK"){
+  if (country === "Thailand") {
 
-    currency="GBP";
+    selectedCurrency = "THB";
 
-    symbol="£";
+    selectedSymbol = "฿";
+
+  }
+
+  if (country === "UK") {
+
+    selectedCurrency = "GBP";
+
+    selectedSymbol = "£";
 
   }
 
   saveCountry();
 
-  document
+  closeCountryModal();
 
-    .getElementById("countryModal")
-
-    .style.display="none";
-
-  renderProducts();
+  await renderProducts();
 
 }
 
-async function selectOther(){
+/* =========================================================
 
-  const name =
+   OTHER COUNTRY
+
+========================================================= */
+
+async function chooseOtherCountry() {
+
+  const input =
 
     document
 
-      .getElementById("otherCountry")
+      .getElementById("otherCountryInput")
 
       .value
 
       .trim();
 
-  if(!name){
+  if (!input) {
 
-    alert("Please type your country.");
+    alert(
+
+      "Please type your country."
+
+    );
 
     return;
 
   }
 
-  try{
+  try {
 
     const response =
 
       await fetch(
 
-        "https://restcountries.com/v3.1/name/"
+        "https://restcountries.com/v3.1/name/" +
 
-        +encodeURIComponent(name)
+        encodeURIComponent(input)
 
       );
 
@@ -1084,69 +2088,49 @@ async function selectOther(){
 
       await response.json();
 
-    if(!data[0]?.currencies){
+    if (
 
-      throw new Error();
+      !data[0] ||
+
+      !data[0].currencies
+
+    ) {
+
+      throw new Error(
+
+        "Country not found"
+
+      );
 
     }
 
-    country=name;
+    selectedCountry = input;
 
-    currency =
+    selectedCurrency =
 
-      Object.keys(data[0].currencies)[0];
+      Object.keys(
 
-    const symbols={
+        data[0].currencies
 
-      USD:"$",
+      )[0];
 
-      SGD:"S$",
+    selectedSymbol =
 
-      THB:"฿",
+      currencySymbols[
 
-      GBP:"£",
+        selectedCurrency
 
-      EUR:"€",
+      ] ||
 
-      JPY:"¥",
-
-      KRW:"₩",
-
-      CNY:"¥",
-
-      HKD:"HK$",
-
-      AUD:"A$",
-
-      CAD:"C$",
-
-      INR:"₹",
-
-      MYR:"RM",
-
-      PHP:"₱",
-
-      NZD:"NZ$"
-
-    };
-
-    symbol =
-
-      symbols[currency] ||
-
-      currency+" ";
+      selectedCurrency + " ";
 
     saveCountry();
 
-    document
+    closeCountryModal();
 
-      .getElementById("countryModal")
+    await renderProducts();
 
-      .style.display="none";
-
-    renderProducts();
-
-  }catch{
+  } catch (error) {
 
     alert(
 
@@ -1158,33 +2142,81 @@ async function selectOther(){
 
 }
 
-function saveCountry(){
+/* =========================================================
 
-  localStorage.setItem("country",country);
+   SAVE COUNTRY
 
-  localStorage.setItem("currency",currency);
+========================================================= */
 
-  localStorage.setItem("symbol",symbol);
+function saveCountry() {
+
+  localStorage.setItem(
+
+    "squishyCountry",
+
+    selectedCountry
+
+  );
+
+  localStorage.setItem(
+
+    "squishyCurrency",
+
+    selectedCurrency
+
+  );
+
+  localStorage.setItem(
+
+    "squishySymbol",
+
+    selectedSymbol
+
+  );
 
 }
 
-/* MONEY */
+/* =========================================================
 
-async function getRate(){
+   GET EXCHANGE RATE
 
-  if(currency==="USD") return 1;
+========================================================= */
+
+async function getExchangeRate() {
 
   /*
 
-    Singapore intentionally uses S$1 = US$1
+    USD prices are the base prices.
 
-    for the website's requested pricing system.
+    Singapore intentionally uses 1:1
+
+    because that is the pricing system
+
+    requested for this website.
 
   */
 
-  if(currency==="SGD") return 1;
+  if (
 
-  try{
+    selectedCurrency === "USD"
+
+  ) {
+
+    return 1;
+
+  }
+
+  if (
+
+    selectedCurrency === "SGD"
+
+  ) {
+
+    return 1;
+
+  }
+
+  try {
 
     const response =
 
@@ -1198,9 +2230,27 @@ async function getRate(){
 
       await response.json();
 
-    return data.rates[currency] || 1;
+    if (
 
-  }catch{
+      data &&
+
+      data.rates &&
+
+      data.rates[selectedCurrency]
+
+    ) {
+
+      return data.rates[
+
+        selectedCurrency
+
+      ];
+
+    }
+
+    return 1;
+
+  } catch (error) {
 
     return 1;
 
@@ -1208,195 +2258,451 @@ async function getRate(){
 
 }
 
-function money(amount){
+/* =========================================================
 
-  if(
+   FORMAT PRICE
 
-    currency==="JPY" ||
+========================================================= */
 
-    currency==="KRW" ||
+function formatPrice(
 
-    currency==="VND"
+  amount
 
-  ){
+) {
 
-    return symbol+Math.round(amount);
+  const zeroDecimalCurrencies = [
+
+    "JPY",
+
+    "KRW",
+
+    "VND"
+
+  ];
+
+  if (
+
+    zeroDecimalCurrencies
+
+      .includes(selectedCurrency)
+
+  ) {
+
+    return (
+
+      selectedSymbol +
+
+      Math.round(amount)
+
+    );
 
   }
 
-  return symbol+amount.toFixed(2);
+  return (
+
+    selectedSymbol +
+
+    amount.toFixed(2)
+
+  );
 
 }
 
-/* PRODUCTS */
+/* =========================================================
 
-async function renderProducts(){
+   RENDER PRODUCTS
 
-  const area =
+========================================================= */
 
-    document.getElementById("products");
+async function renderProducts() {
 
-  area.innerHTML =
+  const container =
 
-    '<div id="loading">Loading prices... 💕</div>';
+    document.getElementById(
+
+      "products"
+
+    );
+
+  container.innerHTML = `
+
+    <div class="loading">
+
+      Loading squishies... 💕
+
+    </div>
+
+  `;
 
   const rate =
 
-    await getRate();
+    await getExchangeRate();
 
-  area.innerHTML="";
+  container.innerHTML = "";
 
-  products.forEach(product=>{
+  const search =
 
-    const card =
+    document
 
-      document.createElement("div");
+      .getElementById(
 
-    card.className="product";
+        "searchInput"
 
-    let picture="";
+      )
 
-    if(product.image){
+      .value
 
-      picture=`
+      .trim()
 
-        <img
+      .toLowerCase();
 
-          class="product-img"
+  const visibleProducts =
 
-          src="${product.image}"
+    products.filter(
 
-          alt="${product.name}"
+      product =>
 
-          onerror="this.outerHTML='<div class=emoji-img>💕</div>'"
+        product.name
 
-        >
+          .toLowerCase()
 
-      `;
+          .includes(search)
 
-    }else{
+    );
 
-      picture=`
+  if (
 
-        <div class="emoji-img">
+    visibleProducts.length === 0
 
-          ${product.emoji}
+  ) {
 
-        </div>
+    container.innerHTML = `
 
-      `;
+      <div class="no-products">
 
-    }
-
-    card.innerHTML=`
-
-      ${picture}
-
-      <h3>${product.name}</h3>
-
-      <div class="price">
-
-        ${money(product.price*rate)}
+        No squishies found. 💕
 
       </div>
 
-      <button class="add-btn">
-
-        View & Add
-
-      </button>
-
     `;
-
-    card.onclick=()=>{
-
-      openProduct(product);
-
-    };
-
-    area.appendChild(card);
-
-  });
-
-  document
-
-    .getElementById("currencyMessage")
-
-    .textContent =
-
-      country
-
-      ? `Prices shown in ${currency} for ${country} 💕`
-
-      : "Choose your country to see prices.";
-
-  updateCartCount();
-
-}
-
-/* PRODUCT */
-
-async function openProduct(product){
-
-  if(!country){
-
-    openCountry();
 
     return;
 
   }
 
-  selectedProduct=product;
+  visibleProducts.forEach(
 
-  selectedColor=null;
+    product => {
+
+      const card =
+
+        document.createElement(
+
+          "div"
+
+        );
+
+      card.className =
+
+        "product-card";
+
+      let imageHTML = "";
+
+      if (product.image) {
+
+        imageHTML = `
+
+          <img
+
+            class="product-image"
+
+            src="${product.image}"
+
+            alt="${product.name}"
+
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+
+          >
+
+          <div
+
+            class="product-emoji"
+
+            style="display:none;"
+
+          >
+
+            💕
+
+          </div>
+
+        `;
+
+      } else {
+
+        imageHTML = `
+
+          <div class="product-emoji">
+
+            ${product.emoji}
+
+          </div>
+
+        `;
+
+      }
+
+      card.innerHTML = `
+
+        ${imageHTML}
+
+        <div class="product-name">
+
+          ${product.name}
+
+        </div>
+
+        <div class="product-price">
+
+          ${formatPrice(
+
+            product.price * rate
+
+          )}
+
+        </div>
+
+        <button class="view-button">
+
+          View & Add
+
+        </button>
+
+      `;
+
+      card.addEventListener(
+
+        "click",
+
+        () =>
+
+          openProductModal(product)
+
+      );
+
+      container.appendChild(
+
+        card
+
+      );
+
+    }
+
+  );
+
+  if (selectedCountry) {
+
+    document
+
+      .getElementById(
+
+        "currencyMessage"
+
+      )
+
+      .textContent =
+
+        `Prices shown in ${selectedCurrency} for ${selectedCountry} 💕`;
+
+  } else {
+
+    document
+
+      .getElementById(
+
+        "currencyMessage"
+
+      )
+
+      .textContent =
+
+        "Choose your country to see prices.";
+
+  }
+
+  updateCartCount();
+
+}
+
+/* =========================================================
+
+   SEARCH
+
+========================================================= */
+
+document
+
+  .getElementById(
+
+    "searchInput"
+
+  )
+
+  .addEventListener(
+
+    "input",
+
+    () => {
+
+      renderProducts();
+
+    }
+
+  );
+
+/* =========================================================
+
+   SHOW ALL
+
+========================================================= */
+
+function showAllProducts() {
+
+  document
+
+    .getElementById(
+
+      "searchInput"
+
+    )
+
+    .value = "";
+
+  renderProducts();
+
+}
+
+/* =========================================================
+
+   OPEN PRODUCT
+
+========================================================= */
+
+async function openProductModal(
+
+  product
+
+) {
+
+  if (!selectedCountry) {
+
+    openCountryModal();
+
+    return;
+
+  }
+
+  selectedProduct =
+
+    product;
+
+  selectedColor =
+
+    null;
 
   const rate =
 
-    await getRate();
+    await getExchangeRate();
 
   document
 
-    .getElementById("modalName")
+    .getElementById(
 
-    .textContent=product.name;
+      "modalProductName"
+
+    )
+
+    .textContent =
+
+      product.name;
 
   document
 
-    .getElementById("modalPrice")
+    .getElementById(
 
-    .textContent=
+      "modalProductPrice"
 
-      money(product.price*rate);
+    )
+
+    .textContent =
+
+      formatPrice(
+
+        product.price * rate
+
+      );
 
   const image =
 
-    document.getElementById("modalImage");
+    document.getElementById(
 
-  if(product.image){
+      "modalProductImage"
 
-    image.src=product.image;
+    );
 
-  }else{
+  if (product.image) {
 
-    image.src=
+    image.src =
 
-      "data:image/svg+xml;charset=UTF-8,"+
+      product.image;
+
+    image.style.display =
+
+      "block";
+
+  } else {
+
+    image.style.display =
+
+      "block";
+
+    image.src =
+
+      "data:image/svg+xml;charset=UTF-8," +
 
       encodeURIComponent(`
 
-        <svg xmlns="http://www.w3.org/2000/svg"
+        <svg
 
-             width="400" height="300">
+          xmlns="http://www.w3.org/2000/svg"
 
-          <rect width="100%" height="100%"
+          width="400"
 
-                fill="#fff8fc"/>
+          height="300"
 
-          <text x="50%" y="55%"
+        >
 
-                text-anchor="middle"
+          <rect
 
-                font-size="110">
+            width="100%"
+
+            height="100%"
+
+            fill="#fff8fc"
+
+          />
+
+          <text
+
+            x="50%"
+
+            y="58%"
+
+            text-anchor="middle"
+
+            font-size="110"
+
+          >
 
             ${product.emoji}
 
@@ -1408,87 +2714,173 @@ async function openProduct(product){
 
   }
 
-  const colors =
+  const colorArea =
 
-    document.getElementById("colorArea");
+    document.getElementById(
 
-  colors.innerHTML="";
+      "modalColorArea"
 
-  if(product.colors.length){
+    );
 
-    colors.innerHTML=
+  colorArea.innerHTML = "";
 
-      "<p><b>Choose a color:</b></p>";
+  if (
 
-    product.colors.forEach(color=>{
+    product.colors &&
 
-      const button =
+    product.colors.length > 0
 
-        document.createElement("button");
+  ) {
 
-      button.className="color-btn";
+    colorArea.innerHTML = `
 
-      button.textContent=color;
+      <div class="color-title">
 
-      button.onclick=event=>{
+        Choose a color:
 
-        event.stopPropagation();
+      </div>
 
-        selectedColor=color;
+    `;
 
-        document
+    product.colors.forEach(
 
-          .querySelectorAll(".color-btn")
+      color => {
 
-          .forEach(x=>
+        const button =
 
-            x.classList.remove("selected")
+          document.createElement(
+
+            "button"
 
           );
 
-        button.classList.add("selected");
+        button.className =
 
-      };
+          "color-button";
 
-      colors.appendChild(button);
+        button.textContent =
 
-    });
+          color;
+
+        button.addEventListener(
+
+          "click",
+
+          event => {
+
+            event.stopPropagation();
+
+            selectedColor =
+
+              color;
+
+            document
+
+              .querySelectorAll(
+
+                ".color-button"
+
+              )
+
+              .forEach(
+
+                item =>
+
+                  item.classList
+
+                    .remove(
+
+                      "selected"
+
+                    )
+
+              );
+
+            button.classList.add(
+
+              "selected"
+
+            );
+
+          }
+
+        );
+
+        colorArea.appendChild(
+
+          button
+
+        );
+
+      }
+
+    );
 
   }
 
   document
 
-    .getElementById("productModal")
+    .getElementById(
 
-    .style.display="flex";
+      "productModal"
+
+    )
+
+    .style.display =
+
+      "flex";
 
 }
 
-function closeProduct(){
+/* =========================================================
+
+   CLOSE PRODUCT
+
+========================================================= */
+
+function closeProductModal() {
 
   document
 
-    .getElementById("productModal")
+    .getElementById(
 
-    .style.display="none";
+      "productModal"
+
+    )
+
+    .style.display =
+
+      "none";
 
 }
 
-/* CART */
+/* =========================================================
 
-function addSelectedToCart(){
+   ADD PRODUCT
 
-  if(!selectedProduct) return;
+========================================================= */
 
-  if(
+function addSelectedProductToCart() {
 
-    selectedProduct.colors.length &&
+  if (!selectedProduct) {
+
+    return;
+
+  }
+
+  if (
+
+    selectedProduct.colors.length > 0 &&
 
     !selectedColor
 
-  ){
+  ) {
 
-    alert("Please choose a color first. 💕");
+    alert(
+
+      "Please choose a color first. 💕"
+
+    );
 
     return;
 
@@ -1496,27 +2888,39 @@ function addSelectedToCart(){
 
   const existing =
 
-    cart.find(item=>
+    cart.find(
 
-      item.productId===selectedProduct.id &&
+      item =>
 
-      item.color===selectedColor
+        item.productId ===
+
+          selectedProduct.id &&
+
+        item.color ===
+
+          selectedColor
 
     );
 
-  if(existing){
+  if (existing) {
 
-    existing.quantity++;
+    existing.quantity += 1;
 
-  }else{
+  } else {
 
     cart.push({
 
-      productId:selectedProduct.id,
+      productId:
 
-      color:selectedColor,
+        selectedProduct.id,
 
-      quantity:1
+      color:
+
+        selectedColor,
+
+      quantity:
+
+        1
 
     });
 
@@ -1526,17 +2930,27 @@ function addSelectedToCart(){
 
   updateCartCount();
 
-  closeProduct();
+  closeProductModal();
 
-  alert("Added to your cart! 🛒💕");
+  alert(
+
+    "Added to your cart! 🛒💕"
+
+  );
 
 }
 
-function saveCart(){
+/* =========================================================
+
+   SAVE CART
+
+========================================================= */
+
+function saveCart() {
 
   localStorage.setItem(
 
-    "cart",
+    "squishyCart",
 
     JSON.stringify(cart)
 
@@ -1544,15 +2958,29 @@ function saveCart(){
 
 }
 
-function updateCartCount(){
+/* =========================================================
+
+   CART COUNT
+
+========================================================= */
+
+function updateCartCount() {
 
   const count =
 
     cart.reduce(
 
-      (total,item)=>
+      (
 
-        total+item.quantity,
+        total,
+
+        item
+
+      ) =>
+
+        total +
+
+        item.quantity,
 
       0
 
@@ -1560,51 +2988,107 @@ function updateCartCount(){
 
   document
 
-    .getElementById("cartCount")
+    .getElementById(
 
-    .textContent=count;
+      "cartCount"
+
+    )
+
+    .textContent =
+
+      count;
 
 }
 
-async function openCart(){
+/* =========================================================
+
+   OPEN CART
+
+========================================================= */
+
+async function openCartModal() {
 
   await renderCart();
 
   document
 
-    .getElementById("cartModal")
+    .getElementById(
 
-    .style.display="flex";
+      "cartModal"
+
+    )
+
+    .style.display =
+
+      "flex";
 
 }
 
-function closeCart(){
+/* =========================================================
+
+   CLOSE CART
+
+========================================================= */
+
+function closeCartModal() {
 
   document
 
-    .getElementById("cartModal")
+    .getElementById(
 
-    .style.display="none";
+      "cartModal"
+
+    )
+
+    .style.display =
+
+      "none";
 
 }
 
-async function renderCart(){
+/* =========================================================
 
-  const area =
+   RENDER CART
 
-    document.getElementById("cartItems");
+========================================================= */
 
-  if(!cart.length){
+async function renderCart() {
 
-    area.innerHTML=
+  const container =
 
-      "<p>Your cart is empty 💕</p>";
+    document.getElementById(
+
+      "cartItems"
+
+    );
+
+  if (
+
+    cart.length === 0
+
+  ) {
+
+    container.innerHTML = `
+
+      <div class="empty-cart">
+
+        Your cart is empty 💕
+
+      </div>
+
+    `;
 
     document
 
-      .getElementById("cartTotal")
+      .getElementById(
 
-      .textContent="";
+        "cartTotal"
+
+      )
+
+      .textContent =
+
+        "";
 
     return;
 
@@ -1612,195 +3096,421 @@ async function renderCart(){
 
   const rate =
 
-    await getRate();
+    await getExchangeRate();
 
-  area.innerHTML="";
+  container.innerHTML =
 
-  let total=0;
+    "";
 
-  cart.forEach((item,index)=>{
+  let total = 0;
 
-    const product =
+  cart.forEach(
 
-      products.find(
+    (
 
-        p=>p.id===item.productId
+      item,
 
-      );
+      index
 
-    if(!product) return;
+    ) => {
 
-    const subtotal =
+      const product =
 
-      product.price*
+        products.find(
 
-      rate*
+          p =>
 
-      item.quantity;
+            p.id ===
 
-    total+=subtotal;
+            item.productId
 
-    const row =
+        );
 
-      document.createElement("div");
+      if (!product) {
 
-    row.className="cart-item";
-
-    row.innerHTML=`
-
-      <b>${product.name}</b>
-
-      ${
-
-        item.color
-
-        ? `<br>Color: ${item.color}`
-
-        : ""
+        return;
 
       }
 
-      <br>
+      const subtotal =
 
-      ${money(product.price*rate)} each
+        product.price *
 
-      <div class="quantity">
+        rate *
 
-        <button onclick="changeQty(${index},-1)">
+        item.quantity;
 
-          −
+      total +=
 
-        </button>
+        subtotal;
 
-        <span>${item.quantity}</span>
+      const row =
 
-        <button onclick="changeQty(${index},1)">
+        document.createElement(
 
-          +
+          "div"
 
-        </button>
+        );
 
-        <button
+      row.className =
 
-          class="remove"
+        "cart-item";
 
-          onclick="removeItem(${index})">
+      row.innerHTML = `
 
-          Remove
+        <div class="cart-item-name">
 
-        </button>
+          ${product.name}
 
-      </div>
+        </div>
 
-    `;
+        <div class="cart-item-info">
 
-    area.appendChild(row);
+          ${
 
-  });
+            item.color
+
+              ? "Color: " +
+
+                item.color +
+
+                "<br>"
+
+              : ""
+
+          }
+
+          ${formatPrice(
+
+            product.price *
+
+            rate
+
+          )}
+
+          each
+
+        </div>
+
+        <div class="quantity-row">
+
+          <button
+
+            class="quantity-button"
+
+            onclick="changeQuantity(
+
+              ${index},
+
+              -1
+
+            )"
+
+          >
+
+            −
+
+          </button>
+
+          <span
+
+            class="quantity-number"
+
+          >
+
+            ${item.quantity}
+
+          </span>
+
+          <button
+
+            class="quantity-button"
+
+            onclick="changeQuantity(
+
+              ${index},
+
+              1
+
+            )"
+
+          >
+
+            +
+
+          </button>
+
+          <button
+
+            class="remove-button"
+
+            onclick="removeCartItem(
+
+              ${index}
+
+            )"
+
+          >
+
+            Remove
+
+          </button>
+
+        </div>
+
+      `;
+
+      container.appendChild(
+
+        row
+
+      );
+
+    }
+
+  );
 
   document
 
-    .getElementById("cartTotal")
+    .getElementById(
 
-    .textContent=
+      "cartTotal"
 
-      "Total: "+money(total);
+    )
 
-}
+    .textContent =
 
-async function changeQty(index,change){
+      "Total: " +
 
-  cart[index].quantity+=change;
-
-  if(cart[index].quantity<=0){
-
-    cart.splice(index,1);
-
-  }
-
-  saveCart();
-
-  updateCartCount();
-
-  renderCart();
+      formatPrice(total);
 
 }
 
-function removeItem(index){
+/* =========================================================
 
-  cart.splice(index,1);
+   CHANGE QUANTITY
 
-  saveCart();
+========================================================= */
 
-  updateCartCount();
+async function changeQuantity(
 
-  renderCart();
+  index,
 
-}
+  amount
 
-function clearCart(){
+) {
 
-  if(!confirm("Clear your cart?")) return;
-
-  cart=[];
-
-  saveCart();
-
-  updateCartCount();
-
-  renderCart();
-
-}
-
-/* ADDRESS */
-
-function startOrder(){
-
-  if(!cart.length){
-
-    alert("Your cart is empty.");
+  if (!cart[index]) {
 
     return;
 
   }
 
-  closeCart();
+  cart[index].quantity +=
 
-  document
+    amount;
 
-    .getElementById("addressModal")
+  if (
 
-    .style.display="flex";
+    cart[index].quantity <= 0
+
+  ) {
+
+    cart.splice(
+
+      index,
+
+      1
+
+    );
+
+  }
+
+  saveCart();
+
+  updateCartCount();
+
+  await renderCart();
 
 }
 
-function closeAddress(){
+/* =========================================================
 
-  document
+   REMOVE CART ITEM
 
-    .getElementById("addressModal")
+========================================================= */
 
-    .style.display="none";
+async function removeCartItem(
+
+  index
+
+) {
+
+  cart.splice(
+
+    index,
+
+    1
+
+  );
+
+  saveCart();
+
+  updateCartCount();
+
+  await renderCart();
 
 }
 
-/* STRIPE */
+/* =========================================================
 
-async function goToPayment(){
+   CLEAR CART
+
+========================================================= */
+
+async function clearCart() {
+
+  if (
+
+    cart.length === 0
+
+  ) {
+
+    return;
+
+  }
+
+  const confirmed =
+
+    confirm(
+
+      "Are you sure you want to clear your cart?"
+
+    );
+
+  if (!confirmed) {
+
+    return;
+
+  }
+
+  cart = [];
+
+  saveCart();
+
+  updateCartCount();
+
+  await renderCart();
+
+}
+
+/* =========================================================
+
+   START CHECKOUT
+
+========================================================= */
+
+function startCheckout() {
+
+  if (
+
+    cart.length === 0
+
+  ) {
+
+    alert(
+
+      "Your cart is empty. 💕"
+
+    );
+
+    return;
+
+  }
+
+  closeCartModal();
+
+  document
+
+    .getElementById(
+
+      "addressModal"
+
+    )
+
+    .style.display =
+
+      "flex";
+
+}
+
+/* =========================================================
+
+   CLOSE ADDRESS
+
+========================================================= */
+
+function closeAddressModal() {
+
+  document
+
+    .getElementById(
+
+      "addressModal"
+
+    )
+
+    .style.display =
+
+      "none";
+
+}
+
+/* =========================================================
+
+   CONTINUE TO STRIPE
+
+========================================================= */
+
+async function continueToPayment() {
 
   const address =
 
     document
 
-      .getElementById("address")
+      .getElementById(
+
+        "deliveryAddress"
+
+      )
 
       .value
 
       .trim();
 
-  if(!address){
+  if (!address) {
 
-    alert("Please enter your delivery address.");
+    alert(
+
+      "Please enter your delivery address."
+
+    );
+
+    return;
+
+  }
+
+  if (
+
+    cart.length === 0
+
+  ) {
+
+    alert(
+
+      "Your cart is empty."
+
+    );
 
     return;
 
@@ -1808,15 +3518,37 @@ async function goToPayment(){
 
   const button =
 
-    document.getElementById("paymentButton");
+    document.getElementById(
 
-  button.disabled=true;
+      "paymentButton"
 
-  button.textContent=
+    );
+
+  button.disabled =
+
+    true;
+
+  button.textContent =
 
     "Opening secure payment... 💳";
 
-  try{
+  try {
+
+    /*
+
+      IMPORTANT:
+
+      The Stripe secret key is NOT placed
+
+      anywhere in this website.
+
+      This request goes to the secure
+
+      Vercel serverless endpoint:
+
+      /api/create-checkout-session
+
+    */
 
     const response =
 
@@ -1826,9 +3558,11 @@ async function goToPayment(){
 
         {
 
-          method:"POST",
+          method:
 
-          headers:{
+            "POST",
+
+          headers: {
 
             "Content-Type":
 
@@ -1836,15 +3570,23 @@ async function goToPayment(){
 
           },
 
-          body:JSON.stringify({
+          body:
 
-            country:country,
+            JSON.stringify({
 
-            address:address,
+              country:
 
-            cart:cart
+                selectedCountry,
 
-          })
+              address:
+
+                address,
+
+              cart:
+
+                cart
+
+            })
 
         }
 
@@ -1854,7 +3596,11 @@ async function goToPayment(){
 
       await response.json();
 
-    if(!response.ok){
+    if (
+
+      !response.ok
+
+    ) {
 
       throw new Error(
 
@@ -1866,9 +3612,35 @@ async function goToPayment(){
 
     }
 
-    window.location.href=data.url;
+    if (!data.url) {
 
-  }catch(error){
+      throw new Error(
+
+        "Stripe did not return a checkout link."
+
+      );
+
+    }
+
+    /*
+
+      Send customer to Stripe's
+
+      secure hosted checkout page.
+
+    */
+
+    window.location.href =
+
+      data.url;
+
+  } catch (error) {
+
+    console.error(
+
+      error
+
+    );
 
     alert(
 
@@ -1878,9 +3650,11 @@ async function goToPayment(){
 
     );
 
-    button.disabled=false;
+    button.disabled =
 
-    button.textContent=
+      false;
+
+    button.textContent =
 
       "Continue to Payment 💳";
 
@@ -1888,19 +3662,167 @@ async function goToPayment(){
 
 }
 
-/* START WEBSITE */
+/* =========================================================
+
+   CLOSE MODALS WHEN CLICKING OUTSIDE
+
+========================================================= */
+
+document
+
+  .getElementById(
+
+    "countryModal"
+
+  )
+
+  .addEventListener(
+
+    "click",
+
+    event => {
+
+      if (
+
+        event.target ===
+
+        event.currentTarget
+
+      ) {
+
+        closeCountryModal();
+
+      }
+
+    }
+
+  );
+
+document
+
+  .getElementById(
+
+    "productModal"
+
+  )
+
+  .addEventListener(
+
+    "click",
+
+    event => {
+
+      if (
+
+        event.target ===
+
+        event.currentTarget
+
+      ) {
+
+        closeProductModal();
+
+      }
+
+    }
+
+  );
+
+document
+
+  .getElementById(
+
+    "cartModal"
+
+  )
+
+  .addEventListener(
+
+    "click",
+
+    event => {
+
+      if (
+
+        event.target ===
+
+        event.currentTarget
+
+      ) {
+
+        closeCartModal();
+
+      }
+
+    }
+
+  );
+
+document
+
+  .getElementById(
+
+    "addressModal"
+
+  )
+
+  .addEventListener(
+
+    "click",
+
+    event => {
+
+      if (
+
+        event.target ===
+
+        event.currentTarget
+
+      ) {
+
+        closeAddressModal();
+
+      }
+
+    }
+
+  );
+
+/* =========================================================
+
+   INITIALIZE WEBSITE
+
+========================================================= */
 
 updateCartCount();
 
 renderProducts();
 
-if(!country){
+/*
 
-  setTimeout(()=>{
+  If the customer has never selected
 
-    openCountry();
+  a country, show the country screen.
 
-  },500);
+*/
+
+if (
+
+  !selectedCountry
+
+) {
+
+  setTimeout(
+
+    () => {
+
+      openCountryModal();
+
+    },
+
+    600
+
+  );
 
 }
 
