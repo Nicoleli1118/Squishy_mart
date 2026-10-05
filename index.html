@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 
@@ -141,6 +141,8 @@ button {
   text-align: center;
 
   box-shadow: 0 3px 10px rgba(255, 100, 160, 0.15);
+
+  cursor: pointer;
 
 }
 
@@ -522,7 +524,11 @@ button {
 
     <h1>Choose Your Country 🌎</h1>
 
-    <p>Prices will automatically use your country's currency.</p>
+    <p>
+
+      Prices will automatically use your country's currency.
+
+    </p>
 
     <button class="country-option" data-country="USA">
 
@@ -658,7 +664,11 @@ button {
 
     <h2>Delivery Address 📦</h2>
 
-    <p>Please enter the address where you want your squishies delivered.</p>
+    <p>
+
+      Please enter the address where you want your squishies delivered.
+
+    </p>
 
     <textarea
 
@@ -684,42 +694,14 @@ button {
 
 <script>
 
+/* =========================
+
+   ALL 20 PRODUCTS
+
+========================= */
+
 const products = [
-{
 
-    id: "coconut-oil-ball",
-
-    name: "Coconut Oil Ball",
-
-    price: 5,
-
-    colors: ["Pink", "Yellow", "Blue", "Green"]
-
-  },
-
-  {
-
-    id: "hamster-taba",
-
-    name: "Hamster Taba",
-
-    price: 6,
-
-    colors: ["Yellow", "White"]
-
-  },
-
-  {
-
-    id: "souffle-taba",
-
-    name: "Soufflé Taba",
-
-    price: 7
-
-  }
-
-];
   {
 
     id: "slow-rise-butter",
@@ -936,21 +918,87 @@ const products = [
 
     colors: ["Pink", "Blue", "Orange", "Purple"]
 
+  },
+
+  /* NEW PRODUCT */
+
+  {
+
+    id: "coconut-oil-ball",
+
+    name: "Coconut Oil Ball",
+
+    price: 5,
+
+    emoji: "🥥",
+
+    colors: ["Pink", "Yellow", "Blue", "Green"]
+
+  },
+
+  {
+
+    id: "hamster-taba",
+
+    name: "Hamster Taba",
+
+    price: 6,
+
+    emoji: "🐹",
+
+    colors: ["Yellow", "White"]
+
+  },
+
+  {
+
+    id: "souffle-taba",
+
+    name: "Soufflé Taba",
+
+    price: 7,
+
+    emoji: "🍰"
+
   }
 
 ];
 
-let selectedCountry = localStorage.getItem("country") || "";
+/* =========================
 
-let selectedCurrency = localStorage.getItem("currency") || "";
+   SETTINGS
 
-let currencySymbol = localStorage.getItem("currencySymbol") || "";
+========================= */
 
-let cart = JSON.parse(localStorage.getItem("squishyCart") || "[]");
+let selectedCountry =
+
+  localStorage.getItem("country") || "";
+
+let selectedCurrency =
+
+  localStorage.getItem("currency") || "";
+
+let currencySymbol =
+
+  localStorage.getItem("currencySymbol") || "";
+
+let cart =
+
+  JSON.parse(
+
+    localStorage.getItem("squishyCart") || "[]"
+
+  );
 
 let selectedProduct = null;
 
 let selectedColor = null;
+
+/* =========================
+
+   CURRENCY
+
+========================= */
 
 const rates = {
 
@@ -972,15 +1020,47 @@ const currencySymbols = {
 
   THB: "฿",
 
-  GBP: "£"
+  GBP: "£",
+
+  JPY: "¥",
+
+  KRW: "₩",
+
+  CNY: "¥",
+
+  MYR: "RM",
+
+  AUD: "A$",
+
+  CAD: "C$",
+
+  EUR: "€"
 
 };
 
+/* =========================
+
+   SAVE CART
+
+========================= */
+
 function saveCart() {
 
-  localStorage.setItem("squishyCart", JSON.stringify(cart));
+  localStorage.setItem(
+
+    "squishyCart",
+
+    JSON.stringify(cart)
+
+  );
 
 }
+
+/* =========================
+
+   GET PRICE
+
+========================= */
 
 function getPrice(product) {
 
@@ -990,43 +1070,65 @@ function getPrice(product) {
 
   }
 
-  const rate = rates[selectedCurrency] || 1;
+  const rate =
+
+    rates[selectedCurrency] || 1;
 
   return product.price * rate;
 
 }
 
+/* =========================
+
+   FORMAT PRICE
+
+========================= */
+
 function formatPrice(amount) {
 
-  if (selectedCurrency === "THB") {
+  if (
 
-    return currencySymbol + Math.round(amount);
+    selectedCurrency === "THB" ||
+
+    selectedCurrency === "JPY" ||
+
+    selectedCurrency === "KRW" ||
+
+    selectedCurrency === "VND"
+
+  ) {
+
+    return currencySymbol +
+
+      Math.round(amount);
 
   }
 
-  if (selectedCurrency === "JPY" ||
+  return currencySymbol +
 
-      selectedCurrency === "KRW" ||
-
-      selectedCurrency === "VND") {
-
-    return currencySymbol + Math.round(amount);
-
-  }
-
-  return currencySymbol + amount.toFixed(2);
+    amount.toFixed(2);
 
 }
 
+/* =========================
+
+   SHOW PRODUCTS
+
+========================= */
+
 function renderProducts() {
 
-  const container = document.getElementById("products");
+  const container =
+
+    document.getElementById("products");
 
   container.innerHTML = "";
 
   products.forEach(product => {
 
-    const card = document.createElement("div");
+    const card =
+
+      document.createElement("div");
 
     card.className = "product";
 
@@ -1042,11 +1144,27 @@ function renderProducts() {
 
           alt="${product.name}"
 
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          onerror="
+
+            this.style.display='none';
+
+            this.nextElementSibling.style.display='flex';
+
+          "
 
         >
 
-        <div class="emoji-image" style="display:none;">🧸</div>
+        <div
+
+          class="emoji-image"
+
+          style="display:none;"
+
+        >
+
+          🧸
+
+        </div>
 
       `;
 
@@ -1068,19 +1186,33 @@ function renderProducts() {
 
       ${visual}
 
-      <h3>${product.name}</h3>
+      <h3>
 
-      <div class="price">${formatPrice(getPrice(product))}</div>
+        ${product.name}
 
-      <button>View 💗</button>
+      </h3>
+
+      <div class="price">
+
+        ${formatPrice(getPrice(product))}
+
+      </div>
+
+      <button>
+
+        View 💗
+
+      </button>
 
     `;
 
-    card.addEventListener("click", () => {
+    card.addEventListener(
 
-      openProduct(product);
+      "click",
 
-    });
+      () => openProduct(product)
+
+    );
 
     container.appendChild(card);
 
@@ -1088,19 +1220,39 @@ function renderProducts() {
 
 }
 
+/* =========================
+
+   OPEN PRODUCT
+
+========================= */
+
 function openProduct(product) {
 
   selectedProduct = product;
 
   selectedColor = null;
 
-  document.getElementById("productName").textContent = product.name;
+  document.getElementById(
 
-  document.getElementById("productPrice").textContent =
+    "productName"
+
+  ).textContent = product.name;
+
+  document.getElementById(
+
+    "productPrice"
+
+  ).textContent =
 
     formatPrice(getPrice(product));
 
-  const imageBox = document.getElementById("productImage");
+  const imageBox =
+
+    document.getElementById(
+
+      "productImage"
+
+    );
 
   if (product.image) {
 
@@ -1110,7 +1262,19 @@ function openProduct(product) {
 
         src="${product.image}"
 
-        style="width:100%;height:220px;object-fit:contain;border-radius:15px;"
+        alt="${product.name}"
+
+        style="
+
+          width:100%;
+
+          height:220px;
+
+          object-fit:contain;
+
+          border-radius:15px;
+
+        "
 
       >
 
@@ -1120,7 +1284,13 @@ function openProduct(product) {
 
     imageBox.innerHTML = `
 
-      <div class="emoji-image" style="height:220px;">
+      <div
+
+        class="emoji-image"
+
+        style="height:220px;"
+
+      >
 
         ${product.emoji}
 
@@ -1130,17 +1300,35 @@ function openProduct(product) {
 
   }
 
-  const colorArea = document.getElementById("colorArea");
+  const colorArea =
 
-  if (product.colors && product.colors.length) {
+    document.getElementById(
+
+      "colorArea"
+
+    );
+
+  if (
+
+    product.colors &&
+
+    product.colors.length
+
+  ) {
 
     colorArea.innerHTML = `
 
-      <p><b>Choose a color:</b></p>
+      <p>
+
+        <b>Choose a color:</b>
+
+      </p>
 
       <div class="color-buttons">
 
-        ${product.colors.map(color => `
+        ${product.colors.map(
+
+          color => `
 
           <button
 
@@ -1154,27 +1342,61 @@ function openProduct(product) {
 
           </button>
 
-        `).join("")}
+        `
+
+        ).join("")}
 
       </div>
 
     `;
 
-    colorArea.querySelectorAll(".color-btn").forEach(button => {
+    colorArea
 
-      button.addEventListener("click", () => {
+      .querySelectorAll(".color-btn")
 
-        selectedColor = button.dataset.color;
+      .forEach(button => {
 
-        colorArea.querySelectorAll(".color-btn")
+        button.addEventListener(
 
-          .forEach(b => b.classList.remove("selected"));
+          "click",
 
-        button.classList.add("selected");
+          () => {
+
+            selectedColor =
+
+              button.dataset.color;
+
+            colorArea
+
+              .querySelectorAll(
+
+                ".color-btn"
+
+              )
+
+              .forEach(
+
+                b =>
+
+                  b.classList.remove(
+
+                    "selected"
+
+                  )
+
+              );
+
+            button.classList.add(
+
+              "selected"
+
+            );
+
+          }
+
+        );
 
       });
-
-    });
 
   } else {
 
@@ -1182,9 +1404,19 @@ function openProduct(product) {
 
   }
 
-  document.getElementById("productOverlay").style.display = "flex";
+  document.getElementById(
+
+    "productOverlay"
+
+  ).style.display = "flex";
 
 }
+
+/* =========================
+
+   ADD TO CART
+
+========================= */
 
 function addSelectedToCart() {
 
@@ -1200,19 +1432,29 @@ function addSelectedToCart() {
 
   ) {
 
-    alert("Please choose a color first 💗");
+    alert(
+
+      "Please choose a color first 💗"
+
+    );
 
     return;
 
   }
 
-  const existing = cart.find(item =>
+  const existing =
 
-    item.productId === selectedProduct.id &&
+    cart.find(item =>
 
-    item.color === (selectedColor || "")
+      item.productId ===
 
-  );
+        selectedProduct.id &&
+
+      item.color ===
+
+        (selectedColor || "")
+
+    );
 
   if (existing) {
 
@@ -1222,9 +1464,13 @@ function addSelectedToCart() {
 
     cart.push({
 
-      productId: selectedProduct.id,
+      productId:
 
-      color: selectedColor || "",
+        selectedProduct.id,
+
+      color:
+
+        selectedColor || "",
 
       quantity: 1
 
@@ -1236,35 +1482,71 @@ function addSelectedToCart() {
 
   updateCartButton();
 
-  document.getElementById("productOverlay").style.display = "none";
+  document.getElementById(
+
+    "productOverlay"
+
+  ).style.display = "none";
 
 }
 
+/* =========================
+
+   CART BUTTON
+
+========================= */
+
 function updateCartButton() {
 
-  const count = cart.reduce(
+  const count =
 
-    (total, item) => total + item.quantity,
+    cart.reduce(
 
-    0
+      (total, item) =>
 
-  );
+        total + item.quantity,
 
-  document.getElementById("cartBtn").textContent =
+      0
+
+    );
+
+  document.getElementById(
+
+    "cartBtn"
+
+  ).textContent =
 
     `Cart (${count})`;
 
 }
 
+/* =========================
+
+   SHOW CART
+
+========================= */
+
 function renderCart() {
 
-  const container = document.getElementById("cartItems");
+  const container =
+
+    document.getElementById(
+
+      "cartItems"
+
+    );
 
   if (!cart.length) {
 
-    container.innerHTML = "<p>Your cart is empty 💕</p>";
+    container.innerHTML =
 
-    document.getElementById("cartTotal").textContent =
+      "<p>Your cart is empty 💕</p>";
+
+    document.getElementById(
+
+      "cartTotal"
+
+    ).textContent =
 
       formatPrice(0);
 
@@ -1276,125 +1558,251 @@ function renderCart() {
 
   container.innerHTML = "";
 
-  cart.forEach((item, index) => {
+  cart.forEach(
 
-    const product = products.find(
+    (item, index) => {
 
-      p => p.id === item.productId
+      const product =
 
-    );
+        products.find(
 
-    if (!product) return;
+          p =>
 
-    const itemTotal =
+            p.id ===
 
-      getPrice(product) * item.quantity;
+            item.productId
 
-    total += itemTotal;
+        );
 
-    const div = document.createElement("div");
+      if (!product) return;
 
-    div.className = "cart-item";
+      const itemTotal =
 
-    div.innerHTML = `
+        getPrice(product) *
 
-      <b>${product.name}</b>
+        item.quantity;
 
-      ${item.color ? `<div>Color: ${item.color}</div>` : ""}
+      total += itemTotal;
 
-      <div>${formatPrice(getPrice(product))} each</div>
+      const div =
 
-      <div class="quantity">
+        document.createElement(
 
-        <button data-action="minus">−</button>
+          "div"
 
-        <span>${item.quantity}</span>
+        );
 
-        <button data-action="plus">+</button>
+      div.className =
 
-        <button data-action="remove"
+        "cart-item";
 
-          style="margin-left:auto;background:#ff79b7;color:white;">
+      div.innerHTML = `
 
-          Remove
+        <b>
 
-        </button>
+          ${product.name}
 
-      </div>
+        </b>
 
-    `;
+        ${
 
-    div.querySelector('[data-action="minus"]')
+          item.color
 
-      .addEventListener("click", () => {
+            ? `<div>
 
-        if (item.quantity > 1) {
+                Color: ${item.color}
 
-          item.quantity--;
+              </div>`
 
-        } else {
-
-          cart.splice(index, 1);
+            : ""
 
         }
 
-        saveCart();
+        <div>
 
-        updateCartButton();
+          ${formatPrice(
 
-        renderCart();
+            getPrice(product)
 
-      });
+          )} each
 
-    div.querySelector('[data-action="plus"]')
+        </div>
 
-      .addEventListener("click", () => {
+        <div class="quantity">
 
-        item.quantity++;
+          <button
 
-        saveCart();
+            data-action="minus"
 
-        updateCartButton();
+          >
 
-        renderCart();
+            −
 
-      });
+          </button>
 
-    div.querySelector('[data-action="remove"]')
+          <span>
 
-      .addEventListener("click", () => {
+            ${item.quantity}
 
-        cart.splice(index, 1);
+          </span>
 
-        saveCart();
+          <button
 
-        updateCartButton();
+            data-action="plus"
 
-        renderCart();
+          >
 
-      });
+            +
 
-    container.appendChild(div);
+          </button>
 
-  });
+          <button
 
-  document.getElementById("cartTotal").textContent =
+            data-action="remove"
 
-    "Total: " + formatPrice(total);
+            style="
+
+              margin-left:auto;
+
+              background:#ff79b7;
+
+              color:white;
+
+            "
+
+          >
+
+            Remove
+
+          </button>
+
+        </div>
+
+      `;
+
+      div.querySelector(
+
+        '[data-action="minus"]'
+
+      ).addEventListener(
+
+        "click",
+
+        () => {
+
+          if (item.quantity > 1) {
+
+            item.quantity--;
+
+          } else {
+
+            cart.splice(index, 1);
+
+          }
+
+          saveCart();
+
+          updateCartButton();
+
+          renderCart();
+
+        }
+
+      );
+
+      div.querySelector(
+
+        '[data-action="plus"]'
+
+      ).addEventListener(
+
+        "click",
+
+        () => {
+
+          item.quantity++;
+
+          saveCart();
+
+          updateCartButton();
+
+          renderCart();
+
+        }
+
+      );
+
+      div.querySelector(
+
+        '[data-action="remove"]'
+
+      ).addEventListener(
+
+        "click",
+
+        () => {
+
+          cart.splice(index, 1);
+
+          saveCart();
+
+          updateCartButton();
+
+          renderCart();
+
+        }
+
+      );
+
+      container.appendChild(div);
+
+    }
+
+  );
+
+  document.getElementById(
+
+    "cartTotal"
+
+  ).textContent =
+
+    "Total: " +
+
+    formatPrice(total);
 
 }
 
+/* =========================
+
+   COUNTRY SCREEN
+
+========================= */
+
 function showCountryScreen() {
 
-  document.getElementById("countryScreen").style.display = "flex";
+  document.getElementById(
+
+    "countryScreen"
+
+  ).style.display = "flex";
 
 }
 
 function hideCountryScreen() {
 
-  document.getElementById("countryScreen").style.display = "none";
+  document.getElementById(
+
+    "countryScreen"
+
+  ).style.display = "none";
 
 }
+
+/* =========================
+
+   SET COUNTRY
+
+========================= */
 
 function setCountry(country) {
 
@@ -1434,55 +1842,111 @@ function setCountry(country) {
 
 }
 
-document.querySelectorAll(".country-option")
+/* =========================
+
+   COUNTRY BUTTONS
+
+========================= */
+
+document
+
+  .querySelectorAll(".country-option")
 
   .forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
 
-      const country = button.dataset.country;
+      "click",
 
-      document
+      () => {
 
-        .querySelectorAll(".country-option")
+        const country =
 
-        .forEach(b => b.style.outline = "none");
+          button.dataset.country;
 
-      button.style.outline = "3px solid #ff4f9a";
+        document
 
-      if (country === "Other") {
+          .querySelectorAll(
 
-        document.getElementById("otherCountry").style.display = "block";
+            ".country-option"
 
-      } else {
+          )
 
-        document.getElementById("otherCountry").style.display = "none";
+          .forEach(
 
-        setCountry(country);
+            b =>
+
+              b.style.outline =
+
+                "none"
+
+          );
+
+        button.style.outline =
+
+          "3px solid #ff4f9a";
+
+        if (country === "Other") {
+
+          selectedCountry = "Other";
+
+          document.getElementById(
+
+            "otherCountry"
+
+          ).style.display = "block";
+
+        } else {
+
+          document.getElementById(
+
+            "otherCountry"
+
+          ).style.display = "none";
+
+          setCountry(country);
+
+        }
 
       }
 
-    });
+    );
 
   });
 
-document.getElementById("continueCountry")
+/* =========================
 
-  .addEventListener("click", () => {
+   COUNTRY NEXT
 
-    const other = document
+========================= */
 
-      .getElementById("otherCountry")
+document.getElementById(
 
-      .value
+  "continueCountry"
 
-      .trim();
+).addEventListener(
+
+  "click",
+
+  () => {
+
+    const other =
+
+      document.getElementById(
+
+        "otherCountry"
+
+      ).value.trim();
 
     if (selectedCountry === "Other") {
 
       if (!other) {
 
-        document.getElementById("countryMessage").textContent =
+        document.getElementById(
+
+          "countryMessage"
+
+        ).textContent =
 
           "Please type your country.";
 
@@ -1490,15 +1954,9 @@ document.getElementById("continueCountry")
 
       }
 
-      /*
+      const lower =
 
-       * Common country currency choices.
-
-       * The Stripe backend also handles the final currency.
-
-       */
-
-      const lower = other.toLowerCase();
+        other.toLowerCase();
 
       if (lower.includes("japan")) {
 
@@ -1506,41 +1964,65 @@ document.getElementById("continueCountry")
 
         currencySymbol = "¥";
 
-      } else if (lower.includes("korea")) {
+      } else if (
+
+        lower.includes("korea")
+
+      ) {
 
         selectedCurrency = "KRW";
 
         currencySymbol = "₩";
 
-      } else if (lower.includes("china")) {
+      } else if (
+
+        lower.includes("china")
+
+      ) {
 
         selectedCurrency = "CNY";
 
         currencySymbol = "¥";
 
-      } else if (lower.includes("malaysia")) {
+      } else if (
+
+        lower.includes("malaysia")
+
+      ) {
 
         selectedCurrency = "MYR";
 
         currencySymbol = "RM";
 
-      } else if (lower.includes("australia")) {
+      } else if (
+
+        lower.includes("australia")
+
+      ) {
 
         selectedCurrency = "AUD";
 
         currencySymbol = "A$";
 
-      } else if (lower.includes("canada")) {
+      } else if (
+
+        lower.includes("canada")
+
+      ) {
 
         selectedCurrency = "CAD";
 
         currencySymbol = "C$";
 
-      } else if (lower.includes("europe") ||
+      } else if (
 
-                 lower.includes("france") ||
+        lower.includes("france") ||
 
-                 lower.includes("germany")) {
+        lower.includes("germany") ||
+
+        lower.includes("europe")
+
+      ) {
 
         selectedCurrency = "EUR";
 
@@ -1558,9 +2040,19 @@ document.getElementById("continueCountry")
 
     }
 
-    if (!selectedCountry || !selectedCurrency) {
+    if (
 
-      document.getElementById("countryMessage").textContent =
+      !selectedCountry ||
+
+      !selectedCurrency
+
+    ) {
+
+      document.getElementById(
+
+        "countryMessage"
+
+      ).textContent =
 
         "Please choose a country first.";
 
@@ -1568,13 +2060,35 @@ document.getElementById("continueCountry")
 
     }
 
-    localStorage.setItem("country", selectedCountry);
+    localStorage.setItem(
 
-    localStorage.setItem("currency", selectedCurrency);
+      "country",
 
-    localStorage.setItem("currencySymbol", currencySymbol);
+      selectedCountry
 
-    document.getElementById("currencyText").textContent =
+    );
+
+    localStorage.setItem(
+
+      "currency",
+
+      selectedCurrency
+
+    );
+
+    localStorage.setItem(
+
+      "currencySymbol",
+
+      currencySymbol
+
+    );
+
+    document.getElementById(
+
+      "currencyText"
+
+    ).textContent =
 
       `Prices shown in ${selectedCurrency}`;
 
@@ -1582,45 +2096,135 @@ document.getElementById("continueCountry")
 
     renderProducts();
 
-  });
+  }
 
-document.getElementById("countryBtn")
+);
 
-  .addEventListener("click", showCountryScreen);
+/* =========================
 
-document.getElementById("cartBtn")
+   HEADER BUTTONS
 
-  .addEventListener("click", () => {
+========================= */
+
+document.getElementById(
+
+  "countryBtn"
+
+).addEventListener(
+
+  "click",
+
+  showCountryScreen
+
+);
+
+document.getElementById(
+
+  "cartBtn"
+
+).addEventListener(
+
+  "click",
+
+  () => {
 
     renderCart();
 
-    document.getElementById("cartOverlay").style.display = "flex";
+    document.getElementById(
 
-  });
+      "cartOverlay"
 
-document.getElementById("closeProduct")
+    ).style.display = "flex";
 
-  .addEventListener("click", () => {
+  }
 
-    document.getElementById("productOverlay").style.display = "none";
+);
 
-  });
+/* =========================
 
-document.getElementById("closeCart")
+   CLOSE PRODUCT
 
-  .addEventListener("click", () => {
+========================= */
 
-    document.getElementById("cartOverlay").style.display = "none";
+document.getElementById(
 
-  });
+  "closeProduct"
 
-document.getElementById("addToCart")
+).addEventListener(
 
-  .addEventListener("click", addSelectedToCart);
+  "click",
 
-document.getElementById("clearCart")
+  () => {
 
-  .addEventListener("click", () => {
+    document.getElementById(
+
+      "productOverlay"
+
+    ).style.display = "none";
+
+  }
+
+);
+
+/* =========================
+
+   CLOSE CART
+
+========================= */
+
+document.getElementById(
+
+  "closeCart"
+
+).addEventListener(
+
+  "click",
+
+  () => {
+
+    document.getElementById(
+
+      "cartOverlay"
+
+    ).style.display = "none";
+
+  }
+
+);
+
+/* =========================
+
+   ADD TO CART BUTTON
+
+========================= */
+
+document.getElementById(
+
+  "addToCart"
+
+).addEventListener(
+
+  "click",
+
+  addSelectedToCart
+
+);
+
+/* =========================
+
+   CLEAR CART
+
+========================= */
+
+document.getElementById(
+
+  "clearCart"
+
+).addEventListener(
+
+  "click",
+
+  () => {
 
     cart = [];
 
@@ -1630,49 +2234,111 @@ document.getElementById("clearCart")
 
     renderCart();
 
-  });
+  }
 
-document.getElementById("checkoutBtn")
+);
 
-  .addEventListener("click", () => {
+/* =========================
+
+   CHECKOUT
+
+========================= */
+
+document.getElementById(
+
+  "checkoutBtn"
+
+).addEventListener(
+
+  "click",
+
+  () => {
 
     if (!cart.length) {
 
-      alert("Your cart is empty 💕");
+      alert(
+
+        "Your cart is empty 💕"
+
+      );
 
       return;
 
     }
 
-    document.getElementById("cartOverlay").style.display = "none";
+    document.getElementById(
 
-    document.getElementById("addressOverlay").style.display = "flex";
+      "cartOverlay"
 
-  });
+    ).style.display = "none";
 
-document.getElementById("closeAddress")
+    document.getElementById(
 
-  .addEventListener("click", () => {
+      "addressOverlay"
 
-    document.getElementById("addressOverlay").style.display = "none";
+    ).style.display = "flex";
 
-  });
+  }
 
-document.getElementById("continuePayment")
+);
 
-  .addEventListener("click", async () => {
+/* =========================
 
-    const address = document
+   CLOSE ADDRESS
 
-      .getElementById("addressInput")
+========================= */
 
-      .value
+document.getElementById(
 
-      .trim();
+  "closeAddress"
+
+).addEventListener(
+
+  "click",
+
+  () => {
+
+    document.getElementById(
+
+      "addressOverlay"
+
+    ).style.display = "none";
+
+  }
+
+);
+
+/* =========================
+
+   PAYMENT
+
+========================= */
+
+document.getElementById(
+
+  "continuePayment"
+
+).addEventListener(
+
+  "click",
+
+  async () => {
+
+    const address =
+
+      document.getElementById(
+
+        "addressInput"
+
+      ).value.trim();
 
     const message =
 
-      document.getElementById("addressMessage");
+      document.getElementById(
+
+        "addressMessage"
+
+      );
 
     if (!address) {
 
@@ -1686,51 +2352,71 @@ document.getElementById("continuePayment")
 
     const button =
 
-      document.getElementById("continuePayment");
+      document.getElementById(
+
+        "continuePayment"
+
+      );
 
     button.disabled = true;
 
-    button.textContent = "Opening secure payment... 💳";
+    button.textContent =
+
+      "Opening secure payment... 💳";
 
     message.textContent = "";
 
     try {
 
-      const response = await fetch(
+      const response =
 
-        "https://squishymart.vercel.app/api/create-checkout-session",
+        await fetch(
 
-        {
+          "https://squishymart.vercel.app/api/create-checkout-session",
 
-          method: "POST",
+          {
 
-          headers: {
+            method: "POST",
 
-            "Content-Type": "application/json"
+            headers: {
 
-          },
+              "Content-Type":
 
-          body: JSON.stringify({
+                "application/json"
 
-            country: selectedCountry,
+            },
 
-            address: address,
+            body: JSON.stringify({
 
-            cart: cart
+              country:
 
-          })
+                selectedCountry,
 
-        }
+              address:
 
-      );
+                address,
 
-      const data = await response.json();
+              cart:
+
+                cart
+
+            })
+
+          }
+
+        );
+
+      const data =
+
+        await response.json();
 
       if (!response.ok) {
 
         throw new Error(
 
-          data.error || "Payment setup failed."
+          data.error ||
+
+          "Payment setup failed."
 
         );
 
@@ -1746,7 +2432,9 @@ document.getElementById("continuePayment")
 
       }
 
-      window.location.href = data.url;
+      window.location.href =
+
+        data.url;
 
     } catch (error) {
 
@@ -1760,17 +2448,41 @@ document.getElementById("continuePayment")
 
       button.disabled = false;
 
-      button.textContent = "Continue to Payment 💳";
+      button.textContent =
+
+        "Continue to Payment 💳";
 
     }
 
-  });
+  }
 
-if (selectedCountry && selectedCurrency) {
+);
 
-  document.getElementById("countryScreen").style.display = "none";
+/* =========================
 
-  document.getElementById("currencyText").textContent =
+   START WEBSITE
+
+========================= */
+
+if (
+
+  selectedCountry &&
+
+  selectedCurrency
+
+) {
+
+  document.getElementById(
+
+    "countryScreen"
+
+  ).style.display = "none";
+
+  document.getElementById(
+
+    "currencyText"
+
+  ).textContent =
 
     `Prices shown in ${selectedCurrency}`;
 
@@ -1788,4 +2500,4 @@ updateCartButton();
 
 </body>
 
-</html> 
+</html>
