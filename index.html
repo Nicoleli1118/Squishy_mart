@@ -2707,60 +2707,92 @@ document
       message +=
 
         "%0D%0A";
+document
 
-      message +=
+  .getElementById("continueOrderBtn")
 
-        encodeURIComponent(
+  .addEventListener(
 
-          `Country: ${selectedCountry}`
+    "click",
 
-        );
+    async () => {
 
-      message +=
+      const address = addressInput.value.trim();
 
-        "%0D%0A";
+      if (!address) {
 
-      message +=
+        addressError.textContent = "Please enter your address.";
 
-        encodeURIComponent(
+        return;
 
-          `Currency: ${currencyCode}`
+      }
 
-        );
+      const button = document.getElementById("continueOrderBtn");
 
-      message +=
+      button.disabled = true;
 
-        "%0D%0A";
+      button.textContent = "STARTING PAYMENT...";
 
-      message +=
+      addressError.textContent = "";
 
-        encodeURIComponent(
+      try {
 
-          `Delivery Address: ${address}`
+        const response = await fetch("/api/create-checkout-session", {
 
-        );
+          method: "POST",
 
-      message +=
+          headers: {
 
-        "%0D%0A%0D%0A";
+            "Content-Type": "application/json"
 
-      message +=
+          },
 
-        "Thank you! 🩷";
+          body: JSON.stringify({
 
-      window.location.href =
+            country: selectedCountry,
 
-        `mailto:${SHOP_EMAIL}` +
+            address,
 
-        `?subject=Squishy%20Mart%20Order` +
+            cart
 
-        `&body=${message}`;
+          })
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.url) {
+
+          throw new Error(
+
+            data.error || "Payment could not be started."
+
+          );
+
+        }
+
+        window.location.href = data.url;
+
+      } catch (error) {
+
+        console.error(error);
+
+        addressError.textContent =
+
+          error.message ||
+
+          "Payment could not be started. Please try again.";
+
+        button.disabled = false;
+
+        button.textContent = "CONTINUE →";
+
+      }
 
     }
 
   );
-
-/* CANCEL ADDRESS */
+ /* CANCEL ADDRESS */
 
 document
 
