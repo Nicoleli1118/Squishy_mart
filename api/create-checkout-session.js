@@ -1,50 +1,44 @@
 const PRODUCTS = {
 
-  1: { name: "Slow Rise Butter", price: 6 },
+  "slow-rise-butter": { name: "Slow Rise Butter", price: 6 },
 
-  2: { name: "Vaseline Butter", price: 6 },
+  "vaseline-butter": { name: "Vaseline Butter", price: 6 },
 
-  3: { name: "Crunchy Butter", price: 6, colors: ["Blue","Pink"] },
+  "crunchy-butter": { name: "Crunchy Butter", price: 6, colors: ["Blue", "Pink"] },
 
-  4: { name: "Cheese", price: 4 },
+  "cheese": { name: "Cheese", price: 4 },
 
-  5: { name: "Potato", price: 6 },
+  "potato": { name: "Potato", price: 6 },
 
-  6: { name: "Peach", price: 9 },
+  "peach": { name: "Peach", price: 9 },
 
-  7: { name: "Crunchy Toast", price: 6 },
+  "crunchy-toast": { name: "Crunchy Toast", price: 6 },
 
-  8: { name: "Needoh Cloud", price: 8 },
+  "needoh-cloud": { name: "Needoh Cloud", price: 8 },
 
-  9: { name: "Giant Strawberry", price: 9 },
+  "giant-strawberry": { name: "Giant Strawberry", price: 9 },
 
-  10: { name: "Slushy Apple", price: 6, colors: ["Red","Green"] },
+  "slushy-apple": { name: "Slushy Apple", price: 6, colors: ["Red", "Green"] },
 
-  11: { name: "Duck", price: 6, colors: ["Pink","Blue","Orange","Purple"] },
+  "duck": { name: "Duck", price: 6, colors: ["Pink", "Blue", "Orange", "Purple"] },
 
-  12: { name: "Crunchy Soap", price: 6 },
+  "crunchy-soap": { name: "Crunchy Soap", price: 6 },
 
-  13: { name: "Needoh", price: 8, colors: ["Blue","Pink","Purple"] },
+  "needoh": { name: "Needoh", price: 8, colors: ["Blue", "Pink", "Purple"] },
 
-  14: { name: "Needoh Jellyfish", price: 8, colors: ["Blue","Pink","Purple"] },
+  "needoh-jellyfish": { name: "Needoh Jellyfish", price: 8, colors: ["Blue", "Pink", "Purple"] },
 
-  15: { name: "Needoh Cake", price: 8 },
+  "needoh-cake": { name: "Needoh Cake", price: 8 },
 
-  16: { name: "Needoh Ice Cream", price: 8, colors: ["Blue","Pink","Orange"] },
+  "needoh-ice-cream": { name: "Needoh Ice Cream", price: 8, colors: ["Blue", "Pink", "Orange"] },
 
-  17: { name: "Bear", price: 3, colors: ["Pink","Blue","Orange","Purple"] }
+  "bear": { name: "Bear", price: 3, colors: ["Pink", "Blue", "Orange", "Purple"] },
 
-};
+  "coconut-oil-ball": { name: "Coconut Oil Ball", price: 5, colors: ["Pink", "Yellow", "Blue", "Green"] },
 
-const COUNTRY_CURRENCY = {
+  "hamster-taba": { name: "Hamster Taba", price: 6, colors: ["Yellow", "White"] },
 
-  USA: "usd",
-
-  Singapore: "sgd",
-
-  Thailand: "thb",
-
-  UK: "gbp"
+  "souffle-taba": { name: "Soufflé Taba", price: 7 }
 
 };
 
@@ -92,6 +86,18 @@ const ALIASES = {
 
 };
 
+const COUNTRY_CURRENCY = {
+
+  USA: "usd",
+
+  Singapore: "sgd",
+
+  Thailand: "thb",
+
+  UK: "gbp"
+
+};
+
 const SUPPORTED = new Set([
 
   "usd","sgd","thb","gbp","eur","jpy","krw","cny","hkd","twd",
@@ -101,6 +107,8 @@ const SUPPORTED = new Set([
   "nok","dkk","pln","mxn","brl","zar","aed","sar","qar","ils","try"
 
 ]);
+
+const ZERO_DECIMAL = new Set(["jpy", "krw", "vnd"]);
 
 async function getCurrency(country) {
 
@@ -114,15 +122,19 @@ async function getCurrency(country) {
 
   const alias = ALIASES[key.toLowerCase()];
 
-  if (alias) return alias;
+  if (alias) {
+
+    return alias;
+
+  }
 
   const response = await fetch(
 
     "https://restcountries.com/v3.1/name/" +
 
-    encodeURIComponent(key) +
+      encodeURIComponent(key) +
 
-    "?fields=currencies"
+      "?fields=currencies"
 
   );
 
@@ -172,7 +184,11 @@ async function getRate(currency) {
 
   const data = await response.json();
 
-  const rate = Number(data?.rates?.[currency.toUpperCase()]);
+  const rate = Number(
+
+    data?.rates?.[currency.toUpperCase()]
+
+  );
 
   if (!Number.isFinite(rate) || rate <= 0) {
 
@@ -204,9 +220,29 @@ module.exports = async (req, res) => {
 
     }
 
-    const { country, address, cart } = req.body || {};
+    const body = req.body || {};
 
-    if (!country || !address || !Array.isArray(cart) || !cart.length) {
+    const country = body.country;
+
+    const address = body.address;
+
+    const cart = Array.isArray(body.items)
+
+      ? body.items
+
+      : body.cart;
+
+    if (
+
+      !country ||
+
+      !address ||
+
+      !Array.isArray(cart) ||
+
+      !cart.length
+
+    ) {
 
       return res.status(400).json({
 
@@ -220,7 +256,11 @@ module.exports = async (req, res) => {
 
     if (!SUPPORTED.has(currency)) {
 
-      throw new Error("That currency is not supported for checkout.");
+      throw new Error(
+
+        "That currency is not supported for checkout."
+
+      );
 
     }
 
@@ -248,21 +288,37 @@ module.exports = async (req, res) => {
 
     params.set("customer_creation", "always");
 
-    params.set("metadata[country]", String(country).slice(0, 500));
+    params.set(
+
+      "metadata[country]",
+
+      String(country).slice(0, 500)
+
+    );
 
     params.set("metadata[currency]", currency);
 
-    params.set("metadata[address]", String(address).slice(0, 500));
+    params.set(
+
+      "metadata[address]",
+
+      JSON.stringify(address).slice(0, 500)
+
+    );
 
     let index = 0;
 
     for (const item of cart) {
 
-      const product = PRODUCTS[Number(item.productId)];
+      const product = PRODUCTS[String(item.productId)];
 
       if (!product) {
 
-        throw new Error("One of the products in your cart is unavailable.");
+        throw new Error(
+
+          "One of the products in your cart is unavailable."
+
+        );
 
       }
 
@@ -274,15 +330,25 @@ module.exports = async (req, res) => {
 
       );
 
-      if (product.colors && !product.colors.includes(item.color)) {
+      if (
+
+        product.colors &&
+
+        !product.colors.includes(item.color)
+
+      ) {
 
         throw new Error("Please choose a valid color.");
 
       }
 
-      const unitAmount = Math.round(
+      const amount = Math.round(
 
-        product.price * rate * 100
+        product.price *
+
+          rate *
+
+          (ZERO_DECIMAL.has(currency) ? 1 : 100)
 
       );
 
@@ -304,7 +370,7 @@ module.exports = async (req, res) => {
 
         `line_items[${index}][price_data][unit_amount]`,
 
-        String(unitAmount)
+        String(amount)
 
       );
 
@@ -338,7 +404,7 @@ module.exports = async (req, res) => {
 
         headers: {
 
-          "Authorization":
+          Authorization:
 
             "Bearer " + process.env.STRIPE_SECRET_KEY,
 
@@ -362,7 +428,7 @@ module.exports = async (req, res) => {
 
         stripeData?.error?.message ||
 
-        "Stripe could not start checkout."
+          "Stripe could not start checkout."
 
       );
 
