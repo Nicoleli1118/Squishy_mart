@@ -1,46 +1,190 @@
 const PRODUCTS = {
 
-  "slow-rise-butter": { name: "Slow Rise Butter", price: 6 },
+  "slow-rise-butter": {
 
-  "vaseline-butter": { name: "Vaseline Butter", price: 6 },
+    name: "Slow Rise Butter",
 
-  "crunchy-butter": { name: "Crunchy Butter", price: 6, colors: ["Blue", "Pink"] },
+    price: 6
 
-  "cheese": { name: "Cheese", price: 4 },
+  },
 
-  "potato": { name: "Potato", price: 6 },
+  "vaseline-butter": {
 
-  "peach": { name: "Peach", price: 9 },
+    name: "Vaseline Butter",
 
-  "crunchy-toast": { name: "Crunchy Toast", price: 6 },
+    price: 6
 
-  "needoh-cloud": { name: "Needoh Cloud", price: 8 },
+  },
 
-  "giant-strawberry": { name: "Giant Strawberry", price: 9 },
+  "crunchy-butter": {
 
-  "slushy-apple": { name: "Slushy Apple", price: 6, colors: ["Red", "Green"] },
+    name: "Crunchy Butter",
 
-  "duck": { name: "Duck", price: 6, colors: ["Pink", "Blue", "Orange", "Purple"] },
+    price: 6,
 
-  "crunchy-soap": { name: "Crunchy Soap", price: 6 },
+    colors: ["Blue", "Pink"]
 
-  "needoh": { name: "Needoh", price: 8, colors: ["Blue", "Pink", "Purple"] },
+  },
 
-  "needoh-jellyfish": { name: "Needoh Jellyfish", price: 8, colors: ["Blue", "Pink", "Purple"] },
+  "cheese": {
 
-  "needoh-cake": { name: "Needoh Cake", price: 8 },
+    name: "Cheese",
 
-  "needoh-ice-cream": { name: "Needoh Ice Cream", price: 8, colors: ["Blue", "Pink", "Orange"] },
+    price: 4
 
-  "bear": { name: "Bear", price: 3, colors: ["Pink", "Blue", "Orange", "Purple"] },
+  },
 
-  "coconut-oil-ball": { name: "Coconut Oil Ball", price: 5, colors: ["Pink", "Yellow", "Blue", "Green"] },
+  "potato": {
 
-  "hamster-taba": { name: "Hamster Taba", price: 6, colors: ["Yellow", "White"] },
+    name: "Potato",
 
-  "souffle-taba": { name: "Soufflé Taba", price: 7 }
+    price: 6
+
+  },
+
+  "peach": {
+
+    name: "Peach",
+
+    price: 9
+
+  },
+
+  "crunchy-toast": {
+
+    name: "Crunchy Toast",
+
+    price: 6
+
+  },
+
+  "needoh-cloud": {
+
+    name: "Needoh Cloud",
+
+    price: 8
+
+  },
+
+  "giant-strawberry": {
+
+    name: "Giant Strawberry",
+
+    price: 9
+
+  },
+
+  "slushy-apple": {
+
+    name: "Slushy Apple",
+
+    price: 6,
+
+    colors: ["Red", "Green"]
+
+  },
+
+  "duck": {
+
+    name: "Duck",
+
+    price: 6,
+
+    colors: ["Pink", "Blue", "Orange", "Purple"]
+
+  },
+
+  "crunchy-soap": {
+
+    name: "Crunchy Soap",
+
+    price: 6
+
+  },
+
+  "needoh": {
+
+    name: "Needoh",
+
+    price: 8,
+
+    colors: ["Blue", "Pink", "Purple"]
+
+  },
+
+  "needoh-jellyfish": {
+
+    name: "Needoh Jellyfish",
+
+    price: 8,
+
+    colors: ["Blue", "Pink", "Purple"]
+
+  },
+
+  "needoh-cake": {
+
+    name: "Needoh Cake",
+
+    price: 8
+
+  },
+
+  "needoh-ice-cream": {
+
+    name: "Needoh Ice Cream",
+
+    price: 8,
+
+    colors: ["Blue", "Pink", "Orange"]
+
+  },
+
+  "bear": {
+
+    name: "Bear",
+
+    price: 3,
+
+    colors: ["Pink", "Blue", "Orange", "Purple"]
+
+  },
+
+  "coconut-oil-ball": {
+
+    name: "Coconut Oil Ball",
+
+    price: 5,
+
+    colors: ["Pink", "Yellow", "Blue", "Green"]
+
+  },
+
+  "hamster-taba": {
+
+    name: "Hamster Taba",
+
+    price: 6,
+
+    colors: ["Yellow", "White"]
+
+  },
+
+  "souffle-taba": {
+
+    name: "Soufflé Taba",
+
+    price: 7
+
+  }
 
 };
+
+/*
+
+  COUNTRY → CURRENCY ALIASES
+
+*/
 
 const ALIASES = {
 
@@ -70,6 +214,8 @@ const ALIASES = {
 
   "south korea": "krw",
 
+  "korea": "krw",
+
   "malaysia": "myr",
 
   "indonesia": "idr",
@@ -86,6 +232,12 @@ const ALIASES = {
 
 };
 
+/*
+
+  SPECIAL COUNTRIES
+
+*/
+
 const COUNTRY_CURRENCY = {
 
   USA: "usd",
@@ -98,21 +250,113 @@ const COUNTRY_CURRENCY = {
 
 };
 
+/*
+
+  CURRENCIES WE ALLOW FOR CHECKOUT
+
+*/
+
 const SUPPORTED = new Set([
 
-  "usd","sgd","thb","gbp","eur","jpy","krw","cny","hkd","twd",
+  "usd",
 
-  "myr","idr","php","aud","nzd","cad","inr","vnd","chf","sek",
+  "sgd",
 
-  "nok","dkk","pln","mxn","brl","zar","aed","sar","qar","ils","try"
+  "thb",
+
+  "gbp",
+
+  "eur",
+
+  "jpy",
+
+  "krw",
+
+  "cny",
+
+  "hkd",
+
+  "twd",
+
+  "myr",
+
+  "idr",
+
+  "php",
+
+  "aud",
+
+  "nzd",
+
+  "cad",
+
+  "inr",
+
+  "vnd",
+
+  "chf",
+
+  "sek",
+
+  "nok",
+
+  "dkk",
+
+  "pln",
+
+  "mxn",
+
+  "brl",
+
+  "zar",
+
+  "aed",
+
+  "sar",
+
+  "qar",
+
+  "ils",
+
+  "try"
 
 ]);
 
-const ZERO_DECIMAL = new Set(["jpy", "krw", "vnd"]);
+/*
+
+  Currencies without decimal minor units
+
+*/
+
+const ZERO_DECIMAL = new Set([
+
+  "jpy",
+
+  "krw",
+
+  "vnd"
+
+]);
+
+/*
+
+  FIND THE COUNTRY'S CURRENCY
+
+*/
 
 async function getCurrency(country) {
 
   const key = String(country || "").trim();
+
+  if (!key) {
+
+    throw new Error(
+
+      "Please provide your country."
+
+    );
+
+  }
 
   if (COUNTRY_CURRENCY[key]) {
 
@@ -120,13 +364,23 @@ async function getCurrency(country) {
 
   }
 
-  const alias = ALIASES[key.toLowerCase()];
+  const alias =
+
+    ALIASES[key.toLowerCase()];
 
   if (alias) {
 
     return alias;
 
   }
+
+  /*
+
+    For countries not listed above,
+
+    ask REST Countries for the currency.
+
+  */
 
   const response = await fetch(
 
@@ -140,21 +394,33 @@ async function getCurrency(country) {
 
   if (!response.ok) {
 
-    throw new Error("We could not find that country's currency.");
+    throw new Error(
+
+      "We could not find that country's currency."
+
+    );
 
   }
 
-  const data = await response.json();
+  const data =
 
-  const currencies = data?.[0]?.currencies
+    await response.json();
 
-    ? Object.keys(data[0].currencies)
+  const currencies =
 
-    : [];
+    data?.[0]?.currencies
 
-  if (!currencies[0]) {
+      ? Object.keys(data[0].currencies)
 
-    throw new Error("We could not find that country's currency.");
+      : [];
+
+  if (!currencies.length) {
+
+    throw new Error(
+
+      "We could not find that country's currency."
+
+    );
 
   }
 
@@ -162,9 +428,35 @@ async function getCurrency(country) {
 
 }
 
+/*
+
+  GET USD EXCHANGE RATE
+
+*/
+
 async function getRate(currency) {
 
-  if (currency === "usd" || currency === "sgd") {
+  /*
+
+    Your special rules:
+
+    USA:
+
+    $6 USD = $6 USD
+
+    Singapore:
+
+    $6 USD = S$6 SGD
+
+  */
+
+  if (
+
+    currency === "usd" ||
+
+    currency === "sgd"
+
+  ) {
 
     return 1;
 
@@ -178,21 +470,41 @@ async function getRate(currency) {
 
   if (!response.ok) {
 
-    throw new Error("Currency conversion is temporarily unavailable.");
+    throw new Error(
+
+      "Currency conversion is temporarily unavailable."
+
+    );
 
   }
 
-  const data = await response.json();
+  const data =
+
+    await response.json();
 
   const rate = Number(
 
-    data?.rates?.[currency.toUpperCase()]
+    data?.rates?.[
+
+      currency.toUpperCase()
+
+    ]
 
   );
 
-  if (!Number.isFinite(rate) || rate <= 0) {
+  if (
 
-    throw new Error("That currency is not supported for checkout.");
+    !Number.isFinite(rate) ||
+
+    rate <= 0
+
+  ) {
+
+    throw new Error(
+
+      "That currency is not supported for checkout."
+
+    );
 
   }
 
@@ -200,7 +512,67 @@ async function getRate(currency) {
 
 }
 
+/*
+
+  VERCEL API
+
+*/
+
 module.exports = async (req, res) => {
+
+  /*
+
+    🌎 GLOBAL WEBSITE ACCESS
+
+    Allows the GitHub Pages website,
+
+    Vercel website, and custom domain
+
+    to call this API.
+
+  */
+
+  res.setHeader(
+
+    "Access-Control-Allow-Origin",
+
+    "*"
+
+  );
+
+  res.setHeader(
+
+    "Access-Control-Allow-Methods",
+
+    "POST, OPTIONS"
+
+  );
+
+  res.setHeader(
+
+    "Access-Control-Allow-Headers",
+
+    "Content-Type"
+
+  );
+
+  /*
+
+    Browser preflight request
+
+  */
+
+  if (req.method === "OPTIONS") {
+
+    return res.status(200).end();
+
+  }
+
+  /*
+
+    Only POST is allowed
+
+  */
 
   if (req.method !== "POST") {
 
@@ -214,23 +586,49 @@ module.exports = async (req, res) => {
 
   try {
 
+    /*
+
+      Stripe secret key stays ONLY
+
+      inside Vercel environment variables.
+
+    */
+
     if (!process.env.STRIPE_SECRET_KEY) {
 
-      throw new Error("Stripe is not connected yet.");
+      throw new Error(
+
+        "Stripe is not connected yet."
+
+      );
 
     }
 
-    const body = req.body || {};
+    const body =
 
-    const country = body.country;
+      req.body || {};
 
-    const address = body.address;
+    const country =
 
-    const cart = Array.isArray(body.items)
+      body.country;
 
-      ? body.items
+    const address =
 
-      : body.cart;
+      body.address;
+
+    const cart =
+
+      Array.isArray(body.items)
+
+        ? body.items
+
+        : body.cart;
+
+    /*
+
+      Check the customer's information
+
+    */
 
     if (
 
@@ -246,13 +644,31 @@ module.exports = async (req, res) => {
 
       return res.status(400).json({
 
-        error: "Please provide your country, address, and cart."
+        error:
+
+          "Please provide your country, address, and cart."
 
       });
 
     }
 
-    const currency = await getCurrency(country);
+    /*
+
+      Find customer's currency
+
+    */
+
+    const currency =
+
+      await getCurrency(country);
+
+    /*
+
+      Make sure Stripe supports
+
+      this currency for our checkout.
+
+    */
 
     if (!SUPPORTED.has(currency)) {
 
@@ -264,11 +680,39 @@ module.exports = async (req, res) => {
 
     }
 
-    const rate = await getRate(currency);
+    /*
 
-    const params = new URLSearchParams();
+      Get current USD exchange rate
 
-    params.set("mode", "payment");
+    */
+
+    const rate =
+
+      await getRate(currency);
+
+    /*
+
+      Build Stripe Checkout request
+
+    */
+
+    const params =
+
+      new URLSearchParams();
+
+    params.set(
+
+      "mode",
+
+      "payment"
+
+    );
+
+    /*
+
+      Customer returns here after payment
+
+    */
 
     params.set(
 
@@ -286,7 +730,25 @@ module.exports = async (req, res) => {
 
     );
 
-    params.set("customer_creation", "always");
+    /*
+
+      Stripe creates a customer
+
+    */
+
+    params.set(
+
+      "customer_creation",
+
+      "always"
+
+    );
+
+    /*
+
+      Save order information in Stripe
+
+    */
 
     params.set(
 
@@ -296,7 +758,13 @@ module.exports = async (req, res) => {
 
     );
 
-    params.set("metadata[currency]", currency);
+    params.set(
+
+      "metadata[currency]",
+
+      currency
+
+    );
 
     params.set(
 
@@ -306,11 +774,29 @@ module.exports = async (req, res) => {
 
     );
 
+    /*
+
+      Add every cart item
+
+    */
+
     let index = 0;
 
     for (const item of cart) {
 
-      const product = PRODUCTS[String(item.productId)];
+      const product =
+
+        PRODUCTS[
+
+          String(item.productId)
+
+        ];
+
+      /*
+
+        Make sure the product actually exists
+
+      */
 
       if (!product) {
 
@@ -322,41 +808,121 @@ module.exports = async (req, res) => {
 
       }
 
-      const quantity = Math.max(
+      /*
 
-        1,
+        Limit quantity
 
-        Math.min(99, Number(item.quantity) || 1)
+      */
 
-      );
+      const quantity =
+
+        Math.max(
+
+          1,
+
+          Math.min(
+
+            99,
+
+            Number(item.quantity) || 1
+
+          )
+
+        );
+
+      /*
+
+        Check colors
+
+      */
 
       if (
 
         product.colors &&
 
-        !product.colors.includes(item.color)
+        !product.colors.includes(
+
+          item.color
+
+        )
 
       ) {
 
-        throw new Error("Please choose a valid color.");
+        throw new Error(
+
+          "Please choose a valid color."
+
+        );
 
       }
 
-      const amount = Math.round(
+      /*
 
-        product.price *
+        Convert USD price to
 
-          rate *
+        customer's currency.
 
-          (ZERO_DECIMAL.has(currency) ? 1 : 100)
+        Example:
 
-      );
+        USD $6
+
+        Singapore → S$6
+
+        Thailand → ฿...
+
+        UK → £...
+
+      */
+
+      const amount =
+
+        Math.round(
+
+          product.price *
+
+            rate *
+
+            (
+
+              ZERO_DECIMAL.has(
+
+                currency
+
+              )
+
+                ? 1
+
+                : 100
+
+            )
+
+        );
+
+      /*
+
+        Put color into product name
+
+      */
 
       const name =
 
         product.name +
 
-        (item.color ? " - " + item.color : "");
+        (
+
+          item.color
+
+            ? " - " + item.color
+
+            : ""
+
+        );
+
+      /*
+
+        Stripe line item
+
+      */
 
       params.set(
 
@@ -394,33 +960,51 @@ module.exports = async (req, res) => {
 
     }
 
-    const stripeResponse = await fetch(
+    /*
 
-      "https://api.stripe.com/v1/checkout/sessions",
+      Send secure request to Stripe
 
-      {
+    */
 
-        method: "POST",
+    const stripeResponse =
 
-        headers: {
+      await fetch(
 
-          Authorization:
+        "https://api.stripe.com/v1/checkout/sessions",
 
-            "Bearer " + process.env.STRIPE_SECRET_KEY,
+        {
 
-          "Content-Type":
+          method: "POST",
 
-            "application/x-www-form-urlencoded"
+          headers: {
 
-        },
+            Authorization:
 
-        body: params
+              "Bearer " +
 
-      }
+              process.env.STRIPE_SECRET_KEY,
 
-    );
+            "Content-Type":
 
-    const stripeData = await stripeResponse.json();
+              "application/x-www-form-urlencoded"
+
+          },
+
+          body: params
+
+        }
+
+      );
+
+    const stripeData =
+
+      await stripeResponse.json();
+
+    /*
+
+      Stripe error
+
+    */
 
     if (!stripeResponse.ok) {
 
@@ -428,11 +1012,19 @@ module.exports = async (req, res) => {
 
         stripeData?.error?.message ||
 
-          "Stripe could not start checkout."
+        "Stripe could not start checkout."
 
       );
 
     }
+
+    /*
+
+      Send Stripe Checkout URL
+
+      back to your website.
+
+    */
 
     return res.status(200).json({
 
@@ -442,11 +1034,27 @@ module.exports = async (req, res) => {
 
   } catch (error) {
 
+    console.error(
+
+      "Checkout error:",
+
+      error
+
+    );
+
+    /*
+
+      Send the real error back
+
+      so your website can display it.
+
+    */
+
     return res.status(500).json({
 
       error:
 
-        error.message ||
+        error?.message ||
 
         "Payment could not be started."
 
